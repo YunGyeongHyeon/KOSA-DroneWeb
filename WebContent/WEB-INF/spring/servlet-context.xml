@@ -18,6 +18,11 @@
 		<property name="prefix" value="/WEB-INF/views/user/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+	
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/admin/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
 
 	<context:component-scan base-package="com.fireBusters.web" />
 	
