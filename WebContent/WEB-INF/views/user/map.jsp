@@ -18,28 +18,32 @@
 	      var labelIndex = 0;
 			// Initialize and add the map
 			function initMap() {
-			  // The location of Uluru
-			  var uluru = {lat: 37.495068, lng: 127.122448};
-			  // The map, centered at Uluru
-			  var map = new google.maps.Map(
-			      document.getElementById('map'), {zoom: 15, center: uluru});
+				navigator.geolocation.getCurrentPosition(function(pos) {
+					var uluru = {
+							lat: pos.coords.latitude,
+							lng: pos.coords.longitude
+					}
+				});
+				var uluru = {
+						lat: 37.495068,
+						lng: 127.122448
+				}
+				// The map, centered at Uluru
+				  var map = new google.maps.Map(
+				      document.getElementById('map'), {zoom: 15, center: uluru});
 
-			  google.maps.event.addListener(map, 'click', function(event) {
-		          addMarker(event.latLng, map);
-		        });
-
-		        // Add a marker at the center of the map.
-		        addMarker(uluru, map);
-		        
-		        
+				  google.maps.event.addListener(map, 'click', function(event) {
+			          addMarker(event.latLng, map);
+			        });
+			        // Add a marker at the center of the map.
+			        addMarker(uluru, map);
 		      }
 			// Adds a marker to the map.
-		      function addMarker(location, map) {
-		    	//Marker remove
-		    	  if(labelIndex != 0){
-			    	  marker.setMap(null);
-				}
-		    	
+			
+		      function addMarker(location, map) {	    
+		    	if(labelIndex != 0){
+		    		marker.setMap(null);
+		    	}
 		        // Add the marker at the clicked location, and add the next-available label
 		        // from the array of alphabetical characters.
 		        marker = new google.maps.Marker({
@@ -48,6 +52,9 @@
 		          map: map
 		        });
 		        
+		        // lat, lon data information
+		        var lat = marker.position.lat();
+		        var lon = marker.position.lng();
 		      }
 	     </script>
 	</head>
