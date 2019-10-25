@@ -12,6 +12,7 @@ public class HomeController {
 
 	@RequestMapping("/map")
 	public String map() {
+		
 		return "map";
 	}
 
