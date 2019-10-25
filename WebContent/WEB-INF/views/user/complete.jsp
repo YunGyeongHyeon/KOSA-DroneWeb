@@ -2,24 +2,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
+	<meta charset="UTF-8"> 
 	<title>complete.jsp</title>
 	<script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/jquery-3.4.1.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 	<script type="text/javascript" src="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
+<style type="text/css">
+html {
+    height: 100%;
+}
+ 
+body {
+    margin: 0px;
+    height: 100%;
+    width: 100%;
+}
+.layer{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  
+}
+
+#ment{
+  left:40%;
+  width:400px;
+  text-align:center;
+  vertical-align: middle;
+  font-size: 100%;
+}
+
+#goToMain {
+	text-align:center;
+	vertical-align: middle;
+}
+
+</style>
+ 
 <body>
-	<form>
-	  <div class="form-group">
-	    <label for="exampleInputEmail1">위도</label>
-	    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="위도">
-	  </div>
-	  <div class="form-group">
-	    <label for="exampleInputPassword1">경도</label>
-	    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="경도">
-	  </div>
-	  <h5>신고가 접수되었습니다</h5>
-	  <a href="#" class="btn btn-secondary">확인</a>
-	</form>		
-</body>
-</html>
+	<div class="layer" >
+		<div class="input-group mb-3">
+			 <input style="height:100px;" type="text" class="form-control" placeholder="위도" readonly>
+			 <input style="height:100px;" type="text" class="form-control" placeholder="경도" readonly>
+		</div>
+		<div id="ment">
+			<h1 class="ment" style="height:100px; color:red; padding-top:20px">신고가 접수되었습니다</h1>
+		</div>
+		<div id="goToMain">
+		  	<a href="main" class="btn btn-secondary">확인</a>
+		</div>	
+	</div>
+</body>     
+
+</html>  
