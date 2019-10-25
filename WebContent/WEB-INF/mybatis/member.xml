@@ -1,3 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="member"></mapper>
+<mapper namespace="adminMember">
+	<resultMap id="adminMember" type="com.fireBusters.web.dto.AdminMember">
+		<result column="adminid" property="adminId"/>
+		<result column="adminpassword" property="adminPassword"/>
+	</resultMap>
+
+	<select id="selectAdminMember" parameterType="string" resultMap="adminMember">
+ 		 select adminid, adminpassword from testadmin where adminid=#{adminid}
+	</select>
+
+</mapper>
