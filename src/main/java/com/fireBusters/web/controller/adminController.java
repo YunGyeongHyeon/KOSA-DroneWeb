@@ -11,8 +11,12 @@ public class adminController {
 	private static final Logger logger = LoggerFactory.getLogger(adminController.class);
 	
 	@RequestMapping("/login")
-	public String content() {
+	public String login() {
 		return "admin/login";
 	}
-
+	
+	@RequestMapping("/content")
+	public String content() {
+		return "admin/content";
+	}
 }
