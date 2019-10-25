@@ -10,9 +10,12 @@
 		<script type="text/javascript" src="<%=application.getContextPath() %>/resources/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7fc91c58f8e6b8882e86ec0f088ab95b"></script>
 		<script async defer
-	   	 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAy0_KJWjxBnkhGTDY7pTiw-2oHrht5Zjs&callback=initMap">
+	   	 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6QqekZ1wnL7A8e0nPlnEsHowprAdcm8c&callback=initMap">
 	    </script>
+
 		<script>
+		 var labels = 'F';
+	      var labelIndex = 0;
 			// Initialize and add the map
 			function initMap() {
 			  // The location of Uluru
@@ -20,12 +23,35 @@
 			  // The map, centered at Uluru
 			  var map = new google.maps.Map(
 			      document.getElementById('map'), {zoom: 15, center: uluru});
-			  // The marker, positioned at Uluru
-			  var marker = new google.maps.Marker({position: uluru, map: map});
-			}
+
+			  google.maps.event.addListener(map, 'click', function(event) {
+		          addMarker(event.latLng, map);
+		        });
+
+		        // Add a marker at the center of the map.
+		        addMarker(uluru, map);
+		        
+		        
+		      }
+			// Adds a marker to the map.
+		      function addMarker(location, map) {
+		    	//Marker remove
+		    	  if(labelIndex != 0){
+			    	  marker.setMap(null);
+				}
+		    	
+		        // Add the marker at the clicked location, and add the next-available label
+		        // from the array of alphabetical characters.
+		        marker = new google.maps.Marker({
+		          position: location,
+		          label: labels[labelIndex++ % labels.length],
+		          map: map
+		        });
+		        
+		      }
 	     </script>
 	</head>
 	<body>
-		<div id="map" style="width:500px;height:400px;"></div>
+		<div id="map" style="width:1080px;height:1600px;"></div>
 	</body>
 </html>
