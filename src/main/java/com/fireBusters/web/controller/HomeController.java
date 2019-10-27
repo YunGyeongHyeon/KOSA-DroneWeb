@@ -3,21 +3,21 @@ package com.fireBusters.web.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller
+@Controller("/user")
 public class HomeController {
 	@RequestMapping("/")
 	public String main() {
-		return "main";
+		return "/user/main";
 	}
 
 	@RequestMapping("/map")
 	public String map() {
 		
-		return "map";
+		return "/user/map";
 	}
 
 	@RequestMapping("/complete")
 	public String complete() {
-		return "complete";
+		return "/user/complete";
 	}
 }

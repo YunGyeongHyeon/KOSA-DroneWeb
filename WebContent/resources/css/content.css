@@ -1,0 +1,37 @@
+@charset "UTF-8";
+	.cn_header{
+		border:1px solid;
+		height:100%;
+	}
+	#cn_119{
+		width:50%;
+	}
+	.cn_logo{
+		height:100px;
+	}
+	.cn_logo_img{
+		width:80%;
+	}
+	#cn_top_first{
+		float:left;
+	}
+	#cn_top_secound{
+		float:right;
+	}
+	.cn_table{
+		border:1px solid;
+	}
+	.side-right{
+		float:right;
+	}
+	.cn_login_info td{
+		border:1px solid;
+		width:35%;
+	}
+	.cn_taps{
+		border:1px solid;
+	}
+	#map {
+        height: 400px;  /* The height is 400 pixels */
+        width: 50%;  /* The width is the width of the web page */
+    }
