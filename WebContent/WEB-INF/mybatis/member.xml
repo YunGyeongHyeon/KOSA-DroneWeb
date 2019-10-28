@@ -9,11 +9,4 @@
 	<select id="selectAdminMember" parameterType="string" resultMap="adminMember">
  		 select adminid, adminpassword from testadmin where adminid=#{adminid}
 	</select> 
-
-	<insert id="insertUserLatLon" parameterType="double">
-		insert into report (report_no, report_date, report_lat, report_lon)
-		values(report_no_sq, sysdate, #{lat}, #{lon})
-	</insert>
-	
-
 </mapper>
