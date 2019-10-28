@@ -49,14 +49,13 @@
 		        // lat, lon data information
 		        var lat = marker.position.lat();
 		        var lon = marker.position.lng();
-		        console.log(lat,lon);
 		      }
 	     </script>
 	</head>
 	<body style="width:100%">
 			<div id="map" style=" width:410px; height:610px; position:absolute;"></div>
 			<div style="width:200px; margin-left: 40%; margin-top: 125%; position:absolute;">
-					<a href="user/complete" class="btn btn-danger">신고하기</a>
+					<a href="complete" class="btn btn-danger">신고하기</a>
 			</div>
 	</body>
 </html>

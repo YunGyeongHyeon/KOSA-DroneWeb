@@ -7,16 +7,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 	@RequestMapping("/")
 	public String main() {
-		return "main";
+		return "/user/main";
 	}
 
-	@RequestMapping("user/map")
+	@RequestMapping("/map")
 	public String map() {
 		
 		return "/user/map";
 	}
 
-	@RequestMapping("user/complete")
+	@RequestMapping("/complete")
 	public String complete() {
 		return "/user/complete";
 	}
