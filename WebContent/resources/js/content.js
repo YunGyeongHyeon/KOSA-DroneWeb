@@ -9,7 +9,6 @@ function initMap() {
 	/*  google.maps.event.addListener(map, 'click', function(event) {
 		    addMarker(event.latLng, map);
 		  });*/
-
 		  // Add a marker at the center of the map.
 		  addMarker(myLatLng, map);
 	}

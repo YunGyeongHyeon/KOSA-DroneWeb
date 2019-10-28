@@ -26,8 +26,8 @@
 				<div class="cn_logo">
 					<table id="cn_top_first">
 						<tr>
-							<td><img class="side-right cn_logo_img" alt="산림청" src="<%=application.getContextPath()%>/resources/image/logo1.jpg"></td>
-							<td><img id="cn_119"class="cn_logo_img" alt="119" src="<%=application.getContextPath()%>/resources/image/logo2.jpg"></td>
+							<td><img class="side-right cn_logo_img" alt="산림청" src="<%=application.getContextPath()%>/resources/image/logo1.png"></td>
+							<td><img id="cn_119"class="cn_logo_img" alt="119" src="<%=application.getContextPath()%>/resources/image/logo2.png"></td>
 						</tr>
 					</table>
 				
@@ -35,7 +35,9 @@
 					<table id="cn_top_secound">
 						<tr class="cn_login_info">	
 							<td>소방서 아이디</td>
-							<td>로그아웃</td>
+						</tr>	
+						<tr>	
+							<td class="btn btn-light">로그아웃</td>
 						</tr>
 					</table>
 				</div>

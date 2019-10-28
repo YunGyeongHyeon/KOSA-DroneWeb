@@ -23,7 +23,7 @@ public class AdminController {
 	AdminService service;
 
 	@RequestMapping("/main")
-	public String content() {
+	public String main() {
 		return "admin/loginForm";
 	}
 
@@ -56,5 +56,11 @@ public class AdminController {
 	@GetMapping("/complete")
 	public String complete() {
 		return "admin/complete";
+	}
+	
+	@RequestMapping("/content")
+	public String content() {
+		
+		return "admin/content";
 	}
 }

@@ -1,25 +1,35 @@
 @charset "UTF-8";
 	#wraper{
-		margin:10px;
+		margin-left:200px;
+		margin-right:200px;
 	}
 	.cn_header{
-		border:1px solid;
 		height:100%;
+		margin-top:30px;
 	}
 	#cn_119{
 		width:50%;
 	}
 	.cn_logo{
 		height:100px;
+		background:rgb(240 325 68);
+		border-radius: 30px;
 	}
 	.cn_logo_img{
 		width:80%;
 	}
 	#cn_top_first{
 		float:left;
+		margin-left:30px;
 	}
 	#cn_top_secound{
-		float:right;
+		    float: right;
+		    margin-top: 15px;
+		    margin-right: 75px;
+		    border-radius: 20px;
+		    background: white;
+		    font-size: 1.2em;
+		    text-align: center;
 	}
 	.cn_table{
 		border:1px solid;
@@ -28,8 +38,8 @@
 		float:right;
 	}
 	.cn_login_info td{
-		border:1px solid;
 		width:35%;
+		font
 	}
 	.cn_taps{
 		border:1px solid;
@@ -37,4 +47,6 @@
 	#map {
         height: 400px;  /* The height is 400 pixels */
         width: 50%;  /* The width is the width of the web page */
+        left:50%;
+        padding-bottom:44%;
     }
