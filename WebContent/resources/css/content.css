@@ -1,4 +1,7 @@
 @charset "UTF-8";
+	#wraper{
+		margin:10px;
+	}
 	.cn_header{
 		border:1px solid;
 		height:100%;
