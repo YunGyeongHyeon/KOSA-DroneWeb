@@ -5,7 +5,7 @@
 	
 	<insert id="insert"	parameterType="map">
 		insert into report(REPORT_NO, REPORT_DATE, REPORT_LAT, REPORT_LON)
-		values(report_sq, sysdate, #{lat}, #{lon})
+		values(report_sq.nextval, sysdate, #{lat}, #{lon})
 	</insert>
 
 </mapper>
