@@ -49,7 +49,6 @@
 		        // lat, lon data information
 		        var lat = marker.position.lat();
 		        var lon = marker.position.lng();
-		        console.log(lat,lon);
 		      }
 	     </script>
 	</head>

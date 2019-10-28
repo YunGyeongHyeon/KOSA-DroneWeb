@@ -52,7 +52,7 @@ body {
 			<h1 class="ment" style="height:100px; color:red; padding-top:20px">신고가 접수되었습니다</h1>
 		</div>
 		<div id="goToMain">
-		  	<a href="main" class="btn btn-secondary">확인</a>
+		  	<a href="http://192.168.2.7:8080/FinalWebProject/" class="btn btn-secondary">확인</a>
 		</div>	
 	</div>
 </body>     
