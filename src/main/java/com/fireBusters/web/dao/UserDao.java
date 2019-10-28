@@ -10,8 +10,10 @@ public class UserDao {
 	private SqlSessionTemplate sqlSessionTemplate;
 
 	public int insert(double lat, double lon) {
-		int row = sqlSessionTemplate.insert("",);
+		int row1 = sqlSessionTemplate.insert("adminMember.insertUserLatLon", lat);
+		int row2 = sqlSessionTemplate.insert("adminMember.insertUserLatLon", lon);
 		
+		return row1+row2;
 	}
 
 }
