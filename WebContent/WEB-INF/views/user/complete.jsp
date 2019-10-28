@@ -49,11 +49,12 @@ body {
 			 <input style="height:100px;" type="text" class="form-control" placeholder="위도" value="<%= request.getParameter("lat") %>" readonly>
 			 <input style="height:100px;" type="text" class="form-control" placeholder="경도" value="<%= request.getParameter("lon") %>" readonly>
 		</div>
-		<div id="ment">
-			<h1 class="ment" style="height:100px; color:red; padding-top:20px">신고가 접수되었습니다</h1>
+		<div id="ment" style="background-color:green; text-align:center;">
+			<h1 class="ment" style="height:100px; color:white; padding-top:28px;">신고가 접수되었습니다</h1>
 		</div>
-		<div id="goToMain">
-		  	<a href="http://192.168.2.7:8080/FinalWebProject/" class="btn btn-secondary">확인</a>
+		<div id="goToMain" >
+		  	<a href="http://192.168.2.7:8080/FinalWebProject/" class="btn btn-success"
+		  	style="width:150px; height:70px;  line-height: 60px; margin-top:30%; font-size:35px;">확인</a>
 		</div>	
 	</div>
 </body>     
