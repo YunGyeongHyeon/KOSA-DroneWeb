@@ -22,7 +22,8 @@
 			}
 			#fire_button{
 				margin-left:25%;
-				margin-top: 120%;
+				margin-top: 100%;
+				margin-bottom: 100%;
 				
 
 			}
