@@ -3,7 +3,8 @@ package com.fireBusters.web.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller("/user")
+@Controller
+@RequestMapping("/user")
 public class HomeController {
 	@RequestMapping("/")
 	public String main() {
