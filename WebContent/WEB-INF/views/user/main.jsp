@@ -38,7 +38,7 @@
 		</style>
 	</head>
 	<body>
-		<div class="layer" id=background style="width:100%;">
+		<div class="layer" id="background" style="width:100%;">
 			<div id=fire_button >
 				<a href="map" class="btn btn-danger" style="width:200px; height:80px;  
 				font-size:25px; line-height: 70px; margin-bottom: 20px; ">화재 위치 선택</a>

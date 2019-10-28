@@ -18,8 +18,19 @@ body {
     margin: 0px;
     height: 100%;
     width: 100%;
-    background-image: url('<%=application.getContextPath() %>/resources/image/400x600.jpg');
+
 }
+#background{
+				background-image: url('<%=application.getContextPath() %>/resources/image/400x600.jpg');
+				border: 0;
+				padding: 0;
+				background-position: center;
+				background-size: contain;
+				background-repeat: no-repeat;
+				width: 100%;
+				background-position: 50% 50%;
+			}
+
 .layer{
   position:absolute;
   top:50%;
@@ -44,10 +55,11 @@ body {
 </style>
  
 <body>
-	<div class="layer" >
+<div id="background" style="width: 100%; height: 100%;">
+	<div class="layer">
 		<div class="input-group mb-3">
-			 <input style="height:100px;" type="text" class="form-control" placeholder="위도" value="<%= request.getParameter("lat") %>" readonly>
-			 <input style="height:100px;" type="text" class="form-control" placeholder="경도" value="<%= request.getParameter("lon") %>" readonly>
+			 <input style="height:100px; text-align: center; background-color:white" type="text" class="form-control" placeholder="위도" value="<%= request.getParameter("lat") %>" readonly>
+			 <input style="height:100px; text-align: center; background-color:white" type="text" class="form-control" placeholder="경도" value="<%= request.getParameter("lon") %>" readonly>
 		</div>
 		<div id="ment" style="background-color:green; text-align:center;">
 			<h1 class="ment" style="height:100px; color:white; padding-top:28px;">신고가 접수되었습니다</h1>
@@ -56,6 +68,7 @@ body {
 		  	<a href="http://192.168.2.7:8080/FinalWebProject/" class="btn btn-success"
 		  	style="width:150px; height:70px;  line-height: 60px; margin-top:30%; font-size:35px;">확인</a>
 		</div>	
+	</div>
 	</div>
 </body>     
 
