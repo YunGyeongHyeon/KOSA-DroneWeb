@@ -4,20 +4,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/user")
 public class HomeController {
 	@RequestMapping("/")
 	public String main() {
-		return "/user/main";
+		return "main";
 	}
 
-	@RequestMapping("/map")
+	@RequestMapping("user/map")
 	public String map() {
 		
 		return "/user/map";
 	}
 
-	@RequestMapping("/complete")
+	@RequestMapping("user/complete")
 	public String complete() {
 		return "/user/complete";
 	}

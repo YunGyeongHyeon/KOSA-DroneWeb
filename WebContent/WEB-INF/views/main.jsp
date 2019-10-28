@@ -22,7 +22,7 @@
 
 	<body id=background style="width:100%;">
 		<div id=fire_button>
-			<a href="map" class="btn btn-danger" style="width:200px; height:80px;  line-height: 70px;">화재 위치 선택</a>
+			<a href="user/map" class="btn btn-danger" style="width:200px; height:80px;  line-height: 70px;">화재 위치 선택</a>
 		</div>
 	</body>
 </html>
