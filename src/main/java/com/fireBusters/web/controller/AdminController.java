@@ -1,5 +1,7 @@
 package com.fireBusters.web.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.fireBusters.web.dto.AdminBoard;
 import com.fireBusters.web.service.AdminService;
 import com.fireBusters.web.service.LoginResult;
 
@@ -56,5 +59,15 @@ public class AdminController {
 	@GetMapping("/complete")
 	public String complete() {
 		return "admin/complete";
+	}
+	
+	@RequestMapping("/board")
+	public String board(Model model) {
+		List<AdminBoard> board = service.selectReport("강남소방서");
+		System.out.println("컨트롤러");
+		model.addAttribute("board",board);
+		System.out.println("-------------------------------------"+(board.indexOf(3)));
+		System.out.println("-------------------------------------"+(board.size()));
+		return "admin/board";
 	}
 }
