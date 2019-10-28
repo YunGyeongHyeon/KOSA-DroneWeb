@@ -10,4 +10,6 @@
  		 select adminid, adminpassword from testadmin where adminid=#{adminid}
 	</select> 
 
+	
+
 </mapper>
