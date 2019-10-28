@@ -61,19 +61,21 @@ public class AdminController {
 		return "admin/complete";
 	}
 	
-	@RequestMapping("/board")
-	public String board(Model model) {
-		List<AdminBoard> board = service.selectReport("강남소방서");
-		System.out.println("컨트롤러");
-		model.addAttribute("board",board);
-		System.out.println("-------------------------------------"+(board.indexOf(3)));
-		System.out.println("-------------------------------------"+(board.size()));
-		return "admin/board";
-	}
 	
-	@RequestMapping("/content")
-	public String content() {
+	
+	@PostMapping("/content")
+	public String content(Model model, HttpSession session) {
+		List<AdminBoard> board = service.selectReport((String)session.getAttribute("adminId"));
+		model.addAttribute("board",board);
 		
 		return "admin/content";
 	}
+	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute("adminId");
+		session.removeAttribute("fire_station_name");
+		return "redirect:/admin/loginForm";
+	}
+
 }

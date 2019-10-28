@@ -33,7 +33,7 @@
 		      }
 			// Adds a marker to the map.
 			
-		      function addMarker(location, map) {	    
+		      function addMarker(location, map) {    
 		    	if(labelIndex != 0){
 		    		marker.setMap(null);
 		    	}
@@ -48,9 +48,7 @@
 		        // lat, lon data information
 		        lat = marker.position.lat();
 		        lon = marker.position.lng();
-		        
 		      }
-			
 			function sendData(){
 				location.href="complete?lat="+lat+"&lon="+lon;
 			}

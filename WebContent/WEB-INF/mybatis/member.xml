@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="adminMember">
-	<resultMap id="adminMember" type="com.fireBusters.web.dto.AdminMember">
-		<result column="adminid" property="adminId"/>
-		<result column="adminpassword" property="adminPassword"/>
-	</resultMap>
 
-	<select id="selectAdminMember" parameterType="string" resultMap="adminMember">
- 		 select adminid, adminpassword from testadmin where adminid=#{adminid}
+	<select id="selectAdminMember" parameterType="int" resultType="com.fireBusters.web.dto.AdminMember">
+ 		 select fire_station_id, fire_station_password from fire_station where fire_station_id=#{adminId}
 	</select>
 
 	<select id="selectReport" parameterType="string" resultType="com.fireBusters.web.dto.AdminBoard">
-			select report_date, report_lat, report_lon from report where fire_station_no=
-			(select fire_station_no from fire_station where fire_station_name=#{name})
+			select to_char(report_date, 'MM/DD HH24:MI:SS') report_date, report_lat, report_lon 
+				from report where fire_station_no=(
+					select fire_station_no 
+						from fire_station 
+						where fire_station_name=#{name})
 	</select>
 	
 	

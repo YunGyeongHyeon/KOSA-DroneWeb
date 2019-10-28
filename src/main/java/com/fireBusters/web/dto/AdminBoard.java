@@ -3,7 +3,7 @@ package com.fireBusters.web.dto;
 import java.sql.Date;
 
 public class AdminBoard {
-	private Date report_date;
+	private String report_date;
 	private double report_lat;
 	private double report_lon;
 	private String report_handle;
@@ -12,10 +12,10 @@ public class AdminBoard {
 	
 	
 	
-	public Date getReport_date() {
+	public String getReport_date() {
 		return report_date;
 	}
-	public void setReport_date(Date report_date) {
+	public void setReport_date(String report_date) {
 		this.report_date = report_date;
 	}
 	

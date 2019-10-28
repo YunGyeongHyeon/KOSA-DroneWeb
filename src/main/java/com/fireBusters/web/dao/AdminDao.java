@@ -16,12 +16,13 @@ public class AdminDao {
 	private SqlSessionTemplate sqlSessionTemplate;
 
 	public AdminMember selectAdmin(String adminId) {
-		AdminMember member = sqlSessionTemplate.selectOne("adminMember.selectAdminMember", adminId);// member는 매퍼 member.xml에 있다.
+		int adid = Integer.valueOf(adminId);
+		System.out.println("ㅈㅇㅈㅇㅈ-ㅇ-ㅈㅇ-ㅈ-ㅇㅈ-ㅈㅇ-ㅈㅇ "+adid);
+		AdminMember member = sqlSessionTemplate.selectOne("adminMember.selectAdminMember", adid);// member는 매퍼 member.xml에 있다.
 		return member;
 	}
 
 	public List<AdminBoard> selectReport(String name) {
-		System.out.println(name+"-------------------------------------------------------------");
 		List<AdminBoard> board = sqlSessionTemplate.selectList("adminMember.selectReport",name);
 		return board;
 	}

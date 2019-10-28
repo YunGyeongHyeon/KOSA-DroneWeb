@@ -24,7 +24,7 @@
 	}
 	#cn_top_secound{
 		    float: right;
-		    margin-top: 15px;
+		    margin-top: 25px;
 		    margin-right: 75px;
 		    border-radius: 20px;
 		    background: white;
@@ -38,15 +38,25 @@
 		float:right;
 	}
 	.cn_login_info td{
-		width:35%;
-		font
+		width:85%;
+		height:50px;
+	}
+	#cn_login_out{
+		font-size:0.3em;
+	}
+	#cn_list{
+		margin-top:30px;
 	}
 	.cn_taps{
 		border:1px solid;
 	}
+	.table2{
+		width:50%;
+		float:left;
+		text-align: center;
+	}
 	#map {
         height: 400px;  /* The height is 400 pixels */
         width: 50%;  /* The width is the width of the web page */
-        left:50%;
         padding-bottom:44%;
     }

@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page import="java.util.Date" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,18 +36,42 @@
 					<!-- 로그인정보: 아이디 비밀번호 수정 로그아웃 -->
 					<table id="cn_top_secound">
 						<tr class="cn_login_info">	
-							<td>소방서 아이디</td>
+							<td id="cn_login_id"><%=session.getAttribute("fire_station_name")%></td>
+							<td id="cn_login_out"><a href="logout">로그아웃</a></td>
 						</tr>	
-						<tr>	
-							<td class="btn btn-light">로그아웃</td>
-						</tr>
 					</table>
 				</div>
 			</div>
 			
 			<!-- 컨텐츠를 담아놓은 부분 -->
 			<div>
-				<div id="map"></div>
+				<div id="cn_list">
+					<table class="table2 table-sm">
+						<thead>
+							<tr style="background-color: yellow">
+								<th scope="col">화재장소(위도)</th>
+								<th scope="col">화제장소(경도)</th>
+								<th scope="col">접수시간</th>
+								<th scope="col">처리현황</th>
+								<th scope="col">신고유형</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="board" items="${board}">
+								<tr onclick="listClick(${board.report_lat}, ${board.report_lon})">
+				 					<td>${board.report_lat}</td>
+									<td>${board.report_lon}</td>
+									<td>${board.report_date}</td>
+									<td><button type="button" class="btn btn-warning">드론출동</button></td>
+									<td><button type="button" class="btn btn-danger">실제사고</button><br/>
+										<button type="button" class="btn btn-primary">허위신고</button>
+									</td>
+								</tr>
+						 	</c:forEach> 
+						</tbody>
+					</table>	
+					<div id="map"></div>
+				</div>
 				<div>
 				</div>
 			</div>
