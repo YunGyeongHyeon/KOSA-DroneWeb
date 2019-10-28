@@ -30,5 +30,10 @@ public class HomeController {
 		service.writeLocation(lat, lon);
 		return "/user/complete";
 	}
+	
+	@RequestMapping("/exception")
+	public String exception() {
+		return "/user/exception";
+	}
 
 }
