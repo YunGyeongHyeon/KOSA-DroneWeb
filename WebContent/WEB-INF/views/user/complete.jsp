@@ -18,6 +18,7 @@ body {
     margin: 0px;
     height: 100%;
     width: 100%;
+    background-image: url('<%=application.getContextPath() %>/resources/image/400x600.jpg');
 }
 .layer{
   position:absolute;

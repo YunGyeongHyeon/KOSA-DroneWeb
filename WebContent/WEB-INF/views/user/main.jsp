@@ -12,7 +12,6 @@
 		<style>
 			#background{
 				background-image: url('<%=application.getContextPath() %>/resources/image/400x600.jpg');
-				backgorund-repeat: no-repeat;
 			}
 			#fire_button{
 				margin-left: 25%;

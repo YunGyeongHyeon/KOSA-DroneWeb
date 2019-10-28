@@ -59,7 +59,7 @@
 	</head>
 	<body style="width:100%">
 			<div id="map" style=" width:410px; height:610px; position:absolute;"></div>
-			<div style="width:200px; margin-left: 40%; margin-top: 500%; position:absolute;">
+			<div style="width:200px; margin-left: 40%; margin-top: 125%; position:absolute;">
 					<a onclick="sendData()" class="btn btn-danger">신고하기</a>
 			</div>
 	</body>
