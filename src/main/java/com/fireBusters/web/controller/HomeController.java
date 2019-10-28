@@ -26,8 +26,8 @@ public class HomeController {
 	}
 
 	@RequestMapping("/complete")
-	public String complete(double lat, double lng) {
-		service.writeLocation(lat, lng);
+	public String complete(double lat, double lon) {
+		service.writeLocation(lat, lon);
 		return "/user/complete";
 	}
 

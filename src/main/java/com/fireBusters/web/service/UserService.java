@@ -13,8 +13,8 @@ public class UserService {
 	@Autowired
 	UserDao userDao;
 
-	public void writeLocation(double lat, double lng) {
-		//userDao.insert(lat, lng);
+	public void writeLocation(double lat, double lon) {
+		userDao.insert(lat, lon);
 	}
 	
 }

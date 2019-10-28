@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-
+<%@ page import= "com.fireBusters.web.dto.*" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -47,15 +47,20 @@
 		        });
 		        
 		        // lat, lon data information
-		        var lat = marker.position.lat();
-		        var lon = marker.position.lng();
+		        lat = marker.position.lat();
+		        lon = marker.position.lng();
+		        
 		      }
+			
+			function sendData(){
+				location.href="complete?lat="+lat+"&lon="+lon;
+			}
 	     </script>
 	</head>
 	<body style="width:100%">
 			<div id="map" style=" width:410px; height:610px; position:absolute;"></div>
-			<div style="width:200px; margin-left: 40%; margin-top: 125%; position:absolute;">
-					<a href="complete" class="btn btn-danger">신고하기</a>
+			<div style="width:200px; margin-left: 40%; margin-top: 500%; position:absolute;">
+					<a onclick="sendData()" class="btn btn-danger">신고하기</a>
 			</div>
 	</body>
 </html>
