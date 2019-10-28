@@ -7,11 +7,11 @@ import com.fireBusters.web.dto.UserMember;
 
 @Controller
 public class UserDao {
-	
+
 	private SqlSessionTemplate sqlSessionTemplate;
 
 	public void insert(double lat, double lng) {
-		
+
 	}
 
 }
