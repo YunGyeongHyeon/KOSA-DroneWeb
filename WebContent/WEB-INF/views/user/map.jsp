@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-
+<%@ page import= "com.fireBusters.web.dto.*" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -12,7 +12,6 @@
 		<script async defer
 	   	 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6QqekZ1wnL7A8e0nPlnEsHowprAdcm8c&callback=initMap">
 	    </script>
-
 		<script>
 		 var labels = 'F';
 	      var labelIndex = 0;
@@ -47,16 +46,21 @@
 		        });
 		        
 		        // lat, lon data information
-		        var lat = marker.position.lat();
-		        var lon = marker.position.lng();
-		        console.log(lat,lon);
+		        lat = marker.position.lat();
+		        lon = marker.position.lng();
+		        
 		      }
+			
+			function sendData(){
+				location.href="complete?lat="+lat+"&lon="+lon;
+			}
 	     </script>
 	</head>
 	<body style="width:100%">
-			<div id="map" style=" width:410px; height:610px; position:absolute;"></div>
-			<div style="width:200px; margin-left: 40%; margin-top: 125%; position:absolute;">
-					<a href="complete" class="btn btn-danger">신고하기</a>
+			<div id="map" style=" width:100%; height:100%; position:absolute;"></div>
+			<div style="width:200px; margin-left: 30%; margin-top: 140%; position:absolute;">
+					<a onclick="sendData()" class="btn btn-danger" id="reportButton" style="width:150px; height:60px; 
+					 line-height: 50px; font-size:22px; text-align:center; color: white;">신고하기</a>
 			</div>
 	</body>
 </html>

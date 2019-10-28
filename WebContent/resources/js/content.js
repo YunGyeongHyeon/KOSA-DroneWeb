@@ -1,5 +1,3 @@
-var labels = '0123456789';
-var labelIndex = 0;
 function initMap() {
 	  var myLatLng = {lat: 37.494953, lng: 127.122557};
 
@@ -8,10 +6,9 @@ function initMap() {
 	    center: myLatLng
 	  });
 	  
-	  google.maps.event.addListener(map, 'click', function(event) {
+	/*  google.maps.event.addListener(map, 'click', function(event) {
 		    addMarker(event.latLng, map);
-		  });
-
+		  });*/
 		  // Add a marker at the center of the map.
 		  addMarker(myLatLng, map);
 	}
@@ -20,7 +17,7 @@ function addMarker(location, map) {
 	  // from the array of alphabetical characters.
 	  var marker = new google.maps.Marker({
 	    position: location,
-	    label: labels[labelIndex++ % labels.length],
+	    label:"F",
 	    map: map
 	  });
 	}

@@ -26,7 +26,7 @@ public class AdminController {
 	AdminService service;
 
 	@RequestMapping("/main")
-	public String content() {
+	public String main() {
 		return "admin/loginForm";
 	}
 
@@ -69,5 +69,11 @@ public class AdminController {
 		System.out.println("-------------------------------------"+(board.indexOf(3)));
 		System.out.println("-------------------------------------"+(board.size()));
 		return "admin/board";
+	}
+	
+	@RequestMapping("/content")
+	public String content() {
+		
+		return "admin/content";
 	}
 }

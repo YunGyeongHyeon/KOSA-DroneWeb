@@ -10,7 +10,6 @@
  		 select adminid, adminpassword from testadmin where adminid=#{adminid}
 	</select>
 
-	
 	<select id="selectReport" parameterType="string" resultType="com.fireBusters.web.dto.AdminBoard">
 			select report_date, report_lat, report_lon from report where fire_station_no=
 			(select fire_station_no from fire_station where fire_station_name=#{name})
