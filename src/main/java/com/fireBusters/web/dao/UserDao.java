@@ -1,16 +1,16 @@
 package com.fireBusters.web.dao;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
-import com.fireBusters.web.dto.UserMember;
 
 @Controller
 public class UserDao {
-	
+	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 
-	public void insert(double lat, double lng) {
+	public int insert(double lat, double lon) {
+		int row = sqlSessionTemplate.insert("",);
 		
 	}
 

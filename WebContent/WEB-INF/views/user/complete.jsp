@@ -45,8 +45,8 @@ body {
 <body>
 	<div class="layer" >
 		<div class="input-group mb-3">
-			 <input style="height:100px;" type="text" class="form-control" placeholder="위도" readonly>
-			 <input style="height:100px;" type="text" class="form-control" placeholder="경도" readonly>
+			 <input style="height:100px;" type="text" class="form-control" placeholder="위도" value="<%= request.getParameter("lat") %>" readonly>
+			 <input style="height:100px;" type="text" class="form-control" placeholder="경도" value="<%= request.getParameter("lon") %>" readonly>
 		</div>
 		<div id="ment">
 			<h1 class="ment" style="height:100px; color:red; padding-top:20px">신고가 접수되었습니다</h1>
