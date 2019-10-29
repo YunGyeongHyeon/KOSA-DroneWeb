@@ -78,5 +78,5 @@ public class AdminController {
 		session.removeAttribute("fire_station_id");
 		return "redirect:/admin/loginForm";
 	}
-
+	
 }
