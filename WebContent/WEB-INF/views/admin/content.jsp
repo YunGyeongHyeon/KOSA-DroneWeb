@@ -36,7 +36,7 @@
 					<!-- 로그인정보: 아이디 비밀번호 수정 로그아웃 -->
 					<table id="cn_top_secound">
 						<tr class="cn_login_info">	
-							<td id="cn_login_id"><%=session.getAttribute("fire_station_name")%></td>
+							<td id="cn_login_id"><%=session.getAttribute("fire_station_id")%></td>
 							<td id="cn_login_out"><a href="logout">로그아웃</a></td>
 						</tr>	
 					</table>
