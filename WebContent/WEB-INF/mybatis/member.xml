@@ -7,11 +7,15 @@
 	</select>
 
 	<select id="selectReport" parameterType="int" resultType="com.fireBusters.web.dto.AdminBoard">
-			select to_char(report_date, 'MM/DD HH24:MI:SS') report_date, report_lat, report_lon, fire_station_name
-				from report r, fire_station f
-				where r.fire_station_no = f.fire_station_id and fire_station_no=#{id}
+			select to_char(report_date, 'MM/DD HH24:MI:SS') report_date, report_lat, report_lon
+				from report
+				where fire_station_no=#{id}
 	</select>
-	
+	<select id="selectFireStation" parameterType="int" resultType="com.fireBusters.web.dto.AdminFireStation">
+		select fire_station_id, fire_station_name, fire_station_area_id
+		    from fire_station
+		    where fire_station_id=3
+	</select>
 	
 	
 </mapper>

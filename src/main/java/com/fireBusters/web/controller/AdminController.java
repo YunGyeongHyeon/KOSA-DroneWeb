@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fireBusters.web.dto.AdminBoard;
+import com.fireBusters.web.dto.AdminFireStation;
 import com.fireBusters.web.service.AdminService;
 import com.fireBusters.web.service.LoginResult;
 
@@ -64,11 +65,11 @@ public class AdminController {
 	
 	
 	@RequestMapping("/content")
-	public String content(Model model, HttpSession session) {
-		
+	public String content(Model model, HttpSession session, AdminFireStation fireStation) {
 		List<AdminBoard> board = service.selectReport((int)session.getAttribute("fire_station_id"));
+		AdminFireStation station = service.selectFireStation((int)session.getAttribute("fire_station_id")); 
 		model.addAttribute("board",board);
-		
+		model.addAttribute("station",station);
 		return "admin/content";
 	}
 	

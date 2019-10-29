@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.fireBusters.web.dto.AdminBoard;
+import com.fireBusters.web.dto.AdminFireStation;
 import com.fireBusters.web.dto.AdminMember;
 @Component
 public class AdminDao {
@@ -23,6 +24,11 @@ public class AdminDao {
 	public List<AdminBoard> selectReport(int id) {
 		List<AdminBoard> board = sqlSessionTemplate.selectList("adminMember.selectReport",id);
 		return board;
+	}
+
+	public AdminFireStation selectFireStation(int fire_station_id) {
+		AdminFireStation station = sqlSessionTemplate.selectOne("adminMember.selectFireStation", fire_station_id);
+		return station;
 	}
 
 }
