@@ -20,8 +20,8 @@ public class AdminDao {
 		return member;
 	}
 
-	public List<AdminBoard> selectReport(String name) {
-		List<AdminBoard> board = sqlSessionTemplate.selectList("adminMember.selectReport",name);
+	public List<AdminBoard> selectReport(int id) {
+		List<AdminBoard> board = sqlSessionTemplate.selectList("adminMember.selectReport",id);
 		return board;
 	}
 

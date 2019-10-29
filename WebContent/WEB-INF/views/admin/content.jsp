@@ -13,10 +13,11 @@
 <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6QqekZ1wnL7A8e0nPlnEsHowprAdcm8c&callback=initMap">
 </script>
-<script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/content.js">
-
+<script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/content.js"></script>
+<script>
+	alert(${fire_station_id});
+	alert(${fire_station_name});
 </script>
-    
 <title>main Form</title>
 </head>
 <body>
@@ -35,8 +36,8 @@
 				
 					<!-- 로그인정보: 아이디 비밀번호 수정 로그아웃 -->
 					<table id="cn_top_secound">
-						<tr class="cn_login_info">	
-							<td id="cn_login_id"><%=session.getAttribute("fire_station_id")%></td>
+						<tr class="cn_login_info">
+							<td id="cn_login_id">${fire_station_name}</td>
 							<td id="cn_login_out"><a href="logout">로그아웃</a></td>
 						</tr>	
 					</table>
