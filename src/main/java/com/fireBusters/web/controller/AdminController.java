@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fireBusters.web.dto.AdminBoard;
 import com.fireBusters.web.dto.AdminFireStation;
+import com.fireBusters.web.dto.AdminLatLon;
 import com.fireBusters.web.service.AdminService;
 import com.fireBusters.web.service.LoginResult;
 
@@ -65,9 +66,15 @@ public class AdminController {
 	
 	
 	@RequestMapping("/content")
-	public String content(Model model, HttpSession session, AdminFireStation fireStation) {
+	public String content(Model model, HttpSession session, AdminFireStation fireStation, AdminLatLon adminLatLon) {
 		List<AdminBoard> board = service.selectReport((int)session.getAttribute("fire_station_id"));
 		AdminFireStation station = service.selectFireStation((int)session.getAttribute("fire_station_id")); 
+		List<AdminLatLon> aLatLon = service.selectPoint((int)session.getAttribute("fire_station_id"));
+		System.out.println("------------------------:"+aLatLon.get(0).getFire_lat());
+		System.out.println("------------------------:"+aLatLon.get(0).getFire_lon());
+		System.out.println("------------------------:"+aLatLon.get(1).getFire_lat());
+		System.out.println("------------------------:"+aLatLon.get(1).getFire_lon());
+		
 		model.addAttribute("board",board);
 		model.addAttribute("station",station);
 		return "admin/content";
@@ -78,5 +85,6 @@ public class AdminController {
 		session.removeAttribute("fire_station_id");
 		return "redirect:/admin/loginForm";
 	}
+	
 	
 }

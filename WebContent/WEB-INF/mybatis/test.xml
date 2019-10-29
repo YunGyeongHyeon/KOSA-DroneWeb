@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="area">
-<select id="fire_station_area" parameterType="int">
-	select fire_station_point, fire_lat, fire_lon from fire_station_area where fire_station_id=#{fire_station_id} and fire_station_point=1
-</select>
-</mapper>

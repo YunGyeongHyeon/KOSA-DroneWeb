@@ -1,9 +1,10 @@
 package com.fireBusters.web.dto;
 
-public class testMember {
+public class AdminLatLon {
 	private int fire_station_point;
 	private double fire_lat;
 	private double fire_lon;
+	
 	public int getFire_station_point() {
 		return fire_station_point;
 	}
@@ -22,6 +23,5 @@ public class testMember {
 	public void setFire_lon(double fire_lon) {
 		this.fire_lon = fire_lon;
 	}
-	
 	
 }
