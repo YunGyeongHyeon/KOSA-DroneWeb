@@ -1,4 +1,4 @@
-var labels = 'F';
+var labels = 'FH';
 var labelIndex = 0;
 function initMap() {
 	  var myLatLng = {lat: 37.494953, lng: 127.122557};
@@ -22,7 +22,7 @@ function addMarker(location, map) {
     // from the array of alphabetical characters.
     marker = new google.maps.Marker({
       position: location,
-      label: labels[labelIndex++ % labels.length],
+      label: "FH",
       map: map
     });
     
@@ -35,11 +35,7 @@ function listClick(lat,lon){
 	uluru = {lat: lat, lng:lon};
 	var map = new google.maps.Map(
 		      document.getElementById('map'), {zoom: 15, center: uluru});
-
-		  google.maps.event.addListener(map, 'click', function(event) {
-	          addMarker(event.latLng, map);
-	        });
+		 
 	        // Add a marker at the center of the map.
 	        addMarker(uluru, map);
-	
 }

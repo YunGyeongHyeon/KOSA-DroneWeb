@@ -14,7 +14,7 @@
 	<select id="selectFireStation" parameterType="int" resultType="com.fireBusters.web.dto.AdminFireStation">
 		select fire_station_id, fire_station_name, fire_station_area_id
 		    from fire_station
-		    where fire_station_id=3
+		    where fire_station_id=#{fire_station_area_id}
 	</select>
 	
 	

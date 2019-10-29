@@ -55,13 +55,13 @@
 						</thead>
 						<tbody>
 							<c:forEach var="board" items="${board}">
-								<tr onclick="listClick(${board.report_lat}, ${board.report_lon})">
+								<tr id="selectLine" onclick="listClick(${board.report_lat}, ${board.report_lon})">
 				 					<td>${board.report_lat}</td>
 									<td>${board.report_lon}</td>
 									<td>${board.report_date}</td>
-									<td><button type="button" class="btn btn-warning">드론출동</button></td>
-									<td><button type="button" class="btn btn-danger">실제사고</button><br/>
-										<button type="button" class="btn btn-primary">허위신고</button>
+									<td><button class="btn btn-warning">드론출동</button></td>
+									<td><button class="btn btn-danger">실제사고</button><br/>
+										<button class="btn btn-primary">허위신고</button>
 									</td>
 								</tr>
 						 	</c:forEach> 
