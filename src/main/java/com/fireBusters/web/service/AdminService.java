@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.fireBusters.web.dao.AdminDao;
 import com.fireBusters.web.dto.AdminBoard;
 import com.fireBusters.web.dto.AdminMember;
+import com.fireBusters.web.dto.testMember;
 
 @Service
 public class AdminService {
@@ -31,5 +32,10 @@ public class AdminService {
 	public List<AdminBoard> selectReport(int id) {
 		List<AdminBoard> report= adminDao.selectReport(id);
 		return report;
+	}
+	
+	public testMember selectTest(int fire_station_id){
+		testMember test = adminDao.selectTest(fire_station_id);
+		return test;
 	}
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fireBusters.web.dto.AdminBoard;
+import com.fireBusters.web.dto.testMember;
 import com.fireBusters.web.service.AdminService;
 import com.fireBusters.web.service.LoginResult;
 
@@ -76,6 +77,13 @@ public class AdminController {
 	public String logout(HttpSession session) {
 		session.removeAttribute("fire_station_id");
 		return "redirect:/admin/loginForm";
+	}
+	
+	@RequestMapping("/test")
+	public String test() {
+		testMember test = service.selectTest(3);
+		System.out.println(test.getFire_lat());
+		return "redirect:/admin/content";
 	}
 
 }
