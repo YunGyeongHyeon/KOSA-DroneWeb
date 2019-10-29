@@ -3,7 +3,7 @@
 <mapper namespace="adminMember">
 
 	<select id="selectAdminMember" parameterType="int" resultType="com.fireBusters.web.dto.AdminMember">
- 		 select fire_station_id, fire_station_password from fire_station where fire_station_id=#{adminId}
+ 		 select fire_station_id, fire_station_password from fire_station where fire_station_id=#{adid}
 	</select>
 
 	<select id="selectReport" parameterType="string" resultType="com.fireBusters.web.dto.AdminBoard">

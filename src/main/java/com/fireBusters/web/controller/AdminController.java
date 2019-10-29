@@ -32,6 +32,7 @@ public class AdminController {
 
 	@RequestMapping("/loginForm")
 	public String loginForm(String error, Model model) {
+		System.out.println("에러 : "+error);
 		if (error != null) {
 			if (error.equals("fail_adminid")) {
 				model.addAttribute("adminIdError", "*아이디가 존재하지 앖습니다.");
@@ -47,6 +48,7 @@ public class AdminController {
 	@PostMapping("/login") 
 	public String login(String adminId, String adminPassword, HttpSession session) {
 		LoginResult result = service.login(adminId, adminPassword);
+		System.out.println("컨트롤러 : "+adminId);
 		if (result == LoginResult.FAIL_ADMINID) {
 			return "redirect:/admin/loginForm?error=fail_adminid";
 		} else if (result == LoginResult.FAIL_ADMINPASSWORD) {
