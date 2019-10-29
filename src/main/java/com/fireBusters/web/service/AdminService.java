@@ -16,11 +16,7 @@ public class AdminService {
 	private AdminDao adminDao;
 	
 	public LoginResult login(String adminId, String adminPassword) {
-		
 		AdminMember member = adminDao.selectAdmin(adminId);
-		
-		
-		System.out.println("서비스 : "+member);
 		if(member == null) {
 			return LoginResult.FAIL_ADMINID;
 		} else {

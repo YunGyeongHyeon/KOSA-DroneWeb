@@ -17,7 +17,7 @@ public class AdminDao {
 
 	public AdminMember selectAdmin(String adminId) {
 		int adid = Integer.valueOf(adminId);
-		System.out.println("dao : "+adid);
+		System.out.println("ㅈㅇㅈㅇㅈ-ㅇ-ㅈㅇ-ㅈ-ㅇㅈ-ㅈㅇ-ㅈㅇ "+adid);
 		AdminMember member = sqlSessionTemplate.selectOne("adminMember.selectAdminMember", adid);// member는 매퍼 member.xml에 있다.
 		return member;
 	}
