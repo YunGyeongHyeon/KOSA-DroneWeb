@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.fireBusters.web.dao.AdminDao;
 import com.fireBusters.web.dto.AdminBoard;
 import com.fireBusters.web.dto.AdminFireStation;
+import com.fireBusters.web.dto.AdminLatLon;
 import com.fireBusters.web.dto.AdminMember;
 
 @Service
@@ -38,4 +39,10 @@ public class AdminService {
 		AdminFireStation station = adminDao.selectFireStation(fire_station_id);
 		return station;
 	}
+
+	public List<AdminLatLon> selectPoint(int fire_station_id) {
+		List<AdminLatLon> aLatLon = adminDao.selectPoint(fire_station_id);
+		return aLatLon;
+	}
+
 }

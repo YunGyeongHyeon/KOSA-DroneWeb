@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 
 import com.fireBusters.web.dto.AdminBoard;
 import com.fireBusters.web.dto.AdminFireStation;
+import com.fireBusters.web.dto.AdminLatLon;
 import com.fireBusters.web.dto.AdminMember;
-import com.fireBusters.web.dto.testMember;
 @Component
 public class AdminDao {
 	@Autowired
@@ -24,16 +24,15 @@ public class AdminDao {
 		List<AdminBoard> board = sqlSessionTemplate.selectList("adminMember.selectReport",id);
 		return board;
 	}
-	
-	public testMember selectTest(int fire_station_id){
-		
-		testMember test = sqlSessionTemplate.selectOne("area.fire_station_area", fire_station_id);
-		return test;
-	}
 
 	public AdminFireStation selectFireStation(int fire_station_id) {
 		AdminFireStation station = sqlSessionTemplate.selectOne("adminMember.selectFireStation", fire_station_id);
 		return station;
+	}
+
+	public List<AdminLatLon> selectPoint(int fire_station_id) {
+		List<AdminLatLon> aLatLon = sqlSessionTemplate.selectList("adminMember.selectPoint", fire_station_id);
+		return aLatLon;
 	}
 
 }

@@ -16,6 +16,8 @@
 		    from fire_station
 		    where fire_station_id=#{fire_station_area_id}
 	</select>
-	
-	
+
+	<select id="selectPoint" parameterType="int" resultType="com.fireBusters.web.dto.AdminLatLon">
+		select fire_station_point, fire_lat, fire_lon from fire_station_area where fire_station_id=#{fire_station_id}
+	</select>
 </mapper>
