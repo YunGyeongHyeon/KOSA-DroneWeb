@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="adminMember">
 
-	<select id="selectAdminMember" parameterType="string" resultType="com.fireBusters.web.dto.AdminMember">
- 		 select fire_station_id, fire_station_password from fire_station where fire_station_id=#{adminId}
+	<select id="selectAdminMember" parameterType="int" resultType="com.fireBusters.web.dto.AdminMember">
+ 		 select fire_station_id, fire_station_password from fire_station where fire_station_id=#{fire_station_id}
 	</select>
 
 	<select id="selectReport" parameterType="string" resultType="com.fireBusters.web.dto.AdminBoard">
