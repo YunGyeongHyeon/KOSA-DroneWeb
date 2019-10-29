@@ -88,12 +88,12 @@ body, html {
 		//모든 에러 내용 지우기
 		$(".error").text("");
 		//입력값 검사
-		if ($("#adminId").val() == "") {
-			$("#adminIdError").text("*아이디를 입력하세요");
+		if ($("#fire_station_id").val() == "") {
+			$("#fire_station_idError").text("*아이디를 입력하세요");
 			result = false;
 		}
-		if ($("#adminPassword").val() == "") {
-			$("#adminPasswordError").text("*비밀번호를 입력하세요");
+		if ($("#fire_station_password").val() == "") {
+			$("#fire_station_passwordError").text("*비밀번호를 입력하세요");
 			result = false;
 		}
 
@@ -112,16 +112,16 @@ body, html {
 						<form class="form-signin" method="POST" action="login" onSubmit="return checkForm()">
 							<h5 class="form-signin-heading">로그인</h5>
 							<p align="center">
-								<input type="text" id="adminId" name="adminId"
+								<input type="text" id="fire_station_id" name="fire_station_id"
 									class="form-control" placeholder="아이디 입력" 
 									style="width: 90%; text-align: center;"> 
-								<span id="adminIdError" class="error" style="color: red">${adminIdError}</span>
+								<span id="adminIdError" class="error" style="color: red">${fire_station_idError}</span>
 							</p>
 							<p align="center">
-								<input type="password" id="adminPassword" name="adminPassword"
+								<input type="password" id="fire_station_password" name="fire_station_password"
 									class="form-control" placeholder="비밀번호 입력"
 									style="width: 90%; text-align: center;"><BR>
-								<span id="adminPasswordError" class="error" style="color:red">${adminPasswordError}</span>	
+								<span id="adminPasswordError" class="error" style="color:red">${fire_station_passwordError}</span>	
 							</p>
 							<input type="submit" class="btn btn-lg btn-primary btn-block" value="로그인" />
 						</form>

@@ -33,10 +33,10 @@ public class AdminController {
 	@RequestMapping("/loginForm")
 	public String loginForm(String error, Model model) {
 		if (error != null) {
-			if (error.equals("fail_adminid")) {
-				model.addAttribute("adminIdError", "*아이디가 존재하지 앖습니다.");
-			} else if (error.equals("fail_adminpassword")) {
-				model.addAttribute("adminPasswordError", "*패스워드가 틀렀습니다.");
+			if (error.equals("fail_fire_station_id")) {
+				model.addAttribute("fire_station_idError", "*아이디가 존재하지 앖습니다.");
+			} else if (error.equals("fail_fire_station_password")) {
+				model.addAttribute("fire_station_passwordError", "*패스워드가 틀렀습니다.");
 			}
 		}
 		return "admin/loginForm";
@@ -45,15 +45,15 @@ public class AdminController {
 
 
 	@PostMapping("/login") 
-	public String login(String adminId, String adminPassword, HttpSession session) {
-		LoginResult result = service.login(adminId, adminPassword);
+	public String login(int fire_station_id, String fire_station_password, HttpSession session) {
+		LoginResult result = service.login(fire_station_id, fire_station_password);
 		if (result == LoginResult.FAIL_ADMINID) {
-			return "redirect:/admin/loginForm?error=fail_adminid";
+			return "redirect:/admin/loginForm?error=fail_fire_station_id";
 		} else if (result == LoginResult.FAIL_ADMINPASSWORD) {
-			return "redirect:/admin/loginForm?error=fail_adminpassword";//
+			return "redirect:/admin/loginForm?error=fail_fire_station_password";//
 		}
-		session.setAttribute("adminId", adminId);
-		return "redirect:/admin/complete";
+		session.setAttribute("fire_station_id", fire_station_id);
+		return "admin/content";
 	}
 
 	@GetMapping("/complete")
@@ -63,9 +63,9 @@ public class AdminController {
 	
 	
 	
-	@PostMapping("/content")
+	@RequestMapping("/content")
 	public String content(Model model, HttpSession session) {
-		List<AdminBoard> board = service.selectReport((String)session.getAttribute("adminId"));
+		List<AdminBoard> board = service.selectReport((String)session.getAttribute("fire_station_id"));
 		model.addAttribute("board",board);
 		
 		return "admin/content";
