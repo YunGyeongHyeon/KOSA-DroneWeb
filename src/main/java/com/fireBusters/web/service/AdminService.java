@@ -28,8 +28,8 @@ public class AdminService {
 		}
 	}
 
-	public List<AdminBoard> selectReport(String name) {
-		List<AdminBoard> report= adminDao.selectReport(name);
+	public List<AdminBoard> selectReport(int id) {
+		List<AdminBoard> report= adminDao.selectReport(id);
 		return report;
 	}
 }

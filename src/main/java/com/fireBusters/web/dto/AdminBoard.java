@@ -9,7 +9,7 @@ public class AdminBoard {
 	private String report_handle;
 	private int fire_station_no;
 	private int ano;
-	
+	private String fire_station_name;
 	
 	
 	public String getReport_date() {
@@ -48,6 +48,12 @@ public class AdminBoard {
 	}
 	public void setAno(int ano) {
 		this.ano = ano;
+	}
+	public String getFire_station_name() {
+		return fire_station_name;
+	}
+	public void setFire_station_name(String fire_station_name) {
+		this.fire_station_name = fire_station_name;
 	}
 	
 	

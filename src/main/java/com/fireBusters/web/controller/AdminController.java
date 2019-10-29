@@ -40,11 +40,10 @@ public class AdminController {
 			}
 		}
 		return "admin/loginForm";
-
 	}
 
 
-	@PostMapping("/login") 
+	@PostMapping("/login")
 	public String login(int fire_station_id, String fire_station_password, HttpSession session) {
 		LoginResult result = service.login(fire_station_id, fire_station_password);
 		if (result == LoginResult.FAIL_ADMINID) {
@@ -53,19 +52,21 @@ public class AdminController {
 			return "redirect:/admin/loginForm?error=fail_fire_station_password";//
 		}
 		session.setAttribute("fire_station_id", fire_station_id);
-		return "admin/content";
+		System.out.println(session.getAttribute("fire_station_id"));
+		return "admin/complete";
 	}
 
 	@GetMapping("/complete")
 	public String complete() {
-		return "admin/complete";
+		return "redirect:/admin/content";
 	}
 	
 	
 	
 	@RequestMapping("/content")
 	public String content(Model model, HttpSession session) {
-		List<AdminBoard> board = service.selectReport((String)session.getAttribute("fire_station_id"));
+		
+		List<AdminBoard> board = service.selectReport((int)session.getAttribute("fire_station_id"));
 		model.addAttribute("board",board);
 		
 		return "admin/content";
@@ -73,8 +74,7 @@ public class AdminController {
 	
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
-		session.removeAttribute("adminId");
-		session.removeAttribute("fire_station_name");
+		session.removeAttribute("fire_station_id");
 		return "redirect:/admin/loginForm";
 	}
 

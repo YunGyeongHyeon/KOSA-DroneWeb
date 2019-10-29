@@ -5,8 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+	location.href="content";
+</script>
 </head>
 <body>
-	로그인이 완료되었습니다
 </body>
 </html>
