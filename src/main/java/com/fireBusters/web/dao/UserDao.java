@@ -13,10 +13,11 @@ public class UserDao {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 
-	public int insert(double lat, double lon) {
-		Map<String, Double> map = new HashMap<>();
+	public int insert(double lat, double lon, int fire_station_id) {
+		Map<String, Object> map = new HashMap<>();
 		map.put("lat", lat);
 		map.put("lon", lon);
+		map.put("fire_station_id", fire_station_id);
 		int rows = sqlSessionTemplate.insert("user.insert", map);
 		return rows;
 	}

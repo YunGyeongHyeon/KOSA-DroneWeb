@@ -40,8 +40,8 @@ public class AdminService {
 		return station;
 	}
 
-	public List<AdminLatLon> selectPoint(int fire_station_id) {
-		List<AdminLatLon> aLatLon = adminDao.selectPoint(fire_station_id);
+	public List<AdminLatLon> selectPoint() {
+		List<AdminLatLon> aLatLon = adminDao.selectPoint();
 		return aLatLon;
 	}
 

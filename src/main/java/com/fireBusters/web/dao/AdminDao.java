@@ -30,8 +30,9 @@ public class AdminDao {
 		return station;
 	}
 
-	public List<AdminLatLon> selectPoint(int fire_station_id) {
-		List<AdminLatLon> aLatLon = sqlSessionTemplate.selectList("adminMember.selectPoint", fire_station_id);
+	public List<AdminLatLon> selectPoint() {
+		List<AdminLatLon> aLatLon = sqlSessionTemplate.selectList("adminMember.selectPoint");
+		
 		return aLatLon;
 	}
 

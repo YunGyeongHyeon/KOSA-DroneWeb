@@ -69,11 +69,7 @@ public class AdminController {
 	public String content(Model model, HttpSession session, AdminFireStation fireStation, AdminLatLon adminLatLon) {
 		List<AdminBoard> board = service.selectReport((int)session.getAttribute("fire_station_id"));
 		AdminFireStation station = service.selectFireStation((int)session.getAttribute("fire_station_id")); 
-		List<AdminLatLon> aLatLon = service.selectPoint((int)session.getAttribute("fire_station_id"));
-		System.out.println("------------------------:"+aLatLon.get(0).getFire_lat());
-		System.out.println("------------------------:"+aLatLon.get(0).getFire_lon());
-		System.out.println("------------------------:"+aLatLon.get(1).getFire_lat());
-		System.out.println("------------------------:"+aLatLon.get(1).getFire_lon());
+
 		
 		model.addAttribute("board",board);
 		model.addAttribute("station",station);
