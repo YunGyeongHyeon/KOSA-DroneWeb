@@ -45,14 +45,14 @@ public class AdminController {
 
 
 	@PostMapping("/login") 
-	public String login(String adminId, String adminPassword, HttpSession session) {
-		LoginResult result = service.login(adminId, adminPassword);
+	public String login(int fire_station_id, String fire_station_password, HttpSession session) {
+		LoginResult result = service.login(fire_station_id, fire_station_password);
 		if (result == LoginResult.FAIL_ADMINID) {
 			return "redirect:/admin/loginForm?error=fail_adminid";
 		} else if (result == LoginResult.FAIL_ADMINPASSWORD) {
 			return "redirect:/admin/loginForm?error=fail_adminpassword";//
 		}
-		session.setAttribute("adminId", adminId);
+		session.setAttribute("fire_station_id", fire_station_id);
 		return "redirect:/admin/complete";
 	}
 

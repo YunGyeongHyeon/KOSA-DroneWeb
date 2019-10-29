@@ -1,20 +1,20 @@
 package com.fireBusters.web.dto;
 
 public class AdminMember {
-	private String adminId;
-	private	String adminPassword;
+	private int fire_station_id;
+	private String fire_station_password;
 	
-	public String getAdminId() {
-		return adminId;
+	public int getFire_station_id() {
+		return fire_station_id;
 	}
-	public void setAdminId(String adminId) {
-		this.adminId = adminId;
+	public void setFire_station_id(int fire_station_id) {
+		this.fire_station_id = fire_station_id;
 	}
-	public String getAdminPassword() {
-		return adminPassword;
+	public String getFire_station_password() {
+		return fire_station_password;
 	}
-	public void setAdminPassword(String adminPassword) {
-		this.adminPassword = adminPassword;
+	public void setFire_station_password(String fire_station_password) {
+		this.fire_station_password = fire_station_password;
 	}
 	
 	

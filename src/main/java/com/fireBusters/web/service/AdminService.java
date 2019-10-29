@@ -15,12 +15,12 @@ public class AdminService {
 	@Autowired
 	private AdminDao adminDao;
 	
-	public LoginResult login(String adminId, String adminPassword) {
-		AdminMember member = adminDao.selectAdmin(adminId);
+	public LoginResult login(int fire_station_id, String fire_station_password) {
+		AdminMember member = adminDao.selectAdmin(fire_station_id);
 		if(member == null) {
 			return LoginResult.FAIL_ADMINID;
 		} else {
-			if(adminPassword.equals(member.getAdminPassword())) {
+			if(fire_station_password.equals(member.getFire_station_password())) {
 				return LoginResult.SUCCESS;
 			} else {
 				return LoginResult.FAIL_ADMINPASSWORD;
