@@ -16,7 +16,7 @@ public class AdminDao {
 	private SqlSessionTemplate sqlSessionTemplate;
 
 	public AdminMember selectAdmin(int fire_station_id) {
-		AdminMember member = sqlSessionTemplate.selectOne("adminMember.selectAdminMember", fire_station_id);// member는 매퍼 member.xml에 있다.
+		AdminMember member = sqlSessionTemplate.selectOne("adminMember.selectAdminMember", fire_station_id);
 		return member;
 	}
 
