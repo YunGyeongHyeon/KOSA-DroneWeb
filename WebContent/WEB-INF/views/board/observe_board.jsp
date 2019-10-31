@@ -11,20 +11,18 @@
 <link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/content.js"></script>
-<script src="https://code.jquery.com/jquery=3.3.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
-function obBoardPicture() {
+function obBoardPicture(data) {
 	$.ajax({
-		url:"obBoardPicture",
-		data: {report_no:obBoardList.report_no},
+		url:"obBoardPicture?report_no="+data,
+		data: data,
 		success: function(data){
 			$("#obPicture").html(data);
 		}
-	})
-	
+	});
 }
-
 
 </script>
 <title>main Form</title>
@@ -72,25 +70,16 @@ function obBoardPicture() {
 							<c:forEach var="obBoardList" items="${obBoardList}" varStatus="status">
 								<tr>
 									<td>${station.fire_station_name}</td>
-									<td><a onclick="obBoardPicture()" type="button">${obBoardList.report_no}</a></td>
+									<td><a onclick="obBoardPicture(${obBoardList.report_no})">${obBoardList.report_no}</a></td>
 				 					<td>${obBoardList.report_date}</td>
 									<td>${obBoardList.report_lat}</td>
 									<td>${obBoardList.report_lon}</td>
 								</tr>
-						
 						 	</c:forEach> 
 						</tbody>
 					</table>	
-					<div>
-					<table>
-						<tbody>
-							<tr>
-							<c:forEach var="obBoardPicture" items="${obBoardPicture}">
-								<td><img src="<%=application.getContextPath()%>/resources/obpicture/${obBoardPicture.fire_station_id}.jpg"  width="200px" height="200px"/></td>
-							</c:forEach>
-							</tr>
-						</tbody>
-					</table>			
+					<div id=obPicture style="vertical-align:middle;">
+			
 				</div>
 				<div>
 				</div>

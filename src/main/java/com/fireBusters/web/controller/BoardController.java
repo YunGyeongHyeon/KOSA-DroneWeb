@@ -38,12 +38,12 @@ public class BoardController {
 	
 	@RequestMapping("/obBoardPicture")
 	public String obBoardPicture(int report_no,  Model model, HttpSession session) {
-		System.out.println("obBoardPicture:"+report_no);
+		System.out.println("ㅓㅎ러홒호ㅓㅗ헣obBoardPicture:"+report_no);
 		List<ObBoardPicture> obBoardPicture = service.selectObBoardPicture(report_no);
 		
 		model.addAttribute("obBoardPicture", obBoardPicture);
 		
-		return "board/observe_board";
+		return "board/obBoardPicture";
 	}
 	
 	
