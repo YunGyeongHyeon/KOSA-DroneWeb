@@ -7,6 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Insert title here</title>
 		<script type="text/javascript" src="<%=application.getContextPath() %>/resources/js/jquery-3.4.1.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="<%=application.getContextPath() %>/resources/css/map.css">
 		<link rel="stylesheet" type="text/css" href="<%=application.getContextPath() %>/resources/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 		<script type="text/javascript" src="<%=application.getContextPath() %>/resources/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
 		<script async defer
@@ -54,11 +55,10 @@
 			}
 	     </script>
 	</head>
-	<body style="width:100%">
-			<div id="map" style=" width:100%; height:100%; position:absolute;"></div>
-			<div style="width:200px; margin-left: 30%; margin-top: 140%; position:absolute;">
-					<a onclick="sendData()" class="btn btn-danger" id="reportButton" style="width:150px; height:60px; 
-					 line-height: 50px; font-size:22px; text-align:center; color: white;">신고하기</a>
-			</div>
+	<body>
+        	<div class="Map" id="map" >
+        	</div>
+        			<a onclick="sendData()" class="btn btn-danger" id="reportButton" style="width:150px; height:60px; 
+						 line-height: 50px; font-size:22px; text-align:center; color: white;position:absolute;top:80%;left:31.5%">신고하기</a>
 	</body>
 </html>

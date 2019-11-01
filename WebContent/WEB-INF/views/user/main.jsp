@@ -1,48 +1,28 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Insert title here</title>
-		<script type="text/javascript" src="<%=application.getContextPath() %>/resources/js/jquery-3.4.1.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="<%=application.getContextPath() %>/resources/bootstrap-4.3.1-dist/css/bootstrap.min.css">
-		<script type="text/javascript" src="<%=application.getContextPath() %>/resources/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
-		<style>
-			#background{
-				background-image: url('<%=application.getContextPath() %>/resources/image/400x600.jpg');
-				border: 0;
-				padding: 0;
-				background-position: center;
-				background-size: contain;
-				background-repeat: no-repeat;
-				width: 100%;
-				background-position: 50% 50%;
-			}
-			#fire_button{
-				margin-left:25%;
-				margin-top: 100%;
-				margin-bottom: 100%;
-				
+<head>
+    <title>Fire Water Boom</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<%=application.getContextPath() %>/resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="<%=application.getContextPath() %>/resources/css/custom-responsive-style.css">
+    <script type="text/javascript" src="<%=application.getContextPath() %>/resources/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="<%=application.getContextPath() %>/resources/js/all-plugins.js"></script>
+    <script type="text/javascript" src="<%=application.getContextPath() %>/resources/js/plugin-active.js"></script>
+</head>
+<body data-spy="scroll" data-target=".main-navigation" data-offset="150">
+    <section id="MainContainer">
+        <section id="HeroBanner"> 
+            <div class="hero-content">
+                <p style="font-size: 70px;">날아라 물풍선</p>
+                <p style="font-size: 28px;">산불 화재 신고 사이트 입니다.<br/><span style="color:red">산불이 발생한 위치</span>를 선택해주세요.<br/>소방 드론이 출동합니다.</p> 
+                <a href="map" class="hero-cta"><img style="width:140px;" src="<%=application.getContextPath() %>/resources/image/drone_logo.png"><br/><span style="color:red">화재 신고하기</span></a>
+            </div>
+        </section>
+        </section>
+ </body>
 
-			}
-			.layer{
-			  position:absolute;
-			  top:50%;
-			  left:50%;
-			  transform:translate(-50%, -50%);
-  
-			}
-			
-		</style>
-	</head>
-	<body>
-		<div class="layer" id="background" style="width:100%;">
-			<div id=fire_button >
-				<a href="map" class="btn btn-danger" style="width:200px; height:80px;  
-				font-size:25px; line-height: 70px; margin-bottom: 20px; ">화재 위치 선택</a>
-			</div>
-		</div>
-	</body>
 </html>
