@@ -43,8 +43,8 @@ public class HomeController {
 					service.writeLocation(lat, lon, (int)aLatLon.get(i).getFire_station_id());
 			}
 		}
-		System.out.println(aLatLon.get(1).getFire_lat());
-		System.out.println("------------------------:" + aLatLon.get(0).getFire_lon());
+		System.out.println(aLatLon.get(0).getFire_lat()>lat);
+		System.out.println(aLatLon.get(0).getFire_lon()<lon);
 		System.out.println("------------------------:" + aLatLon.get(1).getFire_lat());
 		System.out.println("------------------------:" + aLatLon.get(1).getFire_lon());
 

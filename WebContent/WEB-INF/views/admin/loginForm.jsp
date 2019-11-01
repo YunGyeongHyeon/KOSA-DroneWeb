@@ -29,12 +29,11 @@ body, html {
 	border: 0;
 	padding: 0;
 	background-image:
-		url('<%=application.getContextPath()%>/resources/image/login.jpg');
-	min-height: 100%;
+		url('<%=application.getContextPath()%>/resources/image/gain.jpg');
+	/* min-height: 100%; */	
 	background-position: center;
-	background-size: contain;
+	background-size: cover;
 	background-repeat: no-repeat;
-	width: 100%;
 }
 
 .layer {
@@ -63,8 +62,7 @@ body, html {
 	margin: auto; /* Added */
 	float: none; /* Added */
 	margin-bottom: 10px; /* Added */
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
-		rgba(0, 0, 0, 0.19);
+	background-color:rgba(255,255,255,0.5);
 }
 
 .form-signin .form-control {
@@ -103,32 +101,29 @@ body, html {
 <body id="bg">
 	<div class="layer">
 		<span class="content">
-			<body cellpadding="0" cellspacing="0" marginleft="0" margintop="0"width="100%" height="100%" align="center">
-				<div class="card align-middle" style="width: 40rem; border-radius: 50px;">
+				<div class="card align-middle" style="width: 40rem; border-radius: 50px; background-color:rgba(255,255,255,0.5)">
 					<div class="card-title" style="margin-top: 0px;">
-						<h2 class="card-title text-center" style="color: #113366; padding-top: 10px;">날아라 물폭탄</h2>
+						<h2 class="card-title text-center" style="color: #113366; padding-top: 10px;color:white;font-weight: bold">드론특공대</h2>
 					</div>
 					<div class="card-body">
 						<form class="form-signin" method="POST" action="login" onSubmit="return checkForm()">
-							<h5 class="form-signin-heading">로그인</h5>
 							<p align="center">
 								<input type="text" id="fire_station_id" name="fire_station_id"
 									class="form-control" placeholder="아이디 입력" 
-									style="width: 90%; text-align: center;"> 
+									style="width: 90%; text-align: center; background-color:rgba(255,255,255,0.5)"> 
 								<span id="adminIdError" class="error" style="color: red">${fire_station_idError}</span>
 							</p>
 							<p align="center">
 								<input type="password" id="fire_station_password" name="fire_station_password"
 									class="form-control" placeholder="비밀번호 입력"
-									style="width: 90%; text-align: center;"><BR>
+									style="width: 90%; text-align: center; background-color:rgba(255,255,255,0.5)"><BR>
 								<span id="adminPasswordError" class="error" style="color:red">${fire_station_passwordError}</span>	
 							</p>
-							<input type="submit" class="btn btn-lg btn-primary btn-block" value="로그인" />
+							<input type="submit" class="btn btn-lg btn-dark btn-block " value="로그인" />
 						</form>
 					</div>
 				</div>
 				<div class="modal"></div>
-			</body>
 		</span> <span class="blank"></span>
 	</div>
 

@@ -67,9 +67,12 @@ public class AdminController {
 	
 	@RequestMapping("/content")
 	public String content(Model model, HttpSession session, AdminFireStation fireStation, AdminLatLon adminLatLon) {
+		if(session.getAttribute("fire_station_id")==null) {
+			System.out.println("아이디 없습니다.");
+			return "redirect:/admin/loginForm";
+		}
 		List<AdminBoard> board = service.selectReport((int)session.getAttribute("fire_station_id"));
 		AdminFireStation station = service.selectFireStation((int)session.getAttribute("fire_station_id")); 
-
 		
 		model.addAttribute("board",board);
 		model.addAttribute("station",station);
@@ -82,5 +85,17 @@ public class AdminController {
 		return "redirect:/admin/loginForm";
 	}
 	
-	
+	@RequestMapping("/report")
+	public String report(Model model, HttpSession session, AdminFireStation fireStation, AdminLatLon adminLatLon) {
+		if(session.getAttribute("fire_station_id")==null) {
+			System.out.println("아이디 없습니다.");
+			return "redirect:/admin/loginForm";
+		}
+		List<AdminBoard> board = service.selectReport((int)session.getAttribute("fire_station_id"));
+		AdminFireStation station = service.selectFireStation((int)session.getAttribute("fire_station_id")); 
+		
+		model.addAttribute("board",board);
+		model.addAttribute("station",station);
+		return "admin/report";
+	}
 }

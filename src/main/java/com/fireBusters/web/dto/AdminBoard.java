@@ -15,6 +15,7 @@ public class AdminBoard {
 	public String getReport_date() {
 		return report_date;
 	}
+	
 	public void setReport_date(String report_date) {
 		this.report_date = report_date;
 	}

@@ -1,7 +1,7 @@
 @charset "UTF-8";
 	#wraper{
-		margin-left:200px;
-		margin-right:200px;
+		margin-left:80px;
+		margin-right:80px;
 	}
 	.cn_header{
 		height:100%;
@@ -12,24 +12,21 @@
 	}
 	.cn_logo{
 		height:100px;
-		background:rgb(240 325 68);
-		border-radius: 30px;
+		background:cornflowerblue;
 	}
 	.cn_logo_img{
-		width:80%;
+		width:70%;
 	}
 	#cn_top_first{
 		float:left;
-		margin-left:30px;
+		width:14%;
+		height:100px;
+		margin-left:5%;
 	}
 	#cn_top_secound{
 		    float: right;
-		    margin-top: 25px;
-		    margin-right: 75px;
-		    border-radius: 20px;
-		    background: white;
+		    margin-top:25px;
 		    font-size: 1.2em;
-		    text-align: center;
 	}
 	.cn_table{
 		border:1px solid;
@@ -37,22 +34,42 @@
 	.side-right{
 		float:right;
 	}
-	.cn_login_info td{
-		width:85%;
+	
+	#cn_login_id{
+		width:50%;
+		background:white;
+		text-align: center;
 		height:50px;
+		border-radius: 10px;
 	}
-	#cn_login_out{
+	#cn_login_out img{
 		font-size:0.3em;
+		width:30%;
+		border-radius: 5px;
 	}
 	#cn_list{
 		margin-top:10px;
 	}
-	.cn_taps{
-		border:1px solid;
+	.cn_tap{
+		margin-left: 10%;
+	    float: left;
+	    width: 15%;
+	    height: 50%;
+	    font-size: 2em;
+	    text-align: center;
+	    margin-top: 25px;
+	    font-weight: bold;
+	    color:white;
+	    border:none;
+	    background:none;
 	}
 	.table2{
 		width:50%;
 		float:left;
+		text-align: center;
+		background:white;
+	}
+	.table2 th{
 		text-align: center;
 	}
 	#map {
@@ -60,3 +77,9 @@
         width: 50%;  /* The width is the width of the web page */
         padding-bottom:44%;
     }
+    .select{
+    	background:#A9A9A9;
+    	color:white;
+    }
+    
+    
