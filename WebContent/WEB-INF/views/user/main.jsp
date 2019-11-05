@@ -17,7 +17,7 @@
     <section id="MainContainer">
         <section id="HeroBanner"> 
             <div class="hero-content">
-                <p style="font-size: 70px;">날아라 물풍선</p>
+                <p style="font-size: 70px;">드론특공대</p>
                 <p style="font-size: 28px;">산불 화재 신고 사이트 입니다.<br/><span style="color:red">산불이 발생한 위치</span>를 선택해주세요.<br/>소방 드론이 출동합니다.</p> 
                 <a href="map" class="hero-cta"><img style="width:140px;" src="<%=application.getContextPath() %>/resources/image/drone_logo.png"><br/><span style="color:red">화재 신고하기</span></a>
             </div>
@@ -25,4 +25,4 @@
         </section>
  </body>
 
-</html>
+</html>    

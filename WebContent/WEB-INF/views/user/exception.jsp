@@ -18,7 +18,7 @@
 
         <section id="HeroBanner">
             <div class="hero-content">
-                <p style="font-size:40px;">날아라 물풍선은 <br/>산불 화재만 출동합니다.<br/><span style="color:red">현재 신고 위치는</span><br/><span style="color:red">119</span>로 신고해주세요.</p>
+                <p style="font-size:40px;">드론특공대는 <br/>산불 화재만 출동합니다.<br/><span style="color:red">현재 신고 위치는</span><br/><span style="color:red">119</span>로 신고해주세요.</p>
 		  		<a href="home" class="hero-cta" ><img style="width:140px;" src="<%=application.getContextPath() %>/resources/image/drone_logo.png"><br/>확인</a>
             </div> 
         </section>
