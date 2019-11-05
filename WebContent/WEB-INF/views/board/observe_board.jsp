@@ -88,7 +88,7 @@
 						 	</c:forEach> 
 						</tbody>
 					</table>	
-					<div id=obPicture style="vertical-align:middle;">
+					<div id=obPicture style="vertical-align:middle; text-align: center; background-color: blue">
 				</div>
 				<div>
 				</div>
