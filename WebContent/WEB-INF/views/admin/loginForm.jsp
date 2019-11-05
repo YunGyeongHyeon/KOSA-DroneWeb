@@ -83,6 +83,17 @@ body, html {
 <script type="text/javascript">
 	function checkForm() {
 		var result = true;
+		
+		if($("#fire_station_id").val().length>3) {
+			$("#fire_station_idError").text("*아이디를 제대로 입력해주세요");
+			result = false;
+			return result;
+		}
+		
+		if($("#fire_station_id").length>3) {
+			alert($("#fire_station_id").length);
+		}
+		
 		//모든 에러 내용 지우기
 		$(".error").text("");
 		//입력값 검사
@@ -111,13 +122,13 @@ body, html {
 								<input type="text" id="fire_station_id" name="fire_station_id"
 									class="form-control" placeholder="아이디 입력" 
 									style="width: 90%; text-align: center; background-color:rgba(255,255,255,0.5)"> 
-								<span id="adminIdError" class="error" style="color: red">${fire_station_idError}</span>
+								<span id="fire_station_idError" class="error" style="color: red">${fire_station_idError}</span>
 							</p>
 							<p align="center">
 								<input type="password" id="fire_station_password" name="fire_station_password"
 									class="form-control" placeholder="비밀번호 입력"
 									style="width: 90%; text-align: center; background-color:rgba(255,255,255,0.5)"><BR>
-								<span id="adminPasswordError" class="error" style="color:red">${fire_station_passwordError}</span>	
+								<span id="fire_station_passwordError" class="error" style="color:red">${fire_station_passwordError}</span>	
 							</p>
 							<input type="submit" class="btn btn-lg btn-dark btn-block " value="로그인" />
 						</form>

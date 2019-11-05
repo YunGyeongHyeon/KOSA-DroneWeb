@@ -34,12 +34,16 @@ public class AdminController {
 
 	@RequestMapping("/loginForm")
 	public String loginForm(String error, Model model) {
+		try {
 		if (error != null) {
 			if (error.equals("fail_fire_station_id")) {
 				model.addAttribute("fire_station_idError", "*아이디가 존재하지 앖습니다.");
 			} else if (error.equals("fail_fire_station_password")) {
 				model.addAttribute("fire_station_passwordError", "*패스워드가 틀렀습니다.");
 			}
+		}
+		}catch(Exception e){
+			model.addAttribute("fire_station_idError", "제대로 입력해주세요.");
 		}
 		return "admin/loginForm";
 	}

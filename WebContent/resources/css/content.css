@@ -1,18 +1,24 @@
 @charset "UTF-8";
+	body{
+	background:#f7ecdbc7;
+	}
 	#wraper{
 		margin-left:80px;
 		margin-right:80px;
 	}
 	.cn_header{
-		height:100%;
-		margin-top:30px;
+    height: 100%;
+    margin-top: 15px;
 	}
 	#cn_119{
 		width:50%;
 	}
 	.cn_logo{
-		height:100px;
-		background:cornflowerblue;
+		    height: 100px;
+		    width: 95%;
+		    box-shadow: 0px 3px 7px 0px;
+		    margin-left: 50px;
+		    background:white;
 	}
 	.cn_logo_img{
 		width:70%;
@@ -34,7 +40,6 @@
 	.side-right{
 		float:right;
 	}
-	
 	#cn_login_id{
 		width:50%;
 		background:white;
@@ -47,27 +52,31 @@
 		width:30%;
 		border-radius: 5px;
 	}
+	#ajax{
+	    margin-top: 35px;
+	    }
 	#cn_list{
-		margin-top:10px;
+			margin-top:10px;
+		    width: 95%;
+		    margin-left: 50px;
 	}
 	.cn_tap{
-		margin-left: 10%;
-	    float: left;
-	    width: 15%;
-	    height: 50%;
-	    font-size: 2em;
-	    text-align: center;
-	    margin-top: 25px;
-	    font-weight: bold;
-	    color:white;
-	    border:none;
-	    background:none;
+		    margin-left: 10%;
+		    float: left;
+		    width: 15%;
+		    height: 50%;
+		    font-size: 2em;
+		    text-align: center;
+		    margin-top: 25px;
+		    font-weight: bold;
+		    border: none;
+		    background: none;
 	}
 	.table2{
-		width:50%;
-		float:left;
-		text-align: center;
-		background:white;
+		    width: 50%;
+		    float: left;
+		    text-align: center;
+		    background: white;
 	}
 	.table2 th{
 		text-align: center;
@@ -80,6 +89,21 @@
     .select{
     	background:#A9A9A9;
     	color:white;
+    }
+    #cn_downBar{
+	    display: none; 
+	    position: absolute;
+	    top: 10%;
+	    left: 57.5%;
+	    z-index: 1;
+	    background: black;
+    
+    }
+    #cn_downBar div{
+    	float:left;
+    	border: 1px solid;
+    	margin:10px;
+    	
     }
     
     

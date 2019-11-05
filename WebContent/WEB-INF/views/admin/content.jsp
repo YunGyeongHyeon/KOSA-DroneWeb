@@ -30,8 +30,16 @@
 					<button class="cn_tap" onclick="moving('report')">
 						실시간 상황
 					</button>
-					<button class="cn_tap" onclick="">
+					<button class="cn_tap"  id="cn_picture" onclick="">
 						사진첩
+						<div id="cn_downBar">
+							<div>
+								사건
+							</div>
+							<div>
+								정찰
+							</div>
+						</div>
 					</button>
 					<!-- 로그인정보: 아이디 비밀번호 수정 로그아웃 -->
 					<table id="cn_top_secound">

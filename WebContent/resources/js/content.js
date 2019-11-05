@@ -52,6 +52,13 @@ $(document).ready(function(){
 		$(this).siblings().children("td").removeClass("select")
 		$(this).children("td").toggleClass("select")
 	})
+	$("#cn_picture").hover(function(){
+		$(this).children("div").css("display","block");
+	},
+	function(){
+		$(this).children("div").css("display","none");
+	}
+	)
 })
 
 function moving(url){
@@ -65,4 +72,6 @@ function moving(url){
 		}
 	});
 }
+
+
 
