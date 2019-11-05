@@ -10,6 +10,8 @@ import com.fireBusters.web.dto.AdminBoard;
 import com.fireBusters.web.dto.AdminFireStation;
 import com.fireBusters.web.dto.AdminLatLon;
 import com.fireBusters.web.dto.AdminMember;
+import com.fireBusters.web.dto.ObBoard;
+import com.fireBusters.web.dto.ObBoardPicture;
 
 @Service
 public class AdminService {
@@ -43,6 +45,23 @@ public class AdminService {
 	public List<AdminLatLon> selectPoint() {
 		List<AdminLatLon> aLatLon = adminDao.selectPoint();
 		return aLatLon;
+	}
+	
+	public List<ObBoard> selectObBoardList(int obid) {
+		List<ObBoard> obBoardList = adminDao.selectList(obid);
+		return obBoardList;
+
+	}
+	
+	public AdminFireStation selectObFireStation(int ofs) {
+		AdminFireStation station = adminDao.selectObFireStation(ofs);
+		return station;
+	}
+	
+	public List<ObBoardPicture> selectObBoardPicture(int obp) {
+		List<ObBoardPicture> obBoardPicture = adminDao.selectObBoardPicture(obp);
+		
+		return obBoardPicture;
 	}
 
 }

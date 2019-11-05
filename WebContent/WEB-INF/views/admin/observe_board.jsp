@@ -27,52 +27,17 @@
 <title>main Form</title>
 </head>
 <body>
-	<div>
-		<!-- 맨위에 로고와 아이디 나오는 부분 -->
-		<div>
-			<!-- 메인 로고가 들어갈 부분 -->
-			<div class="cn_header">
-				<div class="cn_logo">
-					<table id="cn_top_first">
-						<tr>
-							<td><img class="cn_logo_img" alt="산림청" src="<%=application.getContextPath()%>/resources/image/drone_logo.png"></td>
-						</tr>
-					</table>
-					<button class="cn_tap" onclick="moving('report')">
-						실시간 상황
-					</button>
-					<button class="cn_tap"  id="cn_picture" onclick="">
-						사진첩
-						<div id="cn_downBar">
-							<div>
-								사건
-							</div>
-							<div>
-								정찰
-							</div>
-						</div>
-					</button>
-					<!-- 로그인정보: 아이디 비밀번호 수정 로그아웃 -->
-					<table id="cn_top_secound">
-						<tr class="cn_login_info">
-							<td id="cn_login_id">${station.fire_station_name}</td>
-							<td id="cn_login_out"><a href="logout"><img src="<%=application.getContextPath()%>/resources/image/out.png"/></a></td>
-						</tr>	
-					</table>
-				</div>
-			</div>
-		
 			<!-- 컨텐츠를 담아놓은 부분 -->
 			<div id="ajax">
 				<div id="cn_list">
 					<table class="table table-striped table-sm table2">
 						<thead>
 							<tr class="panel panel-title">
-								<th class="panel panelbody" scope="col">화재장소(위도)</th>
-								<th class="panel panelbody" scope="col">화제장소(경도)</th>
+								<th class="panel panelbody" scope="col">담당 소방서</th>
+								<th class="panel panelbody" scope="col">사건 번호</th>
 								<th class="panel panelbody" scope="col">접수시간</th>
-								<th class="panel panelbody" scope="col">처리현황</th>
-								<th class="panel panelbody" scope="col">신고유형</th>
+								<th class="panel panelbody" scope="col">화재장소(위도)</th>
+								<th class="panel panelbody" scope="col">화재장소(경도)</th>
 							</tr>
 						</thead>
 						<tbody>

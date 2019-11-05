@@ -20,4 +20,22 @@
 	<select id="selectPoint" resultType="com.fireBusters.web.dto.AdminLatLon">
 		select fire_station_id, fire_station_point, fire_lat, fire_lon from fire_station_area order by fire_station_id, fire_station_point asc
 	</select>
+	
+	<select id="obSelectList" parameterType="int" resultType="com.fireBusters.web.dto.ObBoard">
+		select to_char(report_date, 'YYYY-MM/DD-HH24:MI:SS') report_date, report_no, report_lat, report_lon
+				from report
+				where fire_station_no=#{obid}
+	</select>
+	
+	<select id="obFireStation" parameterType="int" resultType="com.fireBusters.web.dto.AdminFireStation">
+		select fire_station_id, fire_station_name, fire_station_area_id
+		    from fire_station
+		    where fire_station_id=#{ofs}
+	</select>
+	
+	<select id="obPicture" parameterType="int" resultType="com.fireBusters.web.dto.ObBoardPicture">
+		select fire_station_id, fire_station_name, fire_station_area_id
+		    from fire_station
+		    where fire_station_id=#{obp}
+	</select>
 </mapper>

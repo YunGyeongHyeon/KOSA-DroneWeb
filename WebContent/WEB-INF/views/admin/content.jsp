@@ -13,6 +13,7 @@
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6QqekZ1wnL7A8e0nPlnEsHowprAdcm8c&callback=initMap">
 </script>
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/content.js"></script>
+
 <title>main Form</title>
 </head>
 <body>
@@ -30,7 +31,7 @@
 					<button class="cn_tap" onclick="moving('report')">
 						실시간 상황
 					</button>
-					<button class="cn_tap"  id="cn_picture" onclick="">
+					<button class="cn_tap"  id="cn_picture" onclick="moving('picture')">
 						사진첩
 						<div id="cn_downBar">
 							<div>

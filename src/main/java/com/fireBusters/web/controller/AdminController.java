@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.fireBusters.web.dto.AdminBoard;
 import com.fireBusters.web.dto.AdminFireStation;
 import com.fireBusters.web.dto.AdminLatLon;
+import com.fireBusters.web.dto.ObBoard;
+import com.fireBusters.web.dto.ObBoardPicture;
 import com.fireBusters.web.service.AdminService;
 import com.fireBusters.web.service.LoginResult;
 
@@ -103,5 +105,27 @@ public class AdminController {
 		model.addAttribute("board",board);
 		model.addAttribute("station",station);
 		return "admin/report";
+	}
+	@RequestMapping("/picture")
+	public String picture(Model model, HttpSession session, AdminFireStation fireStation, AdminLatLon adminLatLon) {
+		if(session.getAttribute("fire_station_id")==null) {
+			System.out.println("아이디 없습니다.");
+			return "redirect:/admin/loginForm";
+		}
+		
+		List<ObBoard> obBoardList = service.selectObBoardList((int)session.getAttribute("fire_station_id"));
+		AdminFireStation station = service.selectObFireStation((int)session.getAttribute("fire_station_id"));
+		
+		model.addAttribute("obBoardList", obBoardList);
+		model.addAttribute("station", station);	
+		return "admin/observe_board";
+	}
+	@RequestMapping("/obBoardPicture")
+	public String obBoardPicture(int report_no,  Model model, HttpSession session) {
+		List<ObBoardPicture> obBoardPicture = service.selectObBoardPicture(report_no);
+		
+		model.addAttribute("obBoardPicture", obBoardPicture);
+		
+		return "admin/obBoardPicture";
 	}
 }
