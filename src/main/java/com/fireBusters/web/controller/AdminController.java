@@ -49,9 +49,11 @@ public class AdminController {
 	public String login(int fire_station_id, String fire_station_password, HttpSession session) {
 		LoginResult result = service.login(fire_station_id, fire_station_password);
 		if (result == LoginResult.FAIL_ADMINID) {
-			return "redirect:/admin/loginForm?error=fail_fire_station_id";
+			session.setAttribute("fire_station_idError", "* 아이디가 존재하지 않습니다."); 
+			return "redirect:/admin/main";
 		} else if (result == LoginResult.FAIL_ADMINPASSWORD) {
-			return "redirect:/admin/loginForm?error=fail_fire_station_password";//
+			session.setAttribute("fire_station_passwordError", "* 비밀번호가 존재하지 않습니다.");
+			return "redirect:/admin/main";
 		}
 		session.setAttribute("fire_station_id", fire_station_id);
 		System.out.println(session.getAttribute("fire_station_id"));
