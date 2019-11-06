@@ -12,18 +12,19 @@
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/js/bootstrap.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6QqekZ1wnL7A8e0nPlnEsHowprAdcm8c&callback=initMap">
 </script>
-<script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/content.js"></script>
 <script type="text/javascript">
-	function obBoardPicture(data) {
-		$.ajax({
-			url:"obBoardPicture?report_no="+data,
-			data: data,
-			success: function(data){
-				$("#obPicture").html(data);
-			}
-		});
+	function hi(){
+		$("#mapView").attr('id','no');
+		
 	}
 </script>
+<style>
+	#no{
+		width:200px;
+		height:200px;
+		background-color:white;
+	}
+</style>
 <title>main Form</title>
 </head>
 <body>
@@ -38,6 +39,7 @@
 								<th class="panel panelbody" scope="col">접수시간</th>
 								<th class="panel panelbody" scope="col">화재장소(위도)</th>
 								<th class="panel panelbody" scope="col">화재장소(경도)</th>
+								<th class="panel panelbody" scope="col">드론 경로</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -49,16 +51,16 @@
 				 					<td>${obBoardList.report_date}</td>
 									<td>${obBoardList.report_lat}</td>
 									<td>${obBoardList.report_lon}</td>
+									<td><button class="btn btn-success" onclick="hi()">경로 확인</button></td>
 								</tr>
 						 	</c:forEach> 
 						</tbody>
 					</table>	
-					<div id=obPicture style="vertical-align:middle; text-align:center;">
-				</div>
+					<div id=obPicture style="vertical-align:middle; text-align:center;"></div>
+					<div id="mapView"></div>
 				<div>
 				</div>
 			</div>
 		</div>
-	</div>
 </body>
 </html>
