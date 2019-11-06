@@ -23,7 +23,7 @@ function initMap() {
 
 function addMarker(location, map) {
 	var icon ={
-			url : 'http://192.168.2.10:8080/FinalWebProject/resources/image/fire3.png',
+			url : 'http://localhost:8080/FinalWebProject/resources/image/fire3.png',
 			scaledSize: new google.maps.Size(100, 100)
 	}
 	if(labelIndex != 0){

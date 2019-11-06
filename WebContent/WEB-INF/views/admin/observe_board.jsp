@@ -53,7 +53,7 @@
 						 	</c:forEach> 
 						</tbody>
 					</table>	
-					<div id=obPicture style="vertical-align:middle;">
+					<div id=obPicture style="vertical-align:middle; text-align:center;">
 				</div>
 				<div>
 				</div>

@@ -31,13 +31,13 @@
 					<button class="cn_tap" onclick="moving('report')">
 						실시간 상황
 					</button>
-					<button class="cn_tap"  id="cn_picture" onclick="moving('picture')">
+					<button class="cn_tap"  id="cn_picture">
 						사진첩
 						<div id="cn_downBar">
-							<div>
+							<div onclick="moving('picture')">
 								사건
 							</div>
-							<div>
+							<div onclick="moving('observe')">
 								정찰
 							</div>
 						</div>

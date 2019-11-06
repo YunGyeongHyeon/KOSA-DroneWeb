@@ -128,4 +128,10 @@ public class AdminController {
 		
 		return "admin/obBoardPicture";
 	}
+	
+	@RequestMapping("/observe")
+	public String observe() {
+	
+		return "admin/observe";
+	}
 }

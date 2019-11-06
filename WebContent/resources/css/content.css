@@ -93,11 +93,11 @@
     #cn_downBar{
 	    display: none; 
 	    position: absolute;
-	    top: 10%;
+	    top: 9.5%;
 	    left: 57.5%;
 	    z-index: 1;
-	    background: black;
-    
+		background: white;    
+		border: 1px solid;
     }
     #cn_downBar div{
     	float:left;
