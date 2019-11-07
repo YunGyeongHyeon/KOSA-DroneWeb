@@ -134,4 +134,9 @@ public class AdminController {
 	
 		return "admin/observe";
 	}
+	
+	@RequestMapping("/observe_map")
+	public String observe_map() {
+		return "admin/observe_map";
+	}
 }

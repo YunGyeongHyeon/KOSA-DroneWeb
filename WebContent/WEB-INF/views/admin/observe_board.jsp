@@ -14,15 +14,32 @@
 </script>
 <script type="text/javascript">
 	function hi(){
-		$("#mapView").attr('id','no');
-		
+		$.ajax({
+			url:"observe_map",
+			success : function(data){
+				$("#obPicture").html(data);
+			},
+			error:function(){
+				alert("에러");
+			}
+		});
+	}
+	
+	function obBoardPicture(data) {
+		$.ajax({
+			url:"obBoardPicture?report_no="+data,
+			data: data,
+			success: function(data){
+				$("#obPicture").html(data);
+			}
+		});
 	}
 </script>
 <style>
 	#no{
-		width:200px;
-		height:200px;
-		background-color:white;
+		height: 400px;  /* The height is 400 pixels */
+        width: 50%;  /* The width is the width of the web page */
+        padding-bottom:44%;
 	}
 </style>
 <title>main Form</title>
@@ -57,7 +74,7 @@
 						</tbody>
 					</table>	
 					<div id=obPicture style="vertical-align:middle; text-align:center;"></div>
-					<div id="mapView"></div>
+					<div></div>
 				<div>
 				</div>
 			</div>

@@ -13,7 +13,12 @@
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6QqekZ1wnL7A8e0nPlnEsHowprAdcm8c&callback=initMap">
 </script>
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/content.js"></script>
-
+<script type="text/javascript">
+	function hideButton(){
+		$("#trueReport").hide();
+		$("#falseReport").hide();
+	} 
+</script>
 <title>main Form</title>
 </head>
 <body>
@@ -25,7 +30,7 @@
 				<div class="cn_logo">
 					<table id="cn_top_first">
 						<tr>
-							<td><img class="cn_logo_img" alt="산림청" src="<%=application.getContextPath()%>/resources/image/drone_logo.png"></td>
+							<td><a href="http://localhost:8080/FinalWebProject/admin/content"><img class="cn_logo_img" src="<%=application.getContextPath()%>/resources/image/drone_logo.png"></a></td>
 						</tr>
 					</table>
 					<button class="cn_tap" onclick="moving('report')">
@@ -67,14 +72,15 @@
 						</thead>
 						<tbody>
 							<c:forEach var="board" items="${board}">
+
 								<tr class="selectLine" onclick="listClick(${board.report_lat}, ${board.report_lon})">
 				 					<td class="" scope="col">${board.report_lat}</td>
 									<td class="" scope="col">${board.report_lon}</td>
 									<td class="" scope="col">${board.report_date}</td>
 									<td class="" scope="col"><button class="btn btn-warning">드론출동</button></td>
-									<td class="" scope="col">
-										<button class="btn btn-danger button">실제사고</button><br/>
-										<button class="btn btn-primary button">허위신고</button>
+									<td class="" scope="col" >
+										<button class="btn btn-danger button" id="trueReport" onclick="hideButton()">실제사고</button><br/>
+										<button class="btn btn-primary button" id="falseReport">허위신고</button>
 									</td>
 								</tr>
 						 	</c:forEach> 
