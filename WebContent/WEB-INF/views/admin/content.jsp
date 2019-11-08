@@ -14,7 +14,7 @@
 </script>
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/content.js"></script>
 <script type="text/javascript">
-	function hideButton(){
+	function hideButton(clickedId){
 		$("#trueReport").hide();
 		$("#falseReport").hide();
 	} 
@@ -88,9 +88,9 @@
 				 					<td class="" scope="col">${board.report_lat}</td>
 									<td class="" scope="col">${board.report_lon}</td>
 									<td class="" scope="col">${board.report_date}</td>
-									<td class="" scope="col"><button class="btn btn-warning">드론출동</button></td>
+									<td class="" scope="col"><button class="btn btn-danger">드론출동</button></td>
 									<td class="" scope="col" >
-										<button class="btn btn-danger button" id="trueReport<%=i%>" onclick="hideButton()">실제사고</button><br/>
+										<button class="btn btn-danger button" id="trueReport<%=i%>" onclick="hideButton(this.id)">실제사고</button><br/>
 										<input type="button" onclick="action()" class="btn btn-primary button" id="falseReport<%=i%>" value="허위신고"/>
 									</td>
 								</tr>

@@ -25,8 +25,7 @@ function fnImgPop(url){
 </head>
 <body>
  
-
-<div style="vertical-align:middle;">
+<div style="vertical-align:middle; position: absolute; left: 900px;">
 <%-- <c:forEach begin="1" end="9" var="i"> --%>
 	<%-- <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/3.jpg" width="240px" height="240px"
 	 onclick="fnImgPop(this.src)"/> --%>
