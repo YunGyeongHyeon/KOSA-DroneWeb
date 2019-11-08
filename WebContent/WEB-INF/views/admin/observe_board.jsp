@@ -13,7 +13,7 @@
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6QqekZ1wnL7A8e0nPlnEsHowprAdcm8c&callback=initMap">
 </script>
 <script type="text/javascript">
-	function hi(){
+	function missionMap(){
 		$.ajax({
 			url:"observe_map",
 			success : function(data){
@@ -56,7 +56,7 @@
 								<th class="panel panelbody" scope="col">접수시간</th>
 								<th class="panel panelbody" scope="col">화재장소(위도)</th>
 								<th class="panel panelbody" scope="col">화재장소(경도)</th>
-								<th class="panel panelbody" scope="col">드론 경로</th>
+								<th class="panel panelbody" scope="col">사건 확인</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -64,11 +64,14 @@
 							<c:forEach var="obBoardList" items="${obBoardList}" varStatus="status">
 								<tr>
 									<td>${station.fire_station_name}</td>
-									<td><a onclick="obBoardPicture(${obBoardList.report_no})">${obBoardList.report_no}</a></td>
+									<td>${obBoardList.report_no}</td>
 				 					<td>${obBoardList.report_date}</td>
 									<td>${obBoardList.report_lat}</td>
 									<td>${obBoardList.report_lon}</td>
-									<td><button class="btn btn-success" onclick="hi()">경로 확인</button></td>
+									<td>
+										<button class="btn btn-primary" onclick="missionMap()">경로 확인</button><br/>
+										<button class="btn btn-success" onclick="obBoardPicture(${obBoardList.report_no})">사진 확인</button>
+									</td>
 								</tr>
 						 	</c:forEach> 
 						</tbody>
