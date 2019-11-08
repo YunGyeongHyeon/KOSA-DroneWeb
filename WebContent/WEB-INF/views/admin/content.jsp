@@ -79,8 +79,8 @@
 									<td class="" scope="col">${board.report_date}</td>
 									<td class="" scope="col"><button class="btn btn-danger">드론출동</button></td>
 									<td class="" scope="col" >
-										<button class="btn btn-primary button" id="trueReport" onclick="hideButton()">실제사고</button><br/>
-										<button class="btn btn-success button" id="falseReport">허위신고</button>
+										<button class="btn btn-primary" id="trueReport" onclick="hideButton()">실제사고</button><br/>
+										<button class="btn btn-success" id="falseReport">허위신고</button>
 									</td>
 								</tr>
 						 	</c:forEach> 
