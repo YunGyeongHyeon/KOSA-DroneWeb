@@ -90,8 +90,8 @@
 									<td class="" scope="col">${board.report_date}</td>
 									<td class="" scope="col"><button class="btn btn-danger">드론출동</button></td>
 									<td class="" scope="col" >
-										<button class="btn btn-danger button" id="trueReport<%=i%>" onclick="hideButton(this.id)">실제사고</button><br/>
-										<input type="button" onclick="action()" class="btn btn-primary button" id="falseReport<%=i%>" value="허위신고"/>
+										<button class="btn btn-primary" id="trueReport<%=i%>" onclick="hideButton(this.id)">실제사고</button><br/>
+										<input type="button" onclick="action()" class="btn btn-success" id="falseReport<%=i%>" value="허위신고"/>
 									</td>
 								</tr>
 								<%i++; %>
