@@ -59,6 +59,12 @@ $(document).ready(function(){
 })
 
 </script>
+<script>
+	function hideButton(clickedId){
+		$('#trueReport'+clickedId).hide();
+		$('#falseReport'+clickedId).hide();
+	} 
+</script>
 <div id="cn_list">
 	<table class="table table-striped table-sm table2">
 		<thead>
@@ -71,6 +77,7 @@ $(document).ready(function(){
 			</tr>
 		</thead>
 		<tbody>
+			<%int i=1; %>
 			<c:forEach var="board" items="${board}">
 				<tr class="selectLine"
 					onclick="listClick(${board.report_lat}, ${board.report_lon})">
@@ -78,10 +85,15 @@ $(document).ready(function(){
 					<td class="" scope="col">${board.report_lon}</td>
 					<td class="" scope="col">${board.report_date}</td>
 					<td class="" scope="col"><button class="btn btn-danger">드론출동</button></td>
-					<td class="" scope="col"><button class="btn btn-primary">실제사고</button>
-						<br />
-						<button class="btn btn-success">허위신고</button></td>
+					<td class="" scope="col">
+						<form action = "handle" method = "post">
+							<input type='hidden' name='reportNo' value="${board.report_no}"/>
+							<input type="submit" class="btn btn-primary" id="trueReport<%=i%>" onclick="hideButton(<%=i%>)" value="실제사고"/><br/>
+							<input type="submit" class="btn btn-success" id="falseReport<%=i%>" onclick="hideButton(<%=i%>)" value="허위신고"/>
+						</form>
+					</td>
 				</tr>
+			<%i++; %>
 			</c:forEach>
 		</tbody>
 	</table>

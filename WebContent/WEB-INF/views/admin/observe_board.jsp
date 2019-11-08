@@ -45,6 +45,7 @@
 <title>main Form</title>
 </head>
 <body>
+
 	<!-- 컨텐츠를 담아놓은 부분 -->
 	<div id="ajax">
 		<div id="cn_list">
@@ -107,6 +108,7 @@
 						<a href="obBoard?pageNo=${endPageNo+1}" class="btn btn-success">다음</a>
 					</c:if>
 					<a href="obBoard?pageNo=${totalPageNum}" class="btn btn-primary">맨끝</a>
+
 				</div>
 				<!--페이징  -->
 				

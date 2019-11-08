@@ -73,4 +73,10 @@ public class AdminService {
 		int totalRowNum = adminDao.selectTotalPictureRowNo();
 		return totalRowNum;
 	}
+
+	public void updateHandle(int reportNo, String handle_result) {
+		adminDao.updateHandle(reportNo, handle_result);
+
+	}
+
 }

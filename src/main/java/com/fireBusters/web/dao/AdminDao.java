@@ -65,6 +65,7 @@ public class AdminDao {
 		return obBoardPicture;
 	}
 
+
 	public int selectTotalRowNo() {
 		int totalRowNum = sqlSessionTemplate.selectOne("adminMember.selectTotalRowNum");
 		return totalRowNum;
@@ -74,5 +75,16 @@ public class AdminDao {
 		int TotalPictureRowNo = sqlSessionTemplate.selectOne("adminMember.selectTotalPictureRowNo");
 		return TotalPictureRowNo;
 	}
+	
+	public int updateHandle(int reportNo, String handle_result) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("handle_result", handle_result);
+		map.put("reportNo", reportNo);
+
+		int rows = sqlSessionTemplate.update("adminMember.updateHandle", map);
+		return rows;
+	}
+	 
+
 
 }

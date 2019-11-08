@@ -1,8 +1,8 @@
 package com.fireBusters.web.dto;
 
-import java.sql.Date;
 
 public class AdminBoard {
+	private int report_no;
 	private String report_date;
 	private double report_lat;
 	private double report_lon;
@@ -12,6 +12,14 @@ public class AdminBoard {
 	private String fire_station_name;
 	
 	
+	public int getReport_no() {
+		return report_no;
+	}
+
+	public void setReport_no(int report_no) {
+		this.report_no = report_no;
+	}
+
 	public String getReport_date() {
 		return report_date;
 	}
