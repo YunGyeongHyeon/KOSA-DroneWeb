@@ -56,7 +56,8 @@
 								<th class="panel panelbody" scope="col">접수시간</th>
 								<th class="panel panelbody" scope="col">화재장소(위도)</th>
 								<th class="panel panelbody" scope="col">화재장소(경도)</th>
-								<th class="panel panelbody" scope="col">사건 확인</th>
+								<th class="panel panelbody" scope="col">신고 유형</th>
+								<th class="panel panelbody" scope="col"></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -68,16 +69,16 @@
 				 					<td>${obBoardList.report_date}</td>
 									<td>${obBoardList.report_lat}</td>
 									<td>${obBoardList.report_lon}</td>
+									<td>실제사고</br>허위신고</td>
 									<td>
-										<button class="btn btn-primary" onclick="missionMap()">경로 확인</button><br/>
-										<button class="btn btn-success" onclick="obBoardPicture(${obBoardList.report_no})">사진 확인</button>
+										<button class="btn btn-primary" onclick="missionMap()">출동경로</button><br/>
+										<button class="btn btn-success" onclick="obBoardPicture(${obBoardList.report_no})">현장사진</button>
 									</td>
 								</tr>
 						 	</c:forEach> 
 						</tbody>
 					</table>	
 					<div id=obPicture style="vertical-align:middle; text-align:center;"></div>
-					<div></div>
 				<div>
 				</div>
 			</div>
