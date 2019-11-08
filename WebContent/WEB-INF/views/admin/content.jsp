@@ -53,7 +53,7 @@
 							<div onclick="moving('picture')">
 								사건
 							</div>
-							<div onclick="moving('observe')">
+							<div onclick="moving('obBoard')">
 								정찰
 							</div>
 						</div>
@@ -99,9 +99,40 @@
 						 	<%System.out.println(i); %>
 						</tbody>
 					</table>	
-					<div id="map"></div>
+					
+					<!--페이징  -->
+					<div style="display: flex;position: absolute;bottom: 0px; left:12%">
+						<div style="flex-grow: 1;">
+					<a href="content?pageNo=1" class="btn btn-primary">처음</a>
+					<c:if test="${groupNo>1}">
+						<a href="content?pageNo=${startPageNo-1}" class="btn btn-success">이전</a>
+					</c:if>
+						
+						<div style="display: inline-block;" class="btn-toolbar"
+							role="toolbar" aria-label="Toolbar with button groups">
+							<div class="btn-group mr-2" role="group" aria-label="First group">
+								<c:forEach begin="${startPageNo}" end="${endPageNo}" var="j"><!--begin시작과 end끝값을 넣어주면 된다.  -->
+								<c:if test="${pageNo==j}">
+									<a href="content?pageNo=${j}" class="btn btn-secondary active">${j}</a>
+								</c:if>
+								<c:if test="${pageNo!=j}">
+									<a href="content?pageNo=${j}" class="btn btn-secondary">${j}</a>
+								</c:if>
+								</c:forEach>
+							</div>
+						</div>
+					<c:if test="${groupNo<totalGroupNum}">
+					<a href="content?pageNo=${endPageNo+1}" class="btn btn-success">다음</a>
+					</c:if>
+					 <a href="content?pageNo=${totalPageNum}"	class="btn btn-primary">맨끝</a>
+					</div>
+					<!--페이징  -->
+					
+					
+					
 				</div>
 				<div>
+				<div id="map"></div>
 				</div>
 			</div>
 		</div>

@@ -1,6 +1,8 @@
 package com.fireBusters.web.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +24,12 @@ public class AdminDao {
 		return member;
 	}
 
-	public List<AdminBoard> selectReport(int id) {
-		List<AdminBoard> board = sqlSessionTemplate.selectList("adminMember.selectReport",id);
+	public List<AdminBoard> selectReport(int id, int startRowNo, int endRowNo) {
+		Map<String, Integer> map = new HashMap<>();
+		map.put("id", id);
+		map.put("startRowNo", startRowNo);
+		map.put("endRowNo", endRowNo);
+		List<AdminBoard> board = sqlSessionTemplate.selectList("adminMember.selectReport",map);
 		return board;
 	}
 
@@ -38,8 +44,12 @@ public class AdminDao {
 		return aLatLon;
 	}
 	
-	public List<ObBoard> selectList(int obid) {
-		List<ObBoard> obBoardList = sqlSessionTemplate.selectList("adminMember.obSelectList", obid);
+	public List<ObBoard> selectList(int obid,  int startRowNo, int endRowNo) {
+		Map<String, Integer> map = new HashMap<>();
+		map.put("obid", obid);
+		map.put("startRowNo", startRowNo);
+		map.put("endRowNo", endRowNo);
+		List<ObBoard> obBoardList = sqlSessionTemplate.selectList("adminMember.obSelectList", map);
 		return obBoardList;
 	}
 
@@ -53,6 +63,16 @@ public class AdminDao {
 		System.out.println("dsjfasdlfjaslf"+obp);
 		List<ObBoardPicture> obBoardPicture = sqlSessionTemplate.selectList("adminMember.obPicture", obp);
 		return obBoardPicture;
+	}
+
+	public int selectTotalRowNo() {
+		int totalRowNum = sqlSessionTemplate.selectOne("adminMember.selectTotalRowNum");
+		return totalRowNum;
+	}
+
+	public int selectTotalPictureRowNo() {
+		int TotalPictureRowNo = sqlSessionTemplate.selectOne("adminMember.selectTotalPictureRowNo");
+		return TotalPictureRowNo;
 	}
 
 }

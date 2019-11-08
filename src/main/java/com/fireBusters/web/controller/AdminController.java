@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fireBusters.web.dto.AdminBoard;
 import com.fireBusters.web.dto.AdminFireStation;
@@ -74,16 +75,55 @@ public class AdminController {
 	
 	
 	@RequestMapping("/content")
-	public String content(Model model, HttpSession session, AdminFireStation fireStation, AdminLatLon adminLatLon) {
+	public String content(Model model, HttpSession session, AdminFireStation fireStation, AdminLatLon adminLatLon,
+			@RequestParam(defaultValue = "1") int pageNo) {
+		session.setAttribute("pageNo", pageNo);
+		
 		if(session.getAttribute("fire_station_id")==null) {
 			System.out.println("아이디 없습니다.");
 			return "redirect:/admin/loginForm";
 		}
-		List<AdminBoard> board = service.selectReport((int)session.getAttribute("fire_station_id"));
+		
+		//---------------------------------페이징
+				int rowsPerPage = 8;// 페이지당 행수
+				int pagesPerGroup = 10;// 이전, 다음을 클릭했을때 나오는 그룹당 페이지 수
+				int totalRowNum = service.getTotalRowNo();// 전체 게시물 수 //디비한테 물어봐야함
+				int totalPageNum = totalRowNum / rowsPerPage;// 전체 페이지 수
+				if (totalRowNum % rowsPerPage != 0)
+					totalPageNum++;// 뒤에 짜투리도 페이지수로 인정
+				int totalGroupNum = totalPageNum / pagesPerGroup;// 전체 그룹 수
+				if (totalPageNum % pagesPerGroup != 0)
+					totalGroupNum++;
+				int groupNo = (pageNo - 1) / pagesPerGroup + 1;// 현재페이지의 그룹번호
+				int startPageNo = (groupNo - 1) * pagesPerGroup + 1;// 현재 그룹의 시작 페이지 번호
+				int endPageNo = startPageNo + pagesPerGroup - 1;// 현재 그룹의 마지막 페이지 번호
+				if (groupNo == totalGroupNum)
+					endPageNo = totalPageNum;
+				int startRowNo = (pageNo - 1) * rowsPerPage + 1;// 공식//현재시작 페이지의 행 번호
+				int endRowNo = pageNo * rowsPerPage;// 현재공식//해당 페이지의 끝 행번호
+				if (pageNo == totalGroupNum)
+					endRowNo = totalRowNum;
+				
+				
+				
+		//---------------------------------페이징
+		
+		
+		
+		List<AdminBoard> board = service.selectReport((int)session.getAttribute("fire_station_id"), startRowNo, endRowNo);
 		AdminFireStation station = service.selectFireStation((int)session.getAttribute("fire_station_id")); 
 		
 		model.addAttribute("board",board);
 		model.addAttribute("station",station);
+		
+		model.addAttribute("pagesPerGroup", pagesPerGroup);
+		model.addAttribute("totalPageNum", totalPageNum);
+		model.addAttribute("totalGroupNum", totalGroupNum);
+		model.addAttribute("groupNo", groupNo);
+		model.addAttribute("startPageNo", startPageNo);
+		model.addAttribute("endPageNo", endPageNo);
+		model.addAttribute("pageNo", pageNo);
+		
 		return "admin/content";
 	}
 	
@@ -99,26 +139,67 @@ public class AdminController {
 			System.out.println("아이디 없습니다.");
 			return "redirect:/admin/loginForm";
 		}
-		List<AdminBoard> board = service.selectReport((int)session.getAttribute("fire_station_id"));
+		//List<AdminBoard> board = service.selectReport((int)session.getAttribute("fire_station_id"), startRowNo, endRowNo);
 		AdminFireStation station = service.selectFireStation((int)session.getAttribute("fire_station_id")); 
-		
-		model.addAttribute("board",board);
-		model.addAttribute("station",station);
+
+		//model.addAttribute("board",board);
+		//model.addAttribute("station",station);
 		return "admin/report";
 	}
-	@RequestMapping("/picture")
-	public String picture(Model model, HttpSession session, AdminFireStation fireStation, AdminLatLon adminLatLon) {
+	@RequestMapping("/obBoard")
+	public String obBoard(Model model, HttpSession session, AdminFireStation fireStation, AdminLatLon adminLatLon,
+			@RequestParam(defaultValue = "1") int pageNo) {
 		if(session.getAttribute("fire_station_id")==null) {
 			System.out.println("아이디 없습니다.");
 			return "redirect:/admin/loginForm";
 		}
 		
-		List<ObBoard> obBoardList = service.selectObBoardList((int)session.getAttribute("fire_station_id"));
+		
+		//페이징
+		session.setAttribute("pageNo", pageNo);
+		
+		int rowsPerPage = 8;// 페이지당 행수
+		int pagesPerGroup = 10;// 이전, 다음을 클릭했을때 나오는 그룹당 페이지 수
+		int totalRowNum = service.getTotalPictureRowNo();// 전체 게시물 수 //디비한테 물어봐야함
+		int totalPageNum = totalRowNum / rowsPerPage;// 전체 페이지 수
+		if (totalRowNum % rowsPerPage != 0)
+			totalPageNum++;// 뒤에 짜투리도 페이지수로 인정
+		int totalGroupNum = totalPageNum / pagesPerGroup;// 전체 그룹 수
+		if (totalPageNum % pagesPerGroup != 0)
+			totalGroupNum++;
+		int groupNo = (pageNo - 1) / pagesPerGroup + 1;// 현재페이지의 그룹번호
+		int startPageNo = (groupNo - 1) * pagesPerGroup + 1;// 현재 그룹의 시작 페이지 번호
+		int endPageNo = startPageNo + pagesPerGroup - 1;// 현재 그룹의 마지막 페이지 번호
+		if (groupNo == totalGroupNum)
+			endPageNo = totalPageNum;
+		int startRowNo = (pageNo - 1) * rowsPerPage + 1;// 공식//현재시작 페이지의 행 번호
+		int endRowNo = pageNo * rowsPerPage;// 현재공식//해당 페이지의 끝 행번호
+		if (pageNo == totalGroupNum)
+			endRowNo = totalRowNum;
+		//페이징
+		
+		
+		
+		
+		
+		List<ObBoard> obBoardList = service.selectObBoardList((int)session.getAttribute("fire_station_id"), startRowNo, endRowNo);
 		AdminFireStation station = service.selectObFireStation((int)session.getAttribute("fire_station_id"));
 		
 		model.addAttribute("obBoardList", obBoardList);
 		model.addAttribute("station", station);	
+		
+		model.addAttribute("pagesPerGroup", pagesPerGroup);
+		model.addAttribute("totalPageNum", totalPageNum);
+		model.addAttribute("totalGroupNum", totalGroupNum);
+		model.addAttribute("groupNo", groupNo);
+		model.addAttribute("startPageNo", startPageNo);
+		model.addAttribute("endPageNo", endPageNo);
+		model.addAttribute("pageNo", pageNo);
+		
+		
+		
 		return "admin/observe_board";
+		
 	}
 	@RequestMapping("/obBoardPicture")
 	public String obBoardPicture(int report_no,  Model model, HttpSession session) {
