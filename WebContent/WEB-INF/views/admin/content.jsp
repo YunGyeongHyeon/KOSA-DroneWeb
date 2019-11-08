@@ -15,21 +15,12 @@
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/content.js"></script>
 <script type="text/javascript">
 	function hideButton(clickedId){
-		$("#trueReport").hide();
-		$("#falseReport").hide();
+		$('#trueReport'+clickedId).hide();
+		$('#falseReport'+clickedId).hide();
 	} 
+
 </script>
-<script type="text/javascript">
-	var hidden = false;
-	function action() {
-		hidden = !hidden;
-		if(hidden){
-			document.getElementById('falseReport').style.visibility = 'hidden';
-		} else{
-			document.getElementById('falseReport').style.visibility = 'visible';
-		}
-	}
-</script>
+
 <title>main Form</title>
 </head>
 <body>
@@ -90,13 +81,17 @@
 									<td class="" scope="col">${board.report_date}</td>
 									<td class="" scope="col"><button class="btn btn-danger">드론출동</button></td>
 									<td class="" scope="col" >
-										<button class="btn btn-primary" id="trueReport<%=i%>" onclick="hideButton(this.id)">실제사고</button><br/>
-										<input type="button" onclick="action()" class="btn btn-success" id="falseReport<%=i%>" value="허위신고"/>
+									<form action = "handle" method = "post">
+										<c:if test="${board.report_handle==N}">
+										<input type="hidden" name="reportNo" value="${board.report_no}"/>
+										<input type="submit" name="Y" class="btn btn-primary" id="trueReport<%=i%>" onclick="hideButton(<%=i%>)" value="실제사고"/><br/>
+										<input type="submit" name="N" class="btn btn-success" id="falseReport<%=i%>" onclick="hideButton(<%=i%>)" value="허위신고"/>
+										</c:if>
+									</form>
 									</td>
 								</tr>
 								<%i++; %>
 						 	</c:forEach> 
-						 	<%System.out.println(i); %>
 						</tbody>
 					</table>	
 					<div id="map"></div>

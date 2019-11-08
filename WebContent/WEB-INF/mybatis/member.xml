@@ -7,7 +7,7 @@
 	</select>
 
 	<select id="selectReport" parameterType="int" resultType="com.fireBusters.web.dto.AdminBoard">
-			select to_char(report_date, 'MM/DD HH24:MI:SS') report_date, report_lat, report_lon
+			select to_char(report_date, 'MM/DD HH24:MI:SS') report_date, report_lat, report_lon, report_no, report_handle
 				from report
 				where fire_station_no=#{id}
 	</select>
@@ -38,4 +38,9 @@
 		    from fire_station
 		    where fire_station_id=#{obp}
 	</select>
+	
+	<update id="updateHandle" parameterType="map">
+		UPDATE report SET REPORT_HANDLE=#{handle_result} WHERE report_no=#{reportNo}
+	</update>
+
 </mapper>

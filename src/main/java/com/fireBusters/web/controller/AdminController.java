@@ -2,6 +2,7 @@ package com.fireBusters.web.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -100,7 +101,7 @@ public class AdminController {
 			return "redirect:/admin/loginForm";
 		}
 		List<AdminBoard> board = service.selectReport((int)session.getAttribute("fire_station_id"));
-		AdminFireStation station = service.selectFireStation((int)session.getAttribute("fire_station_id")); 
+		AdminFireStation station = service.selectFireStation((int)session.getAttribute("fire_station_id"));
 		
 		model.addAttribute("board",board);
 		model.addAttribute("station",station);
@@ -139,4 +140,25 @@ public class AdminController {
 	public String observe_map() {
 		return "admin/observe_map";
 	}
+	
+	
+	  @RequestMapping("/handle")
+	  public String handle(HttpServletRequest request) {
+		  int reportNo = Integer.parseInt(request.getParameter("reportNo"));
+		  String handle_result = "";
+		  if(request.getParameter("Y") != null) {
+			  handle_result = "Y";
+		  }else {
+			  handle_result = "N";
+		  }
+		  System.out.println("@@@@@@@@@@@@@@@@@@@@@"+reportNo);
+		  System.out.println("--------------"+handle_result);
+		  System.out.println("--------------"+request.getParameter("Y"));
+		  System.out.println("--------------"+request.getParameter("N"));
+		  System.out.println("--------------"+request.getParameter("reportNo"));
+		 
+		 service.updateHandle(reportNo, handle_result); 
+		 return "redirect:/admin/content";
+	  }
+	 
 }

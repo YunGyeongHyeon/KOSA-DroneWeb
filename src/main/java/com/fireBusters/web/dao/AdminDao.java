@@ -1,6 +1,8 @@
 package com.fireBusters.web.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,5 +56,20 @@ public class AdminDao {
 		List<ObBoardPicture> obBoardPicture = sqlSessionTemplate.selectList("adminMember.obPicture", obp);
 		return obBoardPicture;
 	}
+
+	
+	
+	
+	public int updateHandle(int reportNo, String handle_result) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("handle_result", handle_result);
+		map.put("reportNo", reportNo);
+
+		int rows = sqlSessionTemplate.update("adminMember.updateHandle", map);
+		return rows;
+	}
+	 
+	 
+	 
 
 }
