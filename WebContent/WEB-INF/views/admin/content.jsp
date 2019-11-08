@@ -19,6 +19,17 @@
 		$("#falseReport").hide();
 	} 
 </script>
+<script type="text/javascript">
+	var hidden = false;
+	function action() {
+		hidden = !hidden;
+		if(hidden){
+			document.getElementById('falseReport').style.visibility = 'hidden';
+		} else{
+			document.getElementById('falseReport').style.visibility = 'visible';
+		}
+	}
+</script>
 <title>main Form</title>
 </head>
 <body>
@@ -71,19 +82,21 @@
 							</tr>
 						</thead>
 						<tbody>
+							<%int i=1; %>
 							<c:forEach var="board" items="${board}">
-
 								<tr class="selectLine" onclick="listClick(${board.report_lat}, ${board.report_lon})">
 				 					<td class="" scope="col">${board.report_lat}</td>
 									<td class="" scope="col">${board.report_lon}</td>
 									<td class="" scope="col">${board.report_date}</td>
 									<td class="" scope="col"><button class="btn btn-warning">드론출동</button></td>
 									<td class="" scope="col" >
-										<button class="btn btn-danger button" id="trueReport" onclick="hideButton()">실제사고</button><br/>
-										<button class="btn btn-primary button" id="falseReport">허위신고</button>
+										<button class="btn btn-danger button" id="trueReport<%=i%>" onclick="hideButton()">실제사고</button><br/>
+										<input type="button" onclick="action()" class="btn btn-primary button" id="falseReport<%=i%>" value="허위신고"/>
 									</td>
 								</tr>
+								<%i++; %>
 						 	</c:forEach> 
+						 	<%System.out.println(i); %>
 						</tbody>
 					</table>	
 					<div id="map"></div>
