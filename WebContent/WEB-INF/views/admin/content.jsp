@@ -28,7 +28,7 @@
 		} else{
 			document.getElementById('falseReport').style.visibility = 'visible';
 		}
-	}
+	};
 </script>
 <title>main Form</title>
 </head>
@@ -41,19 +41,19 @@
 				<div class="cn_logo">
 					<table id="cn_top_first">
 						<tr>
-							<td><a href="http://localhost:8080/FinalWebProject/admin/content"><img class="cn_logo_img" src="<%=application.getContextPath()%>/resources/image/drone_logo.png"></a></td>
+							<td><a href="http://localhost:8080/FinalWebProject/admin/content"><img class="cn_logo_img" src="<%=application.getContextPath()%>/resources/image/symbol.png"></a></td> 
 						</tr>
 					</table>
-					<button class="cn_tap" onclick="moving('report')">
+					<button class="cn_tap" >
 						실시간 상황
 					</button>
-					<button class="cn_tap"  id="cn_picture">
+					<button class="cn_tap" id="cn_picture">
 						사진첩
-						<div id="cn_downBar">
-							<div onclick="moving('picture')">
+						<div id="cn_downBar" id="buttonTab">
+							<div class="layer" onclick="moving('picture')">
 								사건
 							</div>
-							<div onclick="moving('observe')">
+							<div class="layer" onclick="moving('observe')">
 								정찰
 							</div>
 						</div>
