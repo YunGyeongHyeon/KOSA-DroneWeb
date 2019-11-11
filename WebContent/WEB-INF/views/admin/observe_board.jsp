@@ -85,9 +85,9 @@
 			<!--페이징  -->
 			<div style="display: flex; position: absolute; bottom: 0; left: 12%">
 				<div style="flex-grow: 1;">
-					<a href="obBoard?pageNo=1" class="btn btn-primary">처음</a>
+					<button class="btn btn-success" onclick="moving('obBoard?pageNo=1')" >처음</button>
 					<c:if test="${groupNo>1}">
-						<a href="obBoard?pageNo=${startPageNo-1}" class="btn btn-success">이전</a>
+						<button class="btn btn-success" onclick="moving('obBoard?pageNo=${startPageNo-1}')" >이전</button>
 					</c:if>
 
 					<div style="display: inline-block;" class="btn-toolbar"
@@ -96,18 +96,18 @@
 							<c:forEach begin="${startPageNo}" end="${endPageNo}" var="i">
 								<!--begin시작과 end끝값을 넣어주면 된다.  -->
 								<c:if test="${pageNo==i}">
-									<a href="obBoard?pageNo=${i}" class="btn btn-secondary active">${i}</a>
+									<button onclick="moving('obBoard?pageNo=${i}')" class="btn btn-secondary active">${i}</button>
 								</c:if>
 								<c:if test="${pageNo!=i}">
-									<a href="obBoard?pageNo=${i}" class="btn btn-secondary">${i}</a>
+									<button onclick="moving('obBoard?pageNo=${i}')"  class="btn btn-secondary">${i}</button>
 								</c:if>
 							</c:forEach>
 						</div>
 					</div>
 					<c:if test="${groupNo<totalGroupNum}">
-						<a href="obBoard?pageNo=${endPageNo+1}" class="btn btn-success">다음</a>
+						<button onclick="moving('obBoard?pageNo=${endPage+1}')"  class="btn btn-success">다음</button>
 					</c:if>
-					<a href="obBoard?pageNo=${totalPageNum}" class="btn btn-primary">맨끝</a>
+					<button onclick="moving('obBoard?pageNo=${totalPageNum}')" class="btn btn-primary">맨끝</button>
 
 				</div>
 				<!--페이징  -->
