@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script type="text/javascript" src="<%=application.getContextPath() %>/resources/js/paho-mqtt-min.js"></script>
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/jquery-3.4.1.min.js"></script>
 <link rel="stylesheet" href="<%=application.getContextPath()%>/resources/bootstrap-3.3.2-dist/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/css/content.css">
@@ -76,10 +77,10 @@
 							<%int i=1; %>
 							<c:forEach var="board" items="${board}">
 								<tr class="selectLine" onclick="listClick(${board.report_lat}, ${board.report_lon})">
-				 					<td class="" scope="col">${board.report_lat}</td>
-									<td class="" scope="col">${board.report_lon}</td>
+				 					<td class="lat" scope="col" >${board.report_lat}</td>
+									<td class="lon" scope="col" >${board.report_lon}</td>
 									<td class="" scope="col">${board.report_date}</td>
-									<td class="" scope="col"><button class="btn btn-danger">드론출동</button></td>
+									<td class="dStart" scope="col"><button class="btn btn-danger">드론출동</button></td>
 									<td class="" scope="col" >
 									<form action = "handle" method = "post">
 										<c:if test="${board.report_handle==N}">
@@ -122,11 +123,9 @@
 					 <a href="content?pageNo=${totalPageNum}"	class="btn btn-primary">맨끝</a>
 					</div>
 					<!--페이징  -->
-					
-					
-					
 				</div>
 				<div>
+				<div id="this"></div>
 				<div id="map"></div>
 				</div>
 			</div>
