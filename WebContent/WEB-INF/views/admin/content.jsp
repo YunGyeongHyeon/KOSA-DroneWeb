@@ -118,11 +118,13 @@
 					</table>	
 					
 					<!--페이징  -->
-					<div style="display: flex;position: absolute;bottom: 0px; left:12%">
-						<div style="flex-grow: 1;">
-					<a href="content?pageNo=1" class="btn btn-primary">처음</a>
+					<div style="display: flex; position: absolute; bottom: 0; left: 12%">
+					<div style="flex-grow: 1;">	
+					<!-- <a href="content?pageNo=1" class="btn btn-primary">처음</a> -->
+					<button class="btn btn-primary" onclick="moving('content?pageNo=1')" >처음</button>
 					<c:if test="${groupNo>1}">
-						<a href="content?pageNo=${startPageNo-1}" class="btn btn-success">이전</a>
+						 <%-- <a href="content?pageNo=${startPageNo-1}" class="btn btn-success">이전</a> --%>
+						 <button class="btn btn-success" onclick="moving('content?pageNo=${startPageNo-1}')" >이전</button>
 					</c:if>
 						
 						<div style="display: inline-block;" class="btn-toolbar"
@@ -130,18 +132,22 @@
 							<div class="btn-group mr-2" role="group" aria-label="First group">
 								<c:forEach begin="${startPageNo}" end="${endPageNo}" var="j"><!--begin시작과 end끝값을 넣어주면 된다.  -->
 								<c:if test="${pageNo==j}">
-									<a href="content?pageNo=${j}" class="btn btn-secondary active">${j}</a>
+									<%-- <a href="content?pageNo=${j}" class="btn btn-secondary active">${j}</a> --%>
+									<button onclick="moving('content?pageNo=${j}')" class="btn btn-secondary active">${j}</button>
 								</c:if>
 								<c:if test="${pageNo!=j}">
-									<a href="content?pageNo=${j}" class="btn btn-secondary">${j}</a>
+									<%-- <a href="content?pageNo=${j}" class="btn btn-secondary">${j}</a> --%>
+									<button onclick="moving('content?pageNo=${j}')" class="btn btn-secondary active">${j}</button> 
 								</c:if>
 								</c:forEach>
 							</div>
 						</div>
 					<c:if test="${groupNo<totalGroupNum}">
-					<a href="content?pageNo=${endPageNo+1}" class="btn btn-success">다음</a>
+					<%-- <a href="content?pageNo=${endPageNo+1}" class="btn btn-success">다음</a> --%>
+					<button onclick="moving('content?pageNo=${endPage+1}')"  class="btn btn-success">다음</button>
 					</c:if>
-					 <a href="content?pageNo=${totalPageNum}"	class="btn btn-primary">맨끝</a>
+					 <%-- <a href="content?pageNo=${totalPageNum}"	class="btn btn-primary">맨끝</a> --%> 
+					 <button onclick="moving('content?pageNo=${totalPageNum}')" class="btn btn-primary">맨끝</button>
 					</div>
 					<!--페이징  -->
 				</div>
