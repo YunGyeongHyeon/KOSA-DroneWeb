@@ -29,23 +29,23 @@ function fnImgPop(url){
 <%-- <c:forEach begin="1" end="9" var="i"> --%>
 	<%-- <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/3.jpg" width="240px" height="240px"
 	 onclick="fnImgPop(this.src)"/> --%>
-	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/f1.jpg" width="280px" height="280px"
+	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/f1.jpg" width="280px" height="240px"
 	 onclick="fnImgPop(this.src)"/>
-	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/f2.jpg" width="280px" height="280px"
+	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/f2.jpg" width="280px" height="240px"
 	 onclick="fnImgPop(this.src)"/>
-	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/f3.jpg" width="280px" height="280px"
+	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/f3.jpg" width="280px" height="240px"
 	 onclick="fnImgPop(this.src)"/>
-	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/f4.jpg" width="280px" height="280px"
+	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/f4.jpg" width="280px" height="240px"
 	 onclick="fnImgPop(this.src)"/>
-	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/f5.jpg" width="280px" height="280px"
+	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/f5.jpg" width="280px" height="240px"
 	 onclick="fnImgPop(this.src)"/>
-	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/f6.jpg" width="280px" height="280px"
+	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/f6.jpg" width="280px" height="240px"
 	 onclick="fnImgPop(this.src)"/>
-	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/f7.jpg" width="280px" height="280px"
+	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/f7.jpg" width="280px" height="240px"
 	 onclick="fnImgPop(this.src)"/>
-	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/f8.jpg" width="280px" height="280px"
+	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/f8.jpg" width="280px" height="240px"
 	 onclick="fnImgPop(this.src)"/>
-	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/k1.jpg" width="280px" height="290px"
+	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/k1.jpg" width="280px" height="240px"
 	 onclick="fnImgPop(this.src)"/>
 <%-- 	</c:forEach> --%>
 </div>

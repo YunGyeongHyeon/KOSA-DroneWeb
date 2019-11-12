@@ -113,11 +113,9 @@
 									</td>
 								</tr>
 								<%i++; %>
-						 	</c:forEach> 
-						</tbody>
-					</table>	
-					
-					<!--페이징  -->
+						 	</c:forEach>
+						 	<tr>
+						 	<!--페이징  -->
 					<div style="display: flex;position: absolute;bottom: 0px; left:12%">
 						<div style="flex-grow: 1;">
 					<a href="content?pageNo=1" class="btn btn-primary">처음</a>
@@ -143,8 +141,20 @@
 					</c:if>
 					 <a href="content?pageNo=${totalPageNum}"	class="btn btn-primary">맨끝</a>
 					</div>
-					<!--페이징  -->
+					
 				</div>
+				
+				<!--페이징  -->
+						 	
+						 	
+						 	
+						 	
+						 	</tr> 
+						</tbody>
+					</table>	
+					
+					
+				
 				<div>
 				<div id="this"></div>
 				<div id="map"></div>
