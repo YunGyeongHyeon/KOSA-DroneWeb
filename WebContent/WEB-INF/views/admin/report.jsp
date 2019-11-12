@@ -95,6 +95,36 @@ $(document).ready(function(){
 				</tr>
 			<%i++; %>
 			</c:forEach>
+			<tr>
+				 <!--페이징  -->
+               <div style="display: flex;position: absolute;bottom: 0px; left:12%">
+                  <div style="flex-grow: 1;">
+				<button class="btn btn-primary" onclick="moving('report?pageNo=1')" >처음</button>
+               <c:if test="${groupNo>1}">
+				  <button class="btn btn-success" onclick="moving('report?pageNo=${startPageNo-1}')" >이전</button>
+               </c:if>
+                  
+                  <div style="display: inline-block;" class="btn-toolbar"
+                     role="toolbar" aria-label="Toolbar with button groups">
+                     <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <c:forEach begin="${startPageNo}" end="${endPageNo}" var="j">
+                        <c:if test="${pageNo==j}">
+							<button onclick="moving('report?pageNo=${j}')" class="btn btn-secondary active">${j}</button>
+                        </c:if>
+                        <c:if test="${pageNo!=j}">
+							<button onclick="moving('report?pageNo=${j}')" class="btn btn-secondary">${j}</button>
+                        </c:if>
+                        </c:forEach>
+                     </div>
+                  </div>
+               <c:if test="${groupNo<totalGroupNum}">
+				<button onclick="moving('report?pageNo=${endPageNo+1}')" class="btn btn-success">다음</button>
+               </c:if>
+				<button onclick="moving('report?pageNo=${totalPageNum}')" class="btn btn-primary">맨끝</button>
+               </div>
+            </div>
+            <!--페이징  -->
+			</tr>
 		</tbody>
 	</table>
 	<div id="map"></div>
