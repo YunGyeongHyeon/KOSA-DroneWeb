@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="<%=application.getContextPath()%>/resources/bootstrap-3.3.2-dist/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/css/content.css">
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/paho-mqtt-min.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6QqekZ1wnL7A8e0nPlnEsHowprAdcm8c&callback=initMap">
 </script>
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/content.js"></script>
@@ -18,7 +19,27 @@
 		$('#trueReport'+clickedId).hide();
 		$('#falseReport'+clickedId).hide();
 	} 
-
+	
+	$(function() {
+		//MQTT Broker와 연결하기
+		client = new Paho.MQTT.Client(location.hostname, 61625, "clientId"+new Date().getTime()); 
+		client.onMessageArrived = onMessageArrived; 
+		client.connect({
+			onSuccess : onConnect
+		});
+	});
+	
+	//연결이 완료되었을 때 자동으로 실행(콜백)되는 함수
+	function onConnect() {
+		console.log("onConnect");
+		client.subscribe("/drone/service2/sub");
+	}
+	//메시지를 수신했을 때 자동으로 실행(콜백)되는 함수
+	function onMessageArrived(message) {
+		console.log("aaaaaaaaaaa");
+		location.href="content";
+	}
+	
 </script>
 
 <title>main Form</title>

@@ -125,6 +125,8 @@ public class AdminController {
 		model.addAttribute("endPageNo", endPageNo);
 		model.addAttribute("pageNo", pageNo);
 		
+		
+		
 		return "admin/content";
 	}
 	

@@ -12,6 +12,11 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>org.eclipse.paho</groupId>
+			<artifactId>org.eclipse.paho.client.mqttv3</artifactId>
+			<version>1.2.0</version>
+		</dependency>
+		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
@@ -29,7 +34,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
-			<version>${spring-version}</version> 
+			<version>${spring-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.json</groupId>
