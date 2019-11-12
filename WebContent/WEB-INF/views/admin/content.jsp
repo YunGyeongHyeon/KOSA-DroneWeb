@@ -16,147 +16,151 @@
 </script>
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/content.js"></script>
 <script type="text/javascript">
-	function hideButton(clickedId){
-		$('#trueReport'+clickedId).hide();
-		$('#falseReport'+clickedId).hide();
-	} 
-	
-	$(function() {
-		//MQTT Broker와 연결하기
-		client = new Paho.MQTT.Client(location.hostname, 61625, "clientId"+new Date().getTime()); 
-		client.onMessageArrived = onMessageArrived; 
-		client.connect({
-			onSuccess : onConnect
-		});
-	});
-	
-	//연결이 완료되었을 때 자동으로 실행(콜백)되는 함수
-	function onConnect() {
-		console.log("onConnect");
-		client.subscribe("/drone/service2/sub");
-	}
-	//메시지를 수신했을 때 자동으로 실행(콜백)되는 함수
-	function onMessageArrived(message) {
-		console.log("aaaaaaaaaaa");
-		location.href="content";
-	}
-	
+   function hideButton(clickedId){
+      $('#trueReport'+clickedId).hide();
+      $('#falseReport'+clickedId).hide();
+   } 
+   
+   $(function() {
+      //MQTT Broker와 연결하기
+      client = new Paho.MQTT.Client(location.hostname, 61625, "clientId"+new Date().getTime()); 
+      client.onMessageArrived = onMessageArrived; 
+      client.connect({
+         onSuccess : onConnect
+      });
+   });
+   
+   //연결이 완료되었을 때 자동으로 실행(콜백)되는 함수
+   function onConnect() {
+      console.log("onConnect");
+      client.subscribe("/drone/service2/sub");
+   }
+   //메시지를 수신했을 때 자동으로 실행(콜백)되는 함수
+   function onMessageArrived(message) {
+      console.log("aaaaaaaaaaa");
+      location.href="content";
+   }
+   
 </script>
 
 <title>main Form</title>
 </head>
 <body>
-	<div>
-		<!-- 맨위에 로고와 아이디 나오는 부분 -->
-		<div>
-			<!-- 메인 로고가 들어갈 부분 -->
-			<div class="cn_header">
-				<div class="cn_logo">
-					<table id="cn_top_first">
-						<tr>
-							<td><a href="http://localhost:8080/FinalWebProject/admin/content"><img class="cn_logo_img" src="<%=application.getContextPath()%>/resources/image/symbol.png"></a></td> 
-						</tr>
-					</table>
-					<button class="cn_tap" >
-						실시간 상황
-					</button>
-					<button class="cn_tap" id="cn_picture">
-						사진첩
-						<div id="cn_downBar" id="buttonTab">
-							<div class="layer" onclick="moving('picture')">
-								사건
-							</div>
-							<div class="layer" onclick="moving('obBoard')">
-								정찰
-							</div>
-						</div>
-					</button>
-					<!-- 로그인정보: 아이디 비밀번호 수정 로그아웃 -->
-					<table id="cn_top_secound">
-						<tr class="cn_login_info">
-							<td id="cn_login_id">${station.fire_station_name}</td>
-							<td id="cn_login_out"><a href="logout"><img src="<%=application.getContextPath()%>/resources/image/out.png"/></a></td>
-						</tr>	
-					</table>
-				</div>
-			</div>
-		
-			<!-- 컨텐츠를 담아놓은 부분 -->
-			<div id="ajax">
-				<div id="cn_list">
-					<table class="table table-striped table-sm table2">
-						<thead>
-							<tr class="panel panel-title">
-								<th class="panel panelbody" scope="col">화재장소(위도)</th>
-								<th class="panel panelbody" scope="col">화제장소(경도)</th>
-								<th class="panel panelbody" scope="col">접수시간</th>
-								<th class="panel panelbody" scope="col">처리현황</th>
-								<th class="panel panelbody" scope="col">신고유형</th>
-							</tr>
-						</thead>
-						<tbody>
-							<%int i=1; %>
-							<c:forEach var="board" items="${board}">
-								<tr class="selectLine" onclick="listClick(${board.report_lat}, ${board.report_lon})">
-				 					<td class="lat" scope="col" >${board.report_lat}</td>
-									<td class="lon" scope="col" >${board.report_lon}</td>
-									<td class="" scope="col">${board.report_date}</td>
-									<td class="dStart" scope="col"><button class="btn btn-danger">드론출동</button></td>
-									<td class="" scope="col" >
-									<form action = "handle" method = "post">
-										<c:if test="${board.report_handle==N}">
-										<input type="hidden" name="reportNo" value="${board.report_no}"/>
-										<input type="submit" name="Y" class="btn btn-primary" id="trueReport<%=i%>" onclick="hideButton(<%=i%>)" value="실제사고"/><br/>
-										<input type="submit" name="N" class="btn btn-success" id="falseReport<%=i%>" onclick="hideButton(<%=i%>)" value="허위신고"/>
-										</c:if>
-									</form>
-									</td>
-								</tr>
-								<%i++; %>
-						 	</c:forEach> 
-						</tbody>
-					</table>	
-					
-					<!--페이징  -->
-					<div style="display: flex; position: absolute; bottom: 0; left: 12%">
-					<div style="flex-grow: 1;">	
-					<!-- <a href="content?pageNo=1" class="btn btn-primary">처음</a> -->
-					<button class="btn btn-primary" onclick="moving('content?pageNo=1')" >처음</button>
-					<c:if test="${groupNo>1}">
-						 <%-- <a href="content?pageNo=${startPageNo-1}" class="btn btn-success">이전</a> --%>
-						 <button class="btn btn-success" onclick="moving('content?pageNo=${startPageNo-1}')" >이전</button>
-					</c:if>
-						
-						<div style="display: inline-block;" class="btn-toolbar"
-							role="toolbar" aria-label="Toolbar with button groups">
-							<div class="btn-group mr-2" role="group" aria-label="First group">
-								<c:forEach begin="${startPageNo}" end="${endPageNo}" var="j"><!--begin시작과 end끝값을 넣어주면 된다.  -->
-								<c:if test="${pageNo==j}">
-									<%-- <a href="content?pageNo=${j}" class="btn btn-secondary active">${j}</a> --%>
-									<button onclick="moving('content?pageNo=${j}')" class="btn btn-secondary active">${j}</button>
-								</c:if>
-								<c:if test="${pageNo!=j}">
-									<%-- <a href="content?pageNo=${j}" class="btn btn-secondary">${j}</a> --%>
-									<button onclick="moving('content?pageNo=${j}')" class="btn btn-secondary active">${j}</button> 
-								</c:if>
-								</c:forEach>
-							</div>
-						</div>
-					<c:if test="${groupNo<totalGroupNum}">
-					<%-- <a href="content?pageNo=${endPageNo+1}" class="btn btn-success">다음</a> --%>
-					<button onclick="moving('content?pageNo=${endPage+1}')"  class="btn btn-success">다음</button>
-					</c:if>
-					 <%-- <a href="content?pageNo=${totalPageNum}"	class="btn btn-primary">맨끝</a> --%> 
-					 <button onclick="moving('content?pageNo=${totalPageNum}')" class="btn btn-primary">맨끝</button>
-					</div>
-					<!--페이징  -->
-				</div>
-				<div>
-				<div id="this"></div>
-				<div id="map"></div>
-				</div>
-			</div>
-		</div>
-	</div>
+   <div>
+      <!-- 맨위에 로고와 아이디 나오는 부분 -->
+      <div>
+         <!-- 메인 로고가 들어갈 부분 -->
+         <div class="cn_header">
+            <div class="cn_logo">
+               <table id="cn_top_first">
+                  <tr>
+                     <td><a href="http://localhost:8080/FinalWebProject/admin/content"><img class="cn_logo_img" src="<%=application.getContextPath()%>/resources/image/symbol.png"></a></td> 
+                  </tr>
+               </table>
+               <button class="cn_tap" >
+                  실시간 상황
+               </button>
+               <button class="cn_tap" id="cn_picture">
+                  사진첩
+                  <div id="cn_downBar" id="buttonTab">
+                     <div class="layer" onclick="moving('picture')">
+                        사건
+                     </div>
+                     <div class="layer" onclick="moving('obBoard')">
+                        정찰
+                     </div>
+                  </div>
+               </button>
+               <!-- 로그인정보: 아이디 비밀번호 수정 로그아웃 -->
+               <table id="cn_top_secound">
+                  <tr class="cn_login_info">
+                     <td id="cn_login_id">${station.fire_station_name}</td>
+                     <td id="cn_login_out"><a href="logout"><img src="<%=application.getContextPath()%>/resources/image/out.png"/></a></td>
+                  </tr>   
+               </table>
+            </div>
+         </div>
+      
+         <!-- 컨텐츠를 담아놓은 부분 -->
+         <div id="ajax">
+            <div id="cn_list">
+               <table class="table table-striped table-sm table2">
+                  <thead>
+                     <tr class="panel panel-title">
+                        <th class="panel panelbody" scope="col">화재장소(위도)</th>
+                        <th class="panel panelbody" scope="col">화제장소(경도)</th>
+                        <th class="panel panelbody" scope="col">접수시간</th>
+                        <th class="panel panelbody" scope="col">처리현황</th>
+                        <th class="panel panelbody" scope="col">신고유형</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <%int i=1; %>
+                     <c:forEach var="board" items="${board}">
+                        <tr class="selectLine" onclick="listClick(${board.report_lat}, ${board.report_lon})">
+                            <td class="lat" scope="col" >${board.report_lat}</td>
+                           <td class="lon" scope="col" >${board.report_lon}</td>
+                           <td class="" scope="col">${board.report_date}</td>
+                           <td class="dStart" scope="col"><button class="btn btn-danger">드론출동</button></td>
+                           <td class="" scope="col" >
+                           <form action = "handle" method = "post">
+                              <c:if test="${board.report_handle==N}">
+                              <input type="hidden" name="reportNo" value="${board.report_no}"/>
+                              <input type="submit" name="Y" class="btn btn-primary" id="trueReport<%=i%>" onclick="hideButton(<%=i%>)" value="실제사고"/><br/>
+                              <input type="submit" name="N" class="btn btn-success" id="falseReport<%=i%>" onclick="hideButton(<%=i%>)" value="허위신고"/>
+                              </c:if>
+                           </form>
+                           </td>
+                        </tr>
+                        <%i++; %>
+                      </c:forEach>
+                      <tr>
+                      <!--페이징  -->
+               <div style="display: flex;position: absolute;bottom: 0px; left:12%">
+                  <div style="flex-grow: 1;">
+               <a href="content?pageNo=1" class="btn btn-primary">처음</a>
+               <c:if test="${groupNo>1}">
+                  <a href="content?pageNo=${startPageNo-1}" class="btn btn-success">이전</a>
+               </c:if>
+                  
+                  <div style="display: inline-block;" class="btn-toolbar"
+                     role="toolbar" aria-label="Toolbar with button groups">
+                     <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <c:forEach begin="${startPageNo}" end="${endPageNo}" var="j"><!--begin시작과 end끝값을 넣어주면 된다.  -->
+                        <c:if test="${pageNo==j}">
+                           <a href="content?pageNo=${j}" class="btn btn-secondary active">${j}</a>
+                        </c:if>
+                        <c:if test="${pageNo!=j}">
+                           <a href="content?pageNo=${j}" class="btn btn-secondary">${j}</a>
+                        </c:if>
+                        </c:forEach>
+                     </div>
+                  </div>
+               <c:if test="${groupNo<totalGroupNum}">
+               <a href="content?pageNo=${endPageNo+1}" class="btn btn-success">다음</a>
+               </c:if>
+                <a href="content?pageNo=${totalPageNum}"   class="btn btn-primary">맨끝</a>
+               </div>
+               
+            </div>
+            
+            <!--페이징  -->
+                      
+                      
+                      
+                      
+                      </tr> 
+                  </tbody>
+               </table>   
+               
+               
+            
+            <div>
+            <div id="this"></div>
+            <div id="map"></div>
+            </div>
+         </div>
+      </div>
+   </div>
 </body>
 </html>

@@ -89,7 +89,7 @@ public class AdminController {
 				int rowsPerPage = 8;// 페이지당 행수
 				int pagesPerGroup = 10;// 이전, 다음을 클릭했을때 나오는 그룹당 페이지 수
 				int totalRowNum = service.getTotalRowNo();// 전체 게시물 수 //디비한테 물어봐야함
-				int totalPageNum = totalRowNum / rowsPerPage;// 전체 페이지 수
+				int totalPageNum = totalRowNum / rowsPerPage-1;// 전체 페이지 수
 				if (totalRowNum % rowsPerPage != 0)
 					totalPageNum++;// 뒤에 짜투리도 페이지수로 인정
 				int totalGroupNum = totalPageNum / pagesPerGroup;// 전체 그룹 수
@@ -102,7 +102,7 @@ public class AdminController {
 					endPageNo = totalPageNum;
 				int startRowNo = (pageNo - 1) * rowsPerPage + 1;// 공식//현재시작 페이지의 행 번호
 				int endRowNo = pageNo * rowsPerPage;// 현재공식//해당 페이지의 끝 행번호
-				if (pageNo == totalGroupNum)
+				if (groupNo == totalGroupNum)
 					endRowNo = totalRowNum;
 				
 				
@@ -165,8 +165,8 @@ public class AdminController {
 		
 		int rowsPerPage = 8;// 페이지당 행수
 		int pagesPerGroup = 10;// 이전, 다음을 클릭했을때 나오는 그룹당 페이지 수
-		int totalRowNum = service.getTotalPictureRowNo();// 전체 게시물 수 //디비한테 물어봐야함
-		int totalPageNum = totalRowNum / rowsPerPage;// 전체 페이지 수
+		int totalRowNum = service.getTotalRowNo();// 전체 게시물 수 //디비한테 물어봐야함
+		int totalPageNum = totalRowNum / rowsPerPage-1;// 전체 페이지 수
 		if (totalRowNum % rowsPerPage != 0)
 			totalPageNum++;// 뒤에 짜투리도 페이지수로 인정
 		int totalGroupNum = totalPageNum / pagesPerGroup;// 전체 그룹 수
@@ -179,7 +179,7 @@ public class AdminController {
 			endPageNo = totalPageNum;
 		int startRowNo = (pageNo - 1) * rowsPerPage + 1;// 공식//현재시작 페이지의 행 번호
 		int endRowNo = pageNo * rowsPerPage;// 현재공식//해당 페이지의 끝 행번호
-		if (pageNo == totalGroupNum)
+		if (groupNo == totalGroupNum)
 			endRowNo = totalRowNum;
 		//페이징
 		

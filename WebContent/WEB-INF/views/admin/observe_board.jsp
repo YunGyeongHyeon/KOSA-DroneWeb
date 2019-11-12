@@ -78,11 +78,8 @@
 							</td>
 						</tr>
 					</c:forEach>
-				</tbody>
-			</table>
-
-			<div id=obPicture style="vertical-align: middle; text-align: center;"></div>
-			<!--페이징  -->
+					<tr>
+					<!--페이징  -->
 			<div style="display: flex; position: absolute; bottom: 0; left: 12%">
 				<div style="flex-grow: 1;">
 					<button class="btn btn-primary" onclick="moving('obBoard?pageNo=1')" >처음</button>
@@ -111,6 +108,15 @@
 
 				</div>
 				<!--페이징  -->
+					</tr>
+					
+					
+					
+				</tbody>
+			</table>
+
+			<div id=obPicture style="vertical-align: middle; text-align: center;"></div>
+			
 				
 			</div>
 		</div>
