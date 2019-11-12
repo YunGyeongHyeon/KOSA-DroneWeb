@@ -83,7 +83,7 @@
 				if(json.result == "ok") {
 					console.log("접수가 완료되었습니다.");
 					location.href="complete?lat="+lat+"&lon="+lon;
-				}
+				}  
 			}
 	     </script>
 	</head>
