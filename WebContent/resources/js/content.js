@@ -1,6 +1,8 @@
+
 var labels = 'FH';
 var labelIndex = 0;
-
+var lat="";
+var lon="";
 
 function initMap() {
 	  var myLatLng = {lat: 37.494953, lng: 127.122557};
@@ -15,7 +17,7 @@ function initMap() {
 
 function addMarker(location, map) {
 	var icon ={
-			url : 'http://localhost:8080/FinalWebProject/resources/image/fire3.png',
+			url : 'http://localhost:8085/FinalWebProject/resources/image/fire3.png',
 			scaledSize: new google.maps.Size(100, 100)
 	}
 	if(labelIndex != 0){
@@ -43,12 +45,38 @@ function listClick(lat,lon){
 	// Add a marker at the center of the map.
 	addMarker(uluru, map);
 }
-$(document).ready(function(){
+$(function(){
+	
+	
+	client = new Paho.MQTT.Client(location.hostname, 61614, "dStart");
+	client.onMessageArrived =  onMessageArrived;
+	client.connect({onSuccess:onConnect});
+	
+	function onConnect() {//토픽이름
+		  client.subscribe("/drone/report/sub");
+		}
+	function onMessageArrived(message) {
+		$("#this").append(message.payloadString + "</br>")
+	}
+	
+	function sendMessage(){
+		var json = 
+			{"lat":lat,
+			"lon":lon};
+		;
+		loadjson = JSON.stringify(json);
+		alert(loadjson);
+		var updateLatLon = new Paho.MQTT.Message(loadjson);
+		updateLatLon.destinationName = "/drone/report/pub";
+		alert(updateLatLon);
+		
+		client.send(updateLatLon);
+	}
 	
 	$(".selectLine").click(function(){
-		$("button").on("click",function(){
+		/*$("button").on("click",function(){
 			return false;
-		})
+		})*/
 		$(this).siblings().children("td").removeClass("select")
 		$(this).children("td").toggleClass("select")
 	})
@@ -59,6 +87,15 @@ $(document).ready(function(){
 		$(this).children("div").css("display","none");
 	}
 	)
+	$(".dStart").on("click",function(){
+		lat = $(this).parent(".selectLine").children(".lat").text();
+		lon = $(this).parent(".selectLine").children(".lon").text();
+		alert("this")
+		if(lat != null && lon != null){
+			sendMessage();
+		}
+		
+	})
 })
 
 function moving(url){
