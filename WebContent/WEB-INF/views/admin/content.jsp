@@ -56,8 +56,8 @@
                   <tr>
                      <td><a href="http://localhost:8080/FinalWebProject/admin/content"><img class="cn_logo_img" src="<%=application.getContextPath()%>/resources/image/symbol.png"></a></td> 
                   </tr>
-               </table>
-               <button class="cn_tap" >
+               </table> 
+               <button class="cn_tap" onClick="location.href='content'">
                   실시간 상황
                </button>
                <button class="cn_tap" id="cn_picture">
@@ -118,28 +118,28 @@
                       <!--페이징  -->
                <div style="display: flex;position: absolute;bottom: 0px; left:12%">
                   <div style="flex-grow: 1;">
-               <a href="content?pageNo=1" class="btn btn-primary">처음</a>
+				<button class="btn btn-primary" onClick="location.href='content?pageNo=1'">처음</button>
                <c:if test="${groupNo>1}">
-                  <a href="content?pageNo=${startPageNo-1}" class="btn btn-success">이전</a>
+				  <button class="btn btn-success" onClick="location.href='content?pageNo=${startPageNo-1}'" >이전</button>
                </c:if>
                   
                   <div style="display: inline-block;" class="btn-toolbar"
                      role="toolbar" aria-label="Toolbar with button groups">
                      <div class="btn-group mr-2" role="group" aria-label="First group">
-                        <c:forEach begin="${startPageNo}" end="${endPageNo}" var="j"><!--begin시작과 end끝값을 넣어주면 된다.  -->
+                        <c:forEach begin="${startPageNo}" end="${endPageNo}" var="j">
                         <c:if test="${pageNo==j}">
-                           <a href="content?pageNo=${j}" class="btn btn-secondary active">${j}</a>
+							<button onClick="location.href='content?pageNo=${j}'" class="btn btn-secondary active">${j}</button>
                         </c:if>
                         <c:if test="${pageNo!=j}">
-                           <a href="content?pageNo=${j}" class="btn btn-secondary">${j}</a>
+							<button onClick="location.href='content?pageNo=${j}'" class="btn btn-secondary">${j}</button>
                         </c:if>
                         </c:forEach>
                      </div>
                   </div>
                <c:if test="${groupNo<totalGroupNum}">
-               <a href="content?pageNo=${endPageNo+1}" class="btn btn-success">다음</a>
+				<button onClick="location.href='content?pageNo=${endPageNo+1}'" class="btn btn-success">다음</button>
                </c:if>
-                <a href="content?pageNo=${totalPageNum}"   class="btn btn-primary">맨끝</a>
+				<button onClick="location.href='content?pageNo=${totalPageNum}'"class="btn btn-primary">맨끝</button>
                </div>
                
             </div>

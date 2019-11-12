@@ -102,7 +102,7 @@
 						</div>
 					</div>
 					<c:if test="${groupNo<totalGroupNum}">
-						<button onclick="moving('obBoard?pageNo=${endPage+1}')"  class="btn btn-success">다음</button>
+						<button onclick="moving('obBoard?pageNo=${endPageNo+1}')"  class="btn btn-success">다음</button>
 					</c:if>
 					<button onclick="moving('obBoard?pageNo=${totalPageNum}')" class="btn btn-primary">맨끝</button>
 
