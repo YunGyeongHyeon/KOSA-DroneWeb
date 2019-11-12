@@ -17,8 +17,6 @@ function fnImgPop(url){
 	  var win=img.height;
 	  var OpenWindow=window.open('','_blank', 'width='+img_width+', height='+img_height+', menubars=no, scrollbars=auto');
 	  OpenWindow.document.write("<style>body{margin:0px;}</style><img src='"+url+"' width='"+win_width+"'>");
-
-	  
 	 }
 </script>
 <title>Insert title here</title>

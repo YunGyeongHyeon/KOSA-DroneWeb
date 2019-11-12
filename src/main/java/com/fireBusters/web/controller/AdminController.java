@@ -104,8 +104,7 @@ public class AdminController {
 
 		// ---------------------------------페이징
 
-		List<AdminBoard> board = service.selectReport((int) session.getAttribute("fire_station_id"), startRowNo,
-				endRowNo);
+		List<AdminBoard> board = service.selectReport((int) session.getAttribute("fire_station_id"), startRowNo,endRowNo);
 		AdminFireStation station = service.selectFireStation((int) session.getAttribute("fire_station_id"));
 
 		model.addAttribute("board", board);
@@ -156,10 +155,9 @@ public class AdminController {
 		if (groupNo == totalGroupNum)
 			endRowNo = totalRowNum;
 
-//---------------------------------페이징
+		// ---------------------------------페이징
 
-		List<AdminBoard> board = service.selectReport((int) session.getAttribute("fire_station_id"), startRowNo,
-				endRowNo);
+		List<AdminBoard> board = service.selectReport((int) session.getAttribute("fire_station_id"), startRowNo,endRowNo);
 		AdminFireStation station = service.selectFireStation((int) session.getAttribute("fire_station_id"));
 
 		model.addAttribute("board", board);
@@ -173,9 +171,6 @@ public class AdminController {
 		model.addAttribute("endPageNo", endPageNo);
 		model.addAttribute("pageNo", pageNo);
 
-		// model.addAttribute("board",board);
-		// model.addAttribute("station",station);
-
 		return "admin/report";
 	}
 
@@ -187,7 +182,7 @@ public class AdminController {
 			return "redirect:/admin/loginForm";
 		}
 
-		// 페이징
+		// ---------------------------------페이징
 		session.setAttribute("pageNo", pageNo);
 
 		int rowsPerPage = 8;// 페이지당 행수
@@ -208,10 +203,10 @@ public class AdminController {
 		int endRowNo = pageNo * rowsPerPage;// 현재공식//해당 페이지의 끝 행번호
 		if (groupNo == totalGroupNum)
 			endRowNo = totalRowNum;
-		// 페이징
 
-		List<ObBoard> obBoardList = service.selectObBoardList((int) session.getAttribute("fire_station_id"), startRowNo,
-				endRowNo);
+		// ---------------------------------페이징
+
+		List<ObBoard> obBoardList = service.selectObBoardList((int) session.getAttribute("fire_station_id"), startRowNo, endRowNo);
 		AdminFireStation station = service.selectObFireStation((int) session.getAttribute("fire_station_id"));
 
 		model.addAttribute("obBoardList", obBoardList);
@@ -232,15 +227,12 @@ public class AdminController {
 	@RequestMapping("/obBoardPicture")
 	public String obBoardPicture(int report_no, Model model, HttpSession session) {
 		List<ObBoardPicture> obBoardPicture = service.selectObBoardPicture(report_no);
-
 		model.addAttribute("obBoardPicture", obBoardPicture);
-
 		return "admin/obBoardPicture";
 	}
 
 	@RequestMapping("/observe")
 	public String observe() {
-
 		return "admin/observe";
 	}
 
@@ -258,12 +250,6 @@ public class AdminController {
 		} else {
 			handle_result = "N";
 		}
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@" + reportNo);
-		System.out.println("--------------" + handle_result);
-		System.out.println("--------------" + request.getParameter("Y"));
-		System.out.println("--------------" + request.getParameter("N"));
-		System.out.println("--------------" + request.getParameter("reportNo"));
-
 		service.updateHandle(reportNo, handle_result);
 		return "redirect:/admin/content";
 	}
