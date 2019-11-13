@@ -2,6 +2,13 @@
 <%@ page import="java.util.Date"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<style type="text/css">
+.selectLine td{
+	height: 85px;
+}
+</style>
+
 <script>
 var labels = 'FH';
 var labelIndex = 0;
@@ -89,9 +96,11 @@ $(document).ready(function(){
 							<c:if test="${board.report_handle=='N'}">
 								<input type="hidden" name="reportNo" value="${board.report_no}" />
 								<input type="submit" name="Y" class="btn btn-primary" id="trueReport<%=i%>" onclick="hideButton(<%=i%>)" value="실제사고" /><br />
-								<input type="submit" name="N" class="btn btn-success" id="falseReport<%=i%>" onclick="hideButton(<%=i%>)" value="허위신고" />
+								<input type="submit" name="R" class="btn btn-success" id="falseReport<%=i%>" onclick="hideButton(<%=i%>)" value="허위신고" />
 							</c:if>
 							<c:if test="${board.report_handle=='Y'}">
+							</c:if>
+							<c:if test="${board.report_handle=='R'}">
 							</c:if>
 						</form>
 					</td>

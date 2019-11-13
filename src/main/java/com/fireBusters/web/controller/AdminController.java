@@ -273,6 +273,8 @@ public class AdminController {
 		String handle_result = "";
 		if (request.getParameter("Y") != null) {
 			handle_result = "Y";
+		} else if(request.getParameter("R") != null) {
+			handle_result = "R";
 		} else {
 			handle_result = "N";
 		}
