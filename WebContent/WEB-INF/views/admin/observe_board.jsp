@@ -82,7 +82,6 @@
 					<tr>
 					<!--페이징  -->
 					<!--여기깢  -->
-					<div>
 					
 			<div style="position: absolute; bottom: 10px;">
 				<div>
@@ -112,7 +111,6 @@
 				</div>
 
 				</div>
-				</div>
 				<!--페이징  -->
 					</tr>
 				</tbody>
@@ -123,6 +121,5 @@
 				
 			</div>
 		</div>
-	</div>
 </body>
 </html>

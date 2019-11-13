@@ -23,7 +23,7 @@ function fnImgPop(url){
 </head>
 <body>
  
-<div style="vertical-align:middle; position: absolute; left: 900px;">
+<div style="overflow:auto; width:900px; height:720px; vertical-align:middle; position: absolute; left: 950px;" >
 <%-- <c:forEach begin="1" end="9" var="i"> --%>
 	<%-- <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/3.jpg" width="240px" height="240px"
 	 onclick="fnImgPop(this.src)"/> --%>
@@ -45,6 +45,13 @@ function fnImgPop(url){
 	 onclick="fnImgPop(this.src)"/>
 	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/k1.jpg" width="280px" height="240px"
 	 onclick="fnImgPop(this.src)"/>
+	 <%--9개 이상되면 사진 옆 스크롤바 생성--%>
+	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/k2.jpg" width="280px" height="240px"
+	 onclick="fnImgPop(this.src)"/>
+	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/k3.jpg" width="280px" height="240px"
+	 onclick="fnImgPop(this.src)"/>
+	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/k1.jpg" width="280px" height="240px"
+	 onclick="fnImgPop(this.src)"/> 
 <%-- 	</c:forEach> --%>
 </div>
 

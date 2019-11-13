@@ -107,10 +107,12 @@
                            <td class="dStart" scope="col"><button class="btn btn-danger">드론출동</button></td>
                            <td class="" scope="col" >
                            <form action = "handle" method = "post" onsubmit="return hideButton(<%=i%>)" >
-                              <c:if test="${board.report_handle==N}">
+                              <c:if test="${board.report_handle=='N'}">
                                 <input type="hidden" name="reportNo" value="${board.report_no}"/>
                                 <input type="submit" name="Y" class="btn btn-primary" id="trueReport<%=i%>" onclick="hideButton(<%=i%>)" value="실제사고"/><br/>
                                 <input type="submit" name="N" class="btn btn-success" id="falseReport<%=i%>" onclick="hideButton(<%=i%>)" value="허위신고"/>
+                              </c:if>
+                              <c:if test="${board.report_handle=='Y'}">
                               </c:if>
                            </form>
                            </td>
@@ -119,17 +121,17 @@
                       </c:forEach>
                       <tr>
                       <!--페이징  -->
-               		  <div style="display: flex;position: absolute;bottom: 0px; left:12%">
-	                  	  <div style="flex-grow: 1;">
+               		  <div style="position: absolute; bottom: 10px;">
+	                  	  <div>
 						  <button class="btn btn-primary" onclick="moving('report?pageNo=1')" >처음</button>
 		                  <c:if test="${groupNo>1}">
 						  	<button class="btn btn-success" onclick="moving('report?pageNo=${startPageNo-1}')" >이전</button>
 		               	  </c:if>
-	                 	  <div style="display: inline-block;" class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-	                      	<div class="btn-group mr-2" role="group" aria-label="First group">
+	                 	  <div style="display: inline-block; padding: 20px;" class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+	                      	<div>
 	                          <c:forEach begin="${startPageNo}" end="${endPageNo}" var="j">
 	                         	<c:if test="${pageNo==j}">
-								  <button onclick="moving('report?pageNo=${j}')" class="btn btn-secondary active">${j}</button>
+								  <button onclick="moving('report?pageNo=${j}')" class="btn btn-danger active">${j}</button>
 	                         	</c:if>
 	                         	<c:if test="${pageNo!=j}">
 								  <button onclick="moving('report?pageNo=${j}')" class="btn btn-secondary">${j}</button>

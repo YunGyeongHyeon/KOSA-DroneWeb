@@ -170,7 +170,6 @@ public class AdminController {
 		model.addAttribute("startPageNo", startPageNo);
 		model.addAttribute("endPageNo", endPageNo);
 		model.addAttribute("pageNo", pageNo);
-
 		return "admin/report";
 	}
 
@@ -242,7 +241,7 @@ public class AdminController {
 	}
 
 	@RequestMapping("/handle")
-	public String handle(HttpServletRequest request) {
+	public void handle(HttpServletRequest request) {
 		int reportNo = Integer.parseInt(request.getParameter("reportNo"));
 		String handle_result = "";
 		if (request.getParameter("Y") != null) {
@@ -251,7 +250,7 @@ public class AdminController {
 			handle_result = "N";
 		}
 		service.updateHandle(reportNo, handle_result);
-		return "redirect:/admin/content";
+		//return "redirect:/admin/content";
 	}
 
 }
