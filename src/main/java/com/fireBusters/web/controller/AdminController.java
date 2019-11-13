@@ -241,7 +241,7 @@ public class AdminController {
 	}
 
 	@RequestMapping("/handle")
-	public void handle(HttpServletRequest request) {
+	public String handle(HttpServletRequest request) {
 		int reportNo = Integer.parseInt(request.getParameter("reportNo"));
 		String handle_result = "";
 		if (request.getParameter("Y") != null) {
@@ -250,7 +250,7 @@ public class AdminController {
 			handle_result = "N";
 		}
 		service.updateHandle(reportNo, handle_result);
-		//return "redirect:/admin/content";
+		return "redirect:/admin/content";
 	}
 
 }

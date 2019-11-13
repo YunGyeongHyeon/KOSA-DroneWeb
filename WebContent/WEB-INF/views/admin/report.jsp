@@ -63,7 +63,6 @@ $(document).ready(function(){
 	function hideButton(clickedId){
 		$('#trueReport'+clickedId).hide();
 		$('#falseReport'+clickedId).hide();
-		return false;
 	} 
 </script>
 <div id="cn_list">
@@ -78,56 +77,54 @@ $(document).ready(function(){
 			</tr>
 		</thead>
 		<tbody>
-			<%int i=1; %>
+			<%int i = 1;%>
 			<c:forEach var="board" items="${board}">
-				<tr class="selectLine"
-					onclick="listClick(${board.report_lat}, ${board.report_lon})">
+				<tr class="selectLine" onclick="listClick(${board.report_lat}, ${board.report_lon})">
 					<td class="" scope="col">${board.report_lat}</td>
 					<td class="" scope="col">${board.report_lon}</td>
 					<td class="" scope="col">${board.report_date}</td>
 					<td class="" scope="col"><button class="btn btn-danger">드론출동</button></td>
 					<td class="" scope="col">
-                    <form action = "handle" method = "post" onsubmit="return hideButton(<%=i%>)" >
-                       <c:if test="${board.report_handle=='N'}">
-                         <input type="hidden" name="reportNo" value="${board.report_no}"/>
-                          <input type="submit" name="Y" class="btn btn-primary" id="trueReport<%=i%>" onclick="hideButton(<%=i%>)" value="실제사고"/><br/>
-                           <input type="submit" name="N" class="btn btn-success" id="falseReport<%=i%>" onclick="hideButton(<%=i%>)" value="허위신고"/>
-                         </c:if>
-                         <c:if test="${board.report_handle=='Y'}">
-                         </c:if>
-                    </form>					
+						<form action="handle" method="post" onsubmit="return hideButton(<%=i%>)">
+							<c:if test="${board.report_handle=='N'}">
+								<input type="hidden" name="reportNo" value="${board.report_no}" />
+								<input type="submit" name="Y" class="btn btn-primary" id="trueReport<%=i%>" onclick="hideButton(<%=i%>)" value="실제사고" /><br />
+								<input type="submit" name="N" class="btn btn-success" id="falseReport<%=i%>" onclick="hideButton(<%=i%>)" value="허위신고" />
+							</c:if>
+							<c:if test="${board.report_handle=='Y'}">
+							</c:if>
+						</form>
 					</td>
 				</tr>
-			<%i++; %>
+				<%i++;%>
 			</c:forEach>
 			<tr>
-				 <!--페이징  -->
-               <div style="position: absolute; bottom: 10px;">
-                <div>
-				<button class="btn btn-primary" onclick="moving('report?pageNo=1')" >처음</button>
-               <c:if test="${groupNo>1}">
-				  <button class="btn btn-success" onclick="moving('report?pageNo=${startPageNo-1}')" >이전</button>
-               </c:if>
-                  
-                  <div style="display: inline-block; padding: 20px;" class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                     <div>
-                        <c:forEach begin="${startPageNo}" end="${endPageNo}" var="j">
-                        <c:if test="${pageNo==j}">
-							<button onclick="moving('report?pageNo=${j}')" class="btn btn-danger active">${j}</button>
-                        </c:if>
-                        <c:if test="${pageNo!=j}">
-							<button onclick="moving('report?pageNo=${j}')" class="btn btn-secondary">${j}</button>
-                        </c:if>
-                        </c:forEach>
-                     </div>
-                  </div>
-               <c:if test="${groupNo<totalGroupNum}">
-				<button onclick="moving('report?pageNo=${endPageNo+1}')" class="btn btn-success">다음</button>
-               </c:if>
-				<button onclick="moving('report?pageNo=${totalPageNum}')" class="btn btn-primary">맨끝</button>
-               </div>
-            </div>
-            <!--페이징  -->
+				<!--페이징  -->
+				<div style="position: absolute; bottom: 10px;">
+					<div>
+						<button class="btn btn-primary" onclick="moving('report?pageNo=1')">처음</button>
+						<c:if test="${groupNo>1}">
+							<button class="btn btn-success" onclick="moving('report?pageNo=${startPageNo-1}')">이전</button>
+						</c:if>
+						<div style="display: inline-block; padding: 20px;"class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+							<div>
+								<c:forEach begin="${startPageNo}" end="${endPageNo}" var="j">
+									<c:if test="${pageNo==j}">
+										<button onclick="moving('report?pageNo=${j}')" class="btn btn-danger active">${j}</button>
+									</c:if>
+									<c:if test="${pageNo!=j}">
+										<button onclick="moving('report?pageNo=${j}')" class="btn btn-secondary">${j}</button>
+									</c:if>
+								</c:forEach>
+							</div>
+						</div>
+						<c:if test="${groupNo<totalGroupNum}">
+							<button onclick="moving('report?pageNo=${endPageNo+1}')" class="btn btn-success">다음</button>
+						</c:if>
+						<button onclick="moving('report?pageNo=${totalPageNum}')" class="btn btn-primary">맨끝</button>
+					</div>
+				</div>
+				<!--페이징  -->
 			</tr>
 		</tbody>
 	</table>

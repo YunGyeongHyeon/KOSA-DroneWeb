@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ page import="java.util.Date" %>
+<%@ page import="java.util.Date"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/jquery-3.4.1.min.js"></script>
 <link rel="stylesheet" href="<%=application.getContextPath()%>/resources/bootstrap-3.3.2-dist/css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/css/content.css">
+<link rel="stylesheet" type="text/css"href="<%=application.getContextPath()%>/resources/css/content.css">
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/js/bootstrap.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6QqekZ1wnL7A8e0nPlnEsHowprAdcm8c&callback=initMap">
 </script>
@@ -37,11 +37,11 @@
 	
 </script>
 <style>
-	#no{
-		height: 400px;  /* The height is 400 pixels */
-        width: 50%;  /* The width is the width of the web page */
-        padding-bottom:44%;
-	}
+#no {
+	height: 400px; /* The height is 400 pixels */
+	width: 50%; /* The width is the width of the web page */
+	padding-bottom: 44%;
+}
 </style>
 <title>main Form</title>
 </head>
@@ -61,9 +61,8 @@
 						<th class="panel panelbody" scope="col">사건 확인</th>
 					</tr>
 				</thead>
-					<tbody>
-					<c:forEach var="obBoardList" items="${obBoardList}"
-						varStatus="status">
+				<tbody>
+					<c:forEach var="obBoardList" items="${obBoardList}" varStatus="status">
 						<tr>
 							<td>${station.fire_station_name}</td>
 							<td>${obBoardList.report_no}</td>
@@ -71,55 +70,44 @@
 							<td>${obBoardList.report_lat}</td>
 							<td>${obBoardList.report_lon}</td>
 							<td>
-								<button class="btn btn-primary" onclick="missionMap()">경로
-									확인</button> <br />
-								<button class="btn btn-success"
-									onclick="obBoardPicture(${obBoardList.report_no})">사진
-									확인</button>
+								<button class="btn btn-primary" onclick="missionMap()">경로 확인</button> <br />
+								<button class="btn btn-success" onclick="obBoardPicture(${obBoardList.report_no})">사진 확인</button>
 							</td>
 						</tr>
 					</c:forEach>
 					<tr>
-					<!--페이징  -->
-					<!--여기깢  -->
-					
-			<div style="position: absolute; bottom: 10px;">
-				<div>
-					<button class="btn btn-primary" onclick="moving('obBoard?pageNo=1')" >처음</button>
-					<c:if test="${groupNo>1}">
-						<button class="btn btn-success" onclick="moving('obBoard?pageNo=${startPageNo-1}')" >이전</button>
-					</c:if>
-
-					<div style="display: inline-block; padding: 20px;" class="btn-toolbar"
-						role="toolbar" aria-label="Toolbar with button groups">
-						<div>
-							<c:forEach begin="${startPageNo}" end="${endPageNo}" var="i">
-								<!--begin시작과 end끝값을 넣어주면 된다.  -->
-								<c:if test="${pageNo==i}">
-									<button onclick="moving('obBoard?pageNo=${i}')" class="btn btn-danger active">${i}</button>
+						<!--페이징  -->
+						<div style="position: absolute; bottom: 10px;">
+							<div>
+								<button class="btn btn-primary" onclick="moving('obBoard?pageNo=1')">처음</button>
+								<c:if test="${groupNo>1}">
+									<button class="btn btn-success" onclick="moving('obBoard?pageNo=${startPageNo-1}')">이전</button>
 								</c:if>
-								<c:if test="${pageNo!=i}">
-									<button onclick="moving('obBoard?pageNo=${i}')"  class="btn btn-secondary">${i}</button>
+								<div style="display: inline-block; padding: 20px;"class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+									<div>
+										<c:forEach begin="${startPageNo}" end="${endPageNo}" var="i">
+											<!--begin시작과 end끝값을 넣어주면 된다.  -->
+											<c:if test="${pageNo==i}">
+												<button onclick="moving('obBoard?pageNo=${i}')" class="btn btn-danger active">${i}</button>
+											</c:if>
+											<c:if test="${pageNo!=i}">
+												<button onclick="moving('obBoard?pageNo=${i}')" class="btn btn-secondary">${i}</button>
+											</c:if>
+										</c:forEach>
+									</div>
+								</div>
+								<c:if test="${groupNo<totalGroupNum}">
+									<button onclick="moving('obBoard?pageNo=${endPageNo+1}')" class="btn btn-success">다음</button>
 								</c:if>
-							</c:forEach>
+								<button onclick="moving('obBoard?pageNo=${totalPageNum}')" class="btn btn-primary">맨끝</button>
+							</div>
 						</div>
-					</div>
-					<c:if test="${groupNo<totalGroupNum}">
-						<button onclick="moving('obBoard?pageNo=${endPageNo+1}')"  class="btn btn-success">다음</button>
-					</c:if>
-					<button onclick="moving('obBoard?pageNo=${totalPageNum}')" class="btn btn-primary">맨끝</button>
-				</div>
-
-				</div>
-				<!--페이징  -->
+						<!--페이징  -->
 					</tr>
 				</tbody>
 			</table>
-
 			<div id=obPicture style="vertical-align: middle; text-align: center;"></div>
-			
-				
-			</div>
 		</div>
+	</div>
 </body>
 </html>
