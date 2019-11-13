@@ -43,7 +43,7 @@ public class AdminController {
 				if (error.equals("fire_station_idError")) {
 					model.addAttribute("fire_station_idError", "* 아이디가 존재하지 않습니다.");
 				} else if (error.equals("fire_station_passwordError")) {
-					model.addAttribute("fire_station_passwordError", "* 패스워드가 틀렀습니다.");
+					model.addAttribute("fire_station_passwordError", "* 비밀번호가 틀렀습니다.");
 				}
 			}
 		} catch (Exception e) {
@@ -62,7 +62,7 @@ public class AdminController {
 			session.setAttribute("fire_station_idError", "* 아이디가 존재하지 않습니다.");
 			return "redirect:/admin/loginForm";
 		} else if (result == LoginResult.FAIL_ADMINPASSWORD) {
-			session.setAttribute("fire_station_passwordError", "* 패스워드가 틀렀습니다.");
+			session.setAttribute("fire_station_passwordError", "* 비밀번호가 틀렀습니다.");
 			return "redirect:/admin/loginForm";
 		}
 		session.setAttribute("fire_station_id", fire_station_id);

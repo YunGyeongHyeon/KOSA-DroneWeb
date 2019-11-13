@@ -83,7 +83,7 @@ body, html {
 		var result = true;
 
 		if ($("#fire_station_id").val().length > 3) {
-			$("#fire_station_idError").text("*아이디를 제대로 입력해주세요");
+			$("#fire_station_idError").text("* 아이디를 제대로 입력해주세요");
 			result = false;
 			return result;
 		}
@@ -97,11 +97,11 @@ body, html {
 		
 		//입력값 검사
 		if ($("#fire_station_id").val() == "") {
-			$("#fire_station_idError").text("*아이디를 입력하세요");
+			$("#fire_station_idError").text("* 아이디를 입력하세요");
 			result = false;
 		}
 		if ($("#fire_station_password").val() == "") {
-			$("#fire_station_passwordError").text("*비밀번호를 입력하세요");
+			$("#fire_station_passwordError").text("* 비밀번호를 입력하세요");
 			result = false;
 		}
 		return result;

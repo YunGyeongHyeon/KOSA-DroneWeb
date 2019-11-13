@@ -101,9 +101,11 @@
 											<c:if test="${board.report_handle=='N'}">
 												<input type="hidden" name="reportNo" value="${board.report_no}" />
 												<input type="submit" name="Y" class="btn btn-primary" id="trueReport<%=i%>" onclick="hideButton(<%=i%>)" value="실제사고" /><br />
-												<input type="submit" name="N" class="btn btn-success" id="falseReport<%=i%>" onclick="hideButton(<%=i%>)" value="허위신고" />
+												<input type="submit" name="C" class="btn btn-success" id="falseReport<%=i%>" onclick="hideButton(<%=i%>)" value="허위신고" />
 											</c:if>
 											<c:if test="${board.report_handle=='Y'}">
+											</c:if>
+											<c:if test="${board.report_handle=='C'}">
 											</c:if>
 										</form>
 									</td>

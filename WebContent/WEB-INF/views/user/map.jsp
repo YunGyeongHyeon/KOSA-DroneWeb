@@ -19,9 +19,9 @@
 	      var labelIndex = 0;
 			// Initialize and add the map
 			function initMap() {
-				var uluru = {
-						lat: 37.495068,
-						lng: 127.122448
+				var uluru = { 
+						lat: 37.4978624,
+						lng: 127.153762
 				}
 				// The map, centered at Uluru
 				  var map = new google.maps.Map(
@@ -90,7 +90,7 @@
 	<body>
         	<div class="Map" id="map" >
         	</div>
-        		<a onclick="sendData()" class="btn btn-danger" id="reportButton" style="width:150px; height:60px; 
-				 line-height: 50px; font-size:22px; text-align:center; color: white;position:absolute;top:80%;left:31.5%">신고하기</a>
+        		<a onclick="sendData()" class="btn btn-danger" id="reportButton" style="width:150px; height:60px; line-height: 50px; 
+        		font-size:22px; text-align:center; color: white;position:absolute;top:80%;left:31.5%">신고하기</a>
 	</body>
 </html>
