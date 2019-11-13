@@ -19,7 +19,6 @@ public class UserDao {
 		map.put("lon", lon);
 		map.put("fire_station_id", fire_station_id);
 		int rows = sqlSessionTemplate.insert("user.insert", map);
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+rows);
 		return rows;
 	}
 

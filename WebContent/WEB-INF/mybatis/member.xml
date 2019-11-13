@@ -14,18 +14,8 @@
 		where fire_station_no=#{id}  ORDER BY report_no DESC)
 		where rownum &lt;= #{endRowNo})
 		where rn &gt;= #{startRowNo}
-			<!-- select to_char(report_date, 'MM/DD HH24:MI:SS') report_date, report_lat, report_lon, report_no
-				from report
-				where fire_station_no=#{id}  ORDER BY report_no DESC)
-				where rownum &lt;= #{endRowNo})
-				where rn &gt;= #{startRowNo} -->
-		
-	
-	
-		<!-- 	select to_char(report_date, 'MM/DD HH24:MI:SS') report_date, report_lat, report_lon
-				from report
-				where fire_station_no=#{id} -->
 	</select>
+	
 	<select id="selectFireStation" parameterType="int" resultType="com.fireBusters.web.dto.AdminFireStation">
 		select fire_station_id, fire_station_name, fire_station_area_id
 		    from fire_station
@@ -44,14 +34,6 @@
 				where fire_station_no=#{obid}  ORDER BY report_no DESC)
 				where rownum &lt;= #{endRowNo})
 				where rn &gt;= #{startRowNo}
-				
-	
-<!-- 	
-	
-	
-		select to_char(report_date, 'YYYY-MM/DD-HH24:MI:SS') report_date, report_no, report_lat, report_lon
-				from report
-				where fire_station_no=#{obid} -->
 	</select>
 	
 	<select id="obFireStation" parameterType="int" resultType="com.fireBusters.web.dto.AdminFireStation">

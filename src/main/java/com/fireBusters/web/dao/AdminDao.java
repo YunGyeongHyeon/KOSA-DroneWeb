@@ -14,6 +14,7 @@ import com.fireBusters.web.dto.AdminLatLon;
 import com.fireBusters.web.dto.AdminMember;
 import com.fireBusters.web.dto.ObBoard;
 import com.fireBusters.web.dto.ObBoardPicture;
+
 @Component
 public class AdminDao {
 	@Autowired
@@ -29,7 +30,7 @@ public class AdminDao {
 		map.put("id", id);
 		map.put("startRowNo", startRowNo);
 		map.put("endRowNo", endRowNo);
-		List<AdminBoard> board = sqlSessionTemplate.selectList("adminMember.selectReport",map);
+		List<AdminBoard> board = sqlSessionTemplate.selectList("adminMember.selectReport", map);
 		return board;
 	}
 
@@ -40,11 +41,10 @@ public class AdminDao {
 
 	public List<AdminLatLon> selectPoint() {
 		List<AdminLatLon> aLatLon = sqlSessionTemplate.selectList("adminMember.selectPoint");
-		
 		return aLatLon;
 	}
-	
-	public List<ObBoard> selectList(int obid,  int startRowNo, int endRowNo) {
+
+	public List<ObBoard> selectList(int obid, int startRowNo, int endRowNo) {
 		Map<String, Integer> map = new HashMap<>();
 		map.put("obid", obid);
 		map.put("startRowNo", startRowNo);
@@ -57,14 +57,13 @@ public class AdminDao {
 		AdminFireStation station = sqlSessionTemplate.selectOne("adminMember.obFireStation", ofs);
 		return station;
 	}
-	
+
 	public List<ObBoardPicture> selectObBoardPicture(int obp) {
-		obp=3;
-		System.out.println("dsjfasdlfjaslf"+obp);
+		obp = 3;
+		System.out.println("dsjfasdlfjaslf" + obp);
 		List<ObBoardPicture> obBoardPicture = sqlSessionTemplate.selectList("adminMember.obPicture", obp);
 		return obBoardPicture;
 	}
-
 
 	public int selectTotalRowNo() {
 		int totalRowNum = sqlSessionTemplate.selectOne("adminMember.selectTotalRowNum");
@@ -75,16 +74,13 @@ public class AdminDao {
 		int TotalPictureRowNo = sqlSessionTemplate.selectOne("adminMember.selectTotalPictureRowNo");
 		return TotalPictureRowNo;
 	}
-	
+
 	public int updateHandle(int reportNo, String handle_result) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("handle_result", handle_result);
 		map.put("reportNo", reportNo);
-
 		int rows = sqlSessionTemplate.update("adminMember.updateHandle", map);
 		return rows;
 	}
-	 
-
 
 }

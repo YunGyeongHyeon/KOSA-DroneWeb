@@ -17,8 +17,9 @@
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/content.js"></script>
 <script type="text/javascript">
    function hideButton(clickedId){
-      $('#trueReport'+clickedId).hide();
-      $('#falseReport'+clickedId).hide();
+      $('#trueReport'+clickedId).css("display","none");
+      $('#falseReport'+clickedId).css("display","none");
+      
    } 
    
    $(function() {
@@ -57,7 +58,7 @@
                      <td><a href="http://localhost:8080/FinalWebProject/admin/content"><img class="cn_logo_img" src="<%=application.getContextPath()%>/resources/image/symbol.png"></a></td> 
                   </tr>
                </table> 
-               <button class="cn_tap" onClick="location.href='content'">
+               <button class="cn_tap" onClick="moving('report')">
                   실시간 상황
                </button>
                <button class="cn_tap" id="cn_picture">
@@ -119,9 +120,9 @@
                <div style="display: flex;position: absolute;bottom: 0px; left:12%">
                   <div style="flex-grow: 1;">
 				<button class="btn btn-primary" onclick="moving('report?pageNo=1')" >처음</button>
-               <c:if test="${groupNo>1}">
-				  <button class="btn btn-success" onclick="moving('report?pageNo=${startPageNo-1}')" >이전</button>
-               </c:if>
+	               <c:if test="${groupNo>1}">
+					  <button class="btn btn-success" onclick="moving('report?pageNo=${startPageNo-1}')" >이전</button>
+	               </c:if>
                   
                   <div style="display: inline-block;" class="btn-toolbar"
                      role="toolbar" aria-label="Toolbar with button groups">
@@ -145,16 +146,10 @@
             </div>
             
             <!--페이징  -->
-                      
-                      
-                      
-                      
+
                       </tr> 
                   </tbody>
                </table>   
-               
-               
-            
             <div>
             <div id="this"></div>
             <div id="map"></div>
