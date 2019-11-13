@@ -94,6 +94,7 @@ body, html {
 
 		//모든 에러 내용 지우기
 		$(".error").text("");
+		
 		//입력값 검사
 		if ($("#fire_station_id").val() == "") {
 			$("#fire_station_idError").text("*아이디를 입력하세요");
@@ -103,8 +104,7 @@ body, html {
 			$("#fire_station_passwordError").text("*비밀번호를 입력하세요");
 			result = false;
 		}
-
-		return result;/*하나라도 펄스가 되면 넘어가지 않는다.  */
+		return result;
 	}
 </script>
 <body id="bg">

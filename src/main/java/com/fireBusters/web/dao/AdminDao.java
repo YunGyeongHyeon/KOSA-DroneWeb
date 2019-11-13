@@ -80,7 +80,6 @@ public class AdminDao {
 		map.put("handle_result", handle_result);
 		map.put("reportNo", reportNo);
 		int rows = sqlSessionTemplate.update("adminMember.updateHandle", map);
-		System.out.println("dddddddddddddddddddddddddddddddddddd"+handle_result);
 		return rows;
 	}
 

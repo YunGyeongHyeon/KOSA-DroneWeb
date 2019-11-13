@@ -18,7 +18,7 @@ public class AdminService {
 
 	@Autowired
 	private AdminDao adminDao;
-
+	
 	public LoginResult login(int fire_station_id, String fire_station_password) {
 		AdminMember member = adminDao.selectAdmin(fire_station_id);
 		if (member == null) {

@@ -17,8 +17,6 @@
 
 <script type="text/javascript">
    function hideButton(clickedId){
-      //$('#trueReport'+clickedId).css("display","none");
-      //$('#falseReport'+clickedId).css("display","none");
       $('#trueReport'+clickedId).hide();
       $('#falseReport'+clickedId).hide();
    } 
@@ -56,10 +54,10 @@
 				<div class="cn_logo">
 					<table id="cn_top_first">
 						<tr>
-							<td><a href="http://localhost:8080/FinalWebProject/admin/content"><img class="cn_logo_img" src="<%=application.getContextPath()%>/resources/image/symbol.png"></a></td>
+							<td><a href="" onclick="moving('report?pageNo=1')"><img class="cn_logo_img" src="<%=application.getContextPath()%>/resources/image/symbol.png"></a></td>
 						</tr>
 					</table>
-					<button class="cn_tap" onClick="moving('report')">실시간 상황</button>
+					<button class="cn_tap" onClick="moving('report?pageNo=1')">실시간 상황</button>
 					<button class="cn_tap" id="cn_picture">
 						사진첩
 						<div id="cn_downBar" id="buttonTab">
