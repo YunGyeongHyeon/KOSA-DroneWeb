@@ -33,10 +33,21 @@
    //연결이 완료되었을 때 자동으로 실행(콜백)되는 함수
    function onConnect() {
       client.subscribe("/drone/service2/sub");
+      //status 토픽
+	  client.subscribe("/drone/live/pub");
    }
    //메시지를 수신했을 때 자동으로 실행(콜백)되는 함수
    function onMessageArrived(message) {
       location.href="content";
+      
+      var json = JSON.parse(message.payloadString);
+		if(json.status == "real") {
+			//실제사건
+			alert(message);
+		} else (json.status == "lie") {
+			//허위신고
+			alert(message);
+		}
    }
    
 </script>
@@ -102,8 +113,10 @@
 												<input type="submit" name="R" class="btn btn-success" id="falseReport<%=i%>" onclick="hideButton(<%=i%>)" value="허위신고" />
 											</c:if>
 											<c:if test="${board.report_handle=='Y'}">
+												<h4 style="color:red">실제사고</h4>
 											</c:if>
 											<c:if test="${board.report_handle=='R'}">
+												<h4>허위신고</h4>
 											</c:if>
 										</form>
 									</td>

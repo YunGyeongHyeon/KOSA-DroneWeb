@@ -54,6 +54,7 @@ function fnImgPop(url){
 	 onclick="fnImgPop(this.src)"/>
 	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/k1.jpg" width="280px" height="240px"
 	 onclick="fnImgPop(this.src)"/> 
+	 <%-- <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/image/DB에서 꺼내오는 파일명으로 바꿔야한다" width="280px" height="240px"onclick="fnImgPop(this.src)"/> --%>
 <%-- 	</c:forEach> --%>
 </div>
 

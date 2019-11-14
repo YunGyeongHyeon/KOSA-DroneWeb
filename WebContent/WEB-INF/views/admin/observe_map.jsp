@@ -5,17 +5,6 @@ $(document).ready(function(){
     initMap()
 });
 
-function initMap() {
-	  var myLatLng = {lat: 37.494953, lng: 127.122557};
-
-	  var map = new google.maps.Map(document.getElementById('map'), {
-	    zoom: 16,
-	    center: myLatLng
-	  });
-		  // Add a marker at the center of the map.
-		 addMarker(myLatLng, map);
-	}
-
 function addMarker(location, map) {
 	var icon ={
 			url : 'http://localhost:8080/FinalWebProject/resources/image/fire3.png',
@@ -38,7 +27,6 @@ function addMarker(location, map) {
 
 function listClick(lat,lon){
 	uluru = {lat: lat, lng:lon};
-	
 	var map = new google.maps.Map(document.getElementById('map'), {
 	    zoom: 16,
 	    center: uluru

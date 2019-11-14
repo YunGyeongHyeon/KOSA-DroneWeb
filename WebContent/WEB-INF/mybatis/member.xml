@@ -48,6 +48,23 @@
 		    where fire_station_id=#{obp}
 	</select>
 	
+	<!-- observe_picture 테이블에서 사진 꺼내오기 
+	<select id="obPicture" parameterType="int" resultType="com.fireBusters.web.dto.ObBoardPicture">
+		select p.picture_no, p.picture_file, p.observer_no
+		from observe_picture p, observe o, report r
+		where o.report_no = r.report_no and
+		p.observer_no = o.observe_no;
+	</select>
+	-->
+	
+	<!-- accident_picture 테이블에서 사진 꺼내오기 
+	<select id="obPicture" parameterType="int" resultType="com.fireBusters.web.dto.ObBoardPicture">
+		select p.accident_picture_no, p.accident_picture_file, p.ano
+		from accident_picture p, accident a, report r
+		where a.ano = r.ano and p.ano = a.ano;
+	</select>	
+	 -->
+	
 	<select id="selectTotalRowNum" resultType="int">
 		select count(*) from report
 	</select>

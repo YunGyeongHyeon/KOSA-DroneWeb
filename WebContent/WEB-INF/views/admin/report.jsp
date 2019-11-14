@@ -7,6 +7,9 @@
 .selectLine td{
 	height: 85px;
 }
+.selectLine h4{
+	font-weight: bold;
+}
 #contentPaging {
     position: absolute;  
     bottom: 10px;
@@ -103,8 +106,10 @@ $(document).ready(function(){
 								<input type="submit" name="R" class="btn btn-success" id="falseReport<%=i%>" onclick="hideButton(<%=i%>)" value="허위신고" />
 							</c:if>
 							<c:if test="${board.report_handle=='Y'}">
+								<h4 style="color:red;">실제사고</h4>
 							</c:if>
 							<c:if test="${board.report_handle=='R'}">
+								<h4>허위신고</h4>
 							</c:if>
 						</form>
 					</td>
