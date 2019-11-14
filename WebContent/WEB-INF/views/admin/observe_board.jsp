@@ -42,6 +42,22 @@
 		});
 	}
 	
+	//화면 숨김
+	$(document).ready(function(){
+		$('.bb').hide();
+	});
+	
+	function doShow() { 
+		 $('.bb').show(); // id값을 받아서 보이기 
+		 $('.aa').hide(); // 클래스값을 받아서 숨기기 
+	} 
+	
+	function dohide(){
+		$('.bb').hide(); // id값을 받아서 숨기기 
+		$('.aa').show(); // 클래스값을 받아서 보이기 
+	}
+	//화면 숨김
+	
 </script>
 
 <title>main Form</title>
@@ -71,8 +87,9 @@
 							<td>${obBoardList.report_lat}</td>
 							<td>${obBoardList.report_lon}</td>
 							<td>
-								<button class="btn btn-primary" onclick="missionMap()">경로 확인</button> <br />
-								<button class="btn btn-success" onclick="obBoardPicture(${obBoardList.report_no})">사진 확인</button>
+								<button class="btn btn-primary" onclick="listClick(${obBoardList.report_lat}, ${obBoardList.report_lon});
+								doShow()">경로 확인</button><br/>
+								<button class="btn btn-success" onclick="obBoardPicture(${obBoardList.report_no});dohide()">사진 확인</button>
 							</td>
 						</tr>
 					</c:forEach>
@@ -107,7 +124,8 @@
 					</tr>
 				</tbody>
 			</table>
-			<div id=obPicture style="vertical-align: middle; text-align: center;"></div>
+			<div class="aa" id=obPicture style="vertical-align: middle; text-align: center;"></div>
+			<div class="bb" id="map"></div>
 		</div>
 	</div>
 </body>

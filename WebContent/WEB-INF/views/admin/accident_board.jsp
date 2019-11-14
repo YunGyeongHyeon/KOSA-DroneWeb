@@ -19,8 +19,8 @@
     bottom: 10px;
 }
 </style>
-
 <script type="text/javascript">
+
 	function missionMap(){
 		$.ajax({
 			url:"accident_map",
@@ -32,10 +32,7 @@
 			}
 		});
 	}
-	
 	function acBoardPicture(data) {
-		
-		
 		$.ajax({
 			url:"acBoardPicture?report_no="+data,
 			data: data,
@@ -44,7 +41,26 @@
 			}
 		});
 	}
-</script>
+	
+	//화면 숨김
+	$(document).ready(function(){
+		$('.bb').hide();
+	});
+	
+	function doShow() { 
+		 $('.bb').show(); // id값을 받아서 보이기 
+		 $('.aa').hide(); // 클래스값을 받아서 숨기기 
+	} 
+	
+	function dohide(){
+		$('.bb').hide(); // id값을 받아서 숨기기 
+		$('.aa').show(); // 클래스값을 받아서 보이기 
+	}
+	//화면 숨김
+	
+	</script> 
+
+	
 <title>main Form</title>
 </head>
 <body>
@@ -71,8 +87,9 @@
 							<td>${acBoardList.report_lat}</td>
 							<td>${acBoardList.report_lon}</td>
 							<td>
-								<button class="btn btn-primary" onclick="listClick(${acBoardList.report_lat}, ${acBoardList.report_lon})">경로 확인</button><br/>
-								<button class="btn btn-success" onclick="acBoardPicture(${acBoardList.report_no})">사진 확인</button>
+								<button class="btn btn-primary" onclick="listClick(${acBoardList.report_lat}, ${acBoardList.report_lon});
+								doShow()">경로 확인</button><br/>
+								<button class="btn btn-success" onclick="acBoardPicture(${acBoardList.report_no});dohide()">사진 확인</button>
 							</td>
 						</tr>
 					</c:forEach>
@@ -107,8 +124,10 @@
 					</tr>
 				</tbody>
 			</table>
-			<div id=acPicture style="vertical-align: middle; text-align: center;"></div>
-			<!-- <div id="map"></div> -->
+			<div>
+					<div class="aa" id=acPicture style="vertical-align: middle; text-align: center;"></div>
+					<div class="bb" id="map"></div>
+			</div>
 		</div>
 	</div>
 </body>
