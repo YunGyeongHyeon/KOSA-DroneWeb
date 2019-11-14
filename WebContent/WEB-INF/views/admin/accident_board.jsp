@@ -87,8 +87,7 @@
 							<td>${acBoardList.report_lat}</td>
 							<td>${acBoardList.report_lon}</td>
 							<td>
-								<button class="btn btn-primary" onclick="listClick(${acBoardList.report_lat}, ${acBoardList.report_lon});
-								doShow()">경로 확인</button><br/>
+								<button class="btn btn-primary" onclick="listClick(${acBoardList.report_lat}, ${acBoardList.report_lon}); doShow()">경로 확인</button><br/>
 								<button class="btn btn-success" onclick="acBoardPicture(${acBoardList.report_no});dohide()">사진 확인</button>
 							</td>
 						</tr>

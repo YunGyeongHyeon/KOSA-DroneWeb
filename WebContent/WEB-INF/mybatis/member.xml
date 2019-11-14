@@ -72,9 +72,11 @@
 	</select>
 	
 	<select id="selectTotalRowNum" resultType="int">
-		select count(*) from report
+		select count(*) 
+		from report 
+		where fire_station_no = #{fire_station_id}
 	</select>
-	
+
 	<select id="selectTotalPictureRowNo" resultType="int">
 		select count(*) from report
 	</select>

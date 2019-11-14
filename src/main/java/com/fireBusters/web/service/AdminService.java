@@ -20,7 +20,7 @@ public class AdminService {
 
 	@Autowired
 	private AdminDao adminDao;
-	
+
 	public LoginResult login(int fire_station_id, String fire_station_password) {
 		AdminMember member = adminDao.selectAdmin(fire_station_id);
 		if (member == null) {
@@ -62,12 +62,11 @@ public class AdminService {
 
 	public List<ObBoardPicture> selectObBoardPicture(int obp) {
 		List<ObBoardPicture> obBoardPicture = adminDao.selectObBoardPicture(obp);
-
 		return obBoardPicture;
 	}
 
-	public int getTotalRowNo() {
-		int totalRowNum = adminDao.selectTotalRowNo();
+	public int getTotalRowNo(int fire_station_id) {
+		int totalRowNum = adminDao.selectTotalRowNo(fire_station_id);
 		return totalRowNum;
 	}
 
@@ -78,7 +77,6 @@ public class AdminService {
 
 	public void updateHandle(int reportNo, String handle_result) {
 		adminDao.updateHandle(reportNo, handle_result);
-
 	}
 
 	public List<AcBoard> selectAcBoardList(int abid, int startRowNo, int endRowNo) {
@@ -88,13 +86,12 @@ public class AdminService {
 
 	public AdminFireStation selectAcFireStation(int afs) {
 		AdminFireStation station = adminDao.selectAcFireStation(afs);
-			
 		return station;
 	}
 
 	public List<AcBoardPicture> selectAcBoardPicture(int abp) {
 		List<AcBoardPicture> acBoardPicture = adminDao.selectAcBoardPicture(abp);
-		return null;
+		return acBoardPicture;
 	}
 
 }

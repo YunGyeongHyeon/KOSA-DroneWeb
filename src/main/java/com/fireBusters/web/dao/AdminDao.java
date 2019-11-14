@@ -66,8 +66,8 @@ public class AdminDao {
 		return obBoardPicture;
 	}
 
-	public int selectTotalRowNo() {
-		int totalRowNum = sqlSessionTemplate.selectOne("adminMember.selectTotalRowNum");
+	public int selectTotalRowNo(int fire_station_id) {
+		int totalRowNum = sqlSessionTemplate.selectOne("adminMember.selectTotalRowNum", fire_station_id);
 		return totalRowNum;
 	}
 
@@ -101,8 +101,6 @@ public class AdminDao {
 	public List<AcBoardPicture> selectAcBoardPicture(int abp) {
 		abp = 3;
 		List<AcBoardPicture> acBoardPicture = sqlSessionTemplate.selectList("adminMember.acPicture", abp);
-		System.out.println("실행++++++++++++++++++++++++++++++++++++++++++++++++++++");
-		
 		return acBoardPicture;
 	}
 

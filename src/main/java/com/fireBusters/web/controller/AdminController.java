@@ -39,7 +39,7 @@ public class AdminController {
 	}
 
 	@RequestMapping("/loginForm")
-	public String loginForm(String error, Model model ,HttpSession session) {
+	public String loginForm(String error, Model model, HttpSession session) {
 		try {
 			if (error != null) {
 				if (error.equals("fire_station_idError")) {
@@ -53,12 +53,12 @@ public class AdminController {
 		}
 		return "admin/loginForm";
 	}
-	
+
 	@PostMapping("/login")
 	public String login(int fire_station_id, String fire_station_password, HttpSession session) {
 		session.removeAttribute("fire_station_idError");
 		session.removeAttribute("fire_station_passwordError");
-		
+
 		LoginResult result = service.login(fire_station_id, fire_station_password);
 		if (result == LoginResult.FAIL_ADMINID) {
 			session.setAttribute("fire_station_idError", "* 아이디가 존재하지 않습니다.");
@@ -75,7 +75,7 @@ public class AdminController {
 	public String complete() {
 		return "redirect:/admin/content";
 	}
-	
+
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("fire_station_id");
@@ -103,11 +103,10 @@ public class AdminController {
 			System.out.println("아이디 없습니다.");
 			return "redirect:/admin/loginForm";
 		}
-
 		// ---------------------------------페이징
 		int rowsPerPage = 8;// 페이지당 행수
 		int pagesPerGroup = 10;// 이전, 다음을 클릭했을때 나오는 그룹당 페이지 수
-		int totalRowNum = service.getTotalRowNo();// 전체 게시물 수
+		int totalRowNum = service.getTotalRowNo((int) session.getAttribute("fire_station_id"));// 전체 게시물 수
 		int totalPageNum = totalRowNum / rowsPerPage;// 전체 페이지 수
 		if (totalRowNum % rowsPerPage != 0)
 			totalPageNum++;// 뒤에 짜투리도 페이지수로 인정
@@ -121,12 +120,12 @@ public class AdminController {
 			endPageNo = totalPageNum;
 		int startRowNo = (pageNo - 1) * rowsPerPage + 1;// 공식//현재시작 페이지의 행 번호
 		int endRowNo = pageNo * rowsPerPage;// 현재공식//해당 페이지의 끝 행번호
-		if(pageNo == totalPageNum) { //현재 그룹의 번호가 전체 그룹 수(마지막 그룹번호)와 같다면
+		if (pageNo == totalPageNum) { // 현재 그룹의 번호가 전체 그룹 수(마지막 그룹번호)와 같다면
 			endRowNo = totalRowNum; // 끝 행 번호는 전체 행 번호 수 만큼 된다
 		}
 		// ---------------------------------페이징
 
-		List<AdminBoard> board = service.selectReport((int) session.getAttribute("fire_station_id"), startRowNo, endRowNo);
+		List<AdminBoard> board = service.selectReport((int) session.getAttribute("fire_station_id"), startRowNo,endRowNo);
 		AdminFireStation station = service.selectFireStation((int) session.getAttribute("fire_station_id"));
 
 		model.addAttribute("board", board);
@@ -167,10 +166,8 @@ public class AdminController {
 		// ---------------------------------페이징
 		int rowsPerPage = 8;// 페이지당 행수
 		int pagesPerGroup = 10;// 이전, 다음을 클릭했을때 나오는 그룹당 페이지 수
-		int totalRowNum = service.getTotalRowNo();// 전체 게시물 수
-		System.out.println(totalRowNum+"**********************************************");
+		int totalRowNum = service.getTotalRowNo((int) session.getAttribute("fire_station_id"));// 전체 게시물 수
 		int totalPageNum = totalRowNum / rowsPerPage;// 전체 페이지 수
-		System.out.println(totalPageNum+"+++++++++++++++++++++++++++++++++++++++++++++");
 		if (totalRowNum % rowsPerPage != 0)
 			totalPageNum++;// 뒤에 짜투리도 페이지수로 인정
 		int totalGroupNum = totalPageNum / pagesPerGroup;// 전체 그룹 수
@@ -183,12 +180,12 @@ public class AdminController {
 			endPageNo = totalPageNum;
 		int startRowNo = (pageNo - 1) * rowsPerPage + 1;// 공식//현재시작 페이지의 행 번호
 		int endRowNo = pageNo * rowsPerPage;// 현재공식//해당 페이지의 끝 행번호
-		if(pageNo == totalPageNum) { //현재 그룹의 번호가 전체 그룹 수(마지막 그룹번호)와 같다면
+		if (pageNo == totalPageNum) { // 현재 그룹의 번호가 전체 그룹 수(마지막 그룹번호)와 같다면
 			endRowNo = totalRowNum; // 끝 행 번호는 전체 행 번호 수 만큼 된다
 		}
 		// ---------------------------------페이징
 
-		List<AdminBoard> board = service.selectReport((int) session.getAttribute("fire_station_id"), startRowNo, endRowNo);
+		List<AdminBoard> board = service.selectReport((int) session.getAttribute("fire_station_id"), startRowNo,endRowNo);
 		AdminFireStation station = service.selectFireStation((int) session.getAttribute("fire_station_id"));
 
 		model.addAttribute("board", board);
@@ -218,7 +215,7 @@ public class AdminController {
 		// ---------------------------------페이징
 		int rowsPerPage = 8;// 페이지당 행수
 		int pagesPerGroup = 10;// 이전, 다음을 클릭했을때 나오는 그룹당 페이지 수
-		int totalRowNum = service.getTotalRowNo();// 전체 게시물 수
+		int totalRowNum = service.getTotalRowNo((int) session.getAttribute("fire_station_id"));// 전체 게시물 수
 		int totalPageNum = totalRowNum / rowsPerPage;// 전체 페이지 수
 		if (totalRowNum % rowsPerPage != 0)
 			totalPageNum++;// 뒤에 짜투리도 페이지수로 인정
@@ -232,12 +229,12 @@ public class AdminController {
 			endPageNo = totalPageNum;
 		int startRowNo = (pageNo - 1) * rowsPerPage + 1;// 공식//현재시작 페이지의 행 번호
 		int endRowNo = pageNo * rowsPerPage;// 현재공식//해당 페이지의 끝 행번호
-		if(pageNo == totalPageNum) { //현재 그룹의 번호가 전체 그룹 수(마지막 그룹번호)와 같다면
+		if (pageNo == totalPageNum) { // 현재 그룹의 번호가 전체 그룹 수(마지막 그룹번호)와 같다면
 			endRowNo = totalRowNum; // 끝 행 번호는 전체 행 번호 수 만큼 된다
 		}
 		// ---------------------------------페이징
 
-		List<ObBoard> obBoardList = service.selectObBoardList((int) session.getAttribute("fire_station_id"), startRowNo, endRowNo);
+		List<ObBoard> obBoardList = service.selectObBoardList((int) session.getAttribute("fire_station_id"), startRowNo,endRowNo);
 		AdminFireStation station = service.selectObFireStation((int) session.getAttribute("fire_station_id"));
 
 		model.addAttribute("obBoardList", obBoardList);
@@ -262,11 +259,6 @@ public class AdminController {
 		return "admin/obBoardPicture";
 	}
 
-	@RequestMapping("/observe")
-	public String observe() {
-		return "admin/observe";
-	}
-
 	@RequestMapping("/observe_map")
 	public String observe_map() {
 		return "admin/observe_map";
@@ -278,7 +270,7 @@ public class AdminController {
 		String handle_result = "";
 		if (request.getParameter("Y") != null) {
 			handle_result = "Y";
-		} else if(request.getParameter("R") != null) {
+		} else if (request.getParameter("R") != null) {
 			handle_result = "R";
 		} else {
 			handle_result = "N";
@@ -286,11 +278,11 @@ public class AdminController {
 		service.updateHandle(reportNo, handle_result);
 		return "redirect:/admin/content";
 	}
-	
+
 	@RequestMapping("/acBoard")
 	public String acBoard(Model model, HttpSession session, AdminFireStation fireStation, AdminLatLon adminLatLon,
 			@RequestParam(defaultValue = "1") int pageNo) {
-		
+
 		if (session.getAttribute("fire_station_id") == null) {
 			System.out.println("아이디 없습니다.");
 			return "redirect:/admin/loginForm";
@@ -298,60 +290,56 @@ public class AdminController {
 
 		session.setAttribute("pageNo", pageNo);
 
-		
-		
 		// ---------------------------------페이징
-				int rowsPerPage = 8;// 페이지당 행수
-				int pagesPerGroup = 10;// 이전, 다음을 클릭했을때 나오는 그룹당 페이지 수
-				int totalRowNum = service.getTotalRowNo();// 전체 게시물 수
-				int totalPageNum = totalRowNum / rowsPerPage;// 전체 페이지 수
-				if (totalRowNum % rowsPerPage != 0)
-					totalPageNum++;// 뒤에 짜투리도 페이지수로 인정
-				int totalGroupNum = totalPageNum / pagesPerGroup;// 전체 그룹 수
-				if (totalPageNum % pagesPerGroup != 0)
-					totalGroupNum++;
-				int groupNo = (pageNo - 1) / pagesPerGroup + 1;// 현재페이지의 그룹번호
-				int startPageNo = (groupNo - 1) * pagesPerGroup + 1;// 현재 그룹의 시작 페이지 번호
-				int endPageNo = startPageNo + pagesPerGroup - 1;// 현재 그룹의 마지막 페이지 번호
-				if (groupNo == totalGroupNum)
-					endPageNo = totalPageNum;
-				int startRowNo = (pageNo - 1) * rowsPerPage + 1;// 공식//현재시작 페이지의 행 번호
-				int endRowNo = pageNo * rowsPerPage;// 현재공식//해당 페이지의 끝 행번호
-				if(pageNo == totalPageNum) { //현재 그룹의 번호가 전체 그룹 수(마지막 그룹번호)와 같다면
-					endRowNo = totalRowNum; // 끝 행 번호는 전체 행 번호 수 만큼 된다
-				}
+		int rowsPerPage = 8;// 페이지당 행수
+		int pagesPerGroup = 10;// 이전, 다음을 클릭했을때 나오는 그룹당 페이지 수
+		int totalRowNum = service.getTotalRowNo((int) session.getAttribute("fire_station_id"));// 전체 게시물 수
+		int totalPageNum = totalRowNum / rowsPerPage;// 전체 페이지 수
+		if (totalRowNum % rowsPerPage != 0)
+			totalPageNum++;// 뒤에 짜투리도 페이지수로 인정
+		int totalGroupNum = totalPageNum / pagesPerGroup;// 전체 그룹 수
+		if (totalPageNum % pagesPerGroup != 0)
+			totalGroupNum++;
+		int groupNo = (pageNo - 1) / pagesPerGroup + 1;// 현재페이지의 그룹번호
+		int startPageNo = (groupNo - 1) * pagesPerGroup + 1;// 현재 그룹의 시작 페이지 번호
+		int endPageNo = startPageNo + pagesPerGroup - 1;// 현재 그룹의 마지막 페이지 번호
+		if (groupNo == totalGroupNum)
+			endPageNo = totalPageNum;
+		int startRowNo = (pageNo - 1) * rowsPerPage + 1;// 공식//현재시작 페이지의 행 번호
+		int endRowNo = pageNo * rowsPerPage;// 현재공식//해당 페이지의 끝 행번호
+		if (pageNo == totalPageNum) { // 현재 그룹의 번호가 전체 그룹 수(마지막 그룹번호)와 같다면
+			endRowNo = totalRowNum; // 끝 행 번호는 전체 행 번호 수 만큼 된다
+		}
 		// ---------------------------------페이징
-		
-				List<AcBoard> acBoardList = service.selectAcBoardList((int) session.getAttribute("fire_station_id"), startRowNo, endRowNo);
-				AdminFireStation station = service.selectAcFireStation((int) session.getAttribute("fire_station_id"));
 
-				model.addAttribute("acBoardList", acBoardList);
-				model.addAttribute("station", station);
+		List<AcBoard> acBoardList = service.selectAcBoardList((int) session.getAttribute("fire_station_id"), startRowNo,endRowNo);
+		AdminFireStation station = service.selectAcFireStation((int) session.getAttribute("fire_station_id"));
 
-				model.addAttribute("pagesPerGroup", pagesPerGroup);
-				model.addAttribute("totalPageNum", totalPageNum);
-				model.addAttribute("totalGroupNum", totalGroupNum);
-				model.addAttribute("groupNo", groupNo);
-				model.addAttribute("startPageNo", startPageNo);
-				model.addAttribute("endPageNo", endPageNo);
-				model.addAttribute("pageNo", pageNo);
-		
-		
+		model.addAttribute("acBoardList", acBoardList);
+		model.addAttribute("station", station);
+
+		model.addAttribute("pagesPerGroup", pagesPerGroup);
+		model.addAttribute("totalPageNum", totalPageNum);
+		model.addAttribute("totalGroupNum", totalGroupNum);
+		model.addAttribute("groupNo", groupNo);
+		model.addAttribute("startPageNo", startPageNo);
+		model.addAttribute("endPageNo", endPageNo);
+		model.addAttribute("pageNo", pageNo);
+
 		return "admin/accident_board";
-		
+
 	}
-	
+
 	@RequestMapping("/acBoardPicture")
 	public String acBoardPicture(int report_no, Model model, HttpSession session) {
 		List<AcBoardPicture> acBoardPicture = service.selectAcBoardPicture(report_no);
 		model.addAttribute("acBoardPicture", acBoardPicture);
 		return "admin/acBoardPicture";
 	}
-	
+
 	@RequestMapping("/accident_map")
 	public String accident_map() {
 		return "admin/accident_map";
 	}
-	
 
 }
