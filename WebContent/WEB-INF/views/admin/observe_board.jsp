@@ -12,6 +12,13 @@
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/js/bootstrap.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6QqekZ1wnL7A8e0nPlnEsHowprAdcm8c&callback=initMap">
 </script>
+<style type="text/css">
+#contentPaging {
+    position: absolute;  
+    bottom: 10px;
+}
+</style>
+
 <script type="text/javascript">
 	function missionMap(){
 		$.ajax({
@@ -36,13 +43,7 @@
 	}
 	
 </script>
-<style>
-#no {
-	height: 400px; /* The height is 400 pixels */
-	width: 50%; /* The width is the width of the web page */
-	padding-bottom: 44%;
-}
-</style>
+
 <title>main Form</title>
 </head>
 <body>
@@ -77,7 +78,7 @@
 					</c:forEach>
 					<tr>
 						<!--페이징  -->
-						<div style="position: absolute; bottom: 10px;">
+						<div id="contentPaging">
 							<div>
 								<button class="btn btn-primary" onclick="moving('obBoard?pageNo=1')">처음</button>
 								<c:if test="${groupNo>1}">

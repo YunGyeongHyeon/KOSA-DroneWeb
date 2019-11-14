@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/content.js"></script>
+
 <script type="text/javascript">
 function fnImgPop(url){
 	  var img=new Image();
@@ -19,6 +20,7 @@ function fnImgPop(url){
 	  OpenWindow.document.write("<style>body{margin:0px;}</style><img src='"+url+"' width='"+win_width+"'>");
 	 }
 </script>
+
 <title>Insert title here</title>
 </head>
 <body>

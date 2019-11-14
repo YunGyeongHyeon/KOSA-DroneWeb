@@ -99,7 +99,7 @@ public class AdminController {
 		int rowsPerPage = 8;// 페이지당 행수
 		int pagesPerGroup = 10;// 이전, 다음을 클릭했을때 나오는 그룹당 페이지 수
 		int totalRowNum = service.getTotalRowNo();// 전체 게시물 수
-		int totalPageNum = totalRowNum / rowsPerPage - 1;// 전체 페이지 수
+		int totalPageNum = totalRowNum / rowsPerPage - 2;// 전체 페이지 수
 		if (totalRowNum % rowsPerPage != 0)
 			totalPageNum++;// 뒤에 짜투리도 페이지수로 인정
 		int totalGroupNum = totalPageNum / pagesPerGroup;// 전체 그룹 수
@@ -116,8 +116,7 @@ public class AdminController {
 			endRowNo = totalRowNum;
 		// ---------------------------------페이징
 
-		List<AdminBoard> board = service.selectReport((int) session.getAttribute("fire_station_id"), startRowNo,
-				endRowNo);
+		List<AdminBoard> board = service.selectReport((int) session.getAttribute("fire_station_id"), startRowNo, endRowNo);
 		AdminFireStation station = service.selectFireStation((int) session.getAttribute("fire_station_id"));
 
 		model.addAttribute("board", board);
@@ -165,7 +164,7 @@ public class AdminController {
 		int rowsPerPage = 8;// 페이지당 행수
 		int pagesPerGroup = 10;// 이전, 다음을 클릭했을때 나오는 그룹당 페이지 수
 		int totalRowNum = service.getTotalRowNo();// 전체 게시물 수
-		int totalPageNum = totalRowNum / rowsPerPage - 1;// 전체 페이지 수
+		int totalPageNum = totalRowNum / rowsPerPage - 2;// 전체 페이지 수
 		if (totalRowNum % rowsPerPage != 0)
 			totalPageNum++;// 뒤에 짜투리도 페이지수로 인정
 		int totalGroupNum = totalPageNum / pagesPerGroup;// 전체 그룹 수
@@ -182,8 +181,7 @@ public class AdminController {
 			endRowNo = totalRowNum;
 		// ---------------------------------페이징
 
-		List<AdminBoard> board = service.selectReport((int) session.getAttribute("fire_station_id"), startRowNo,
-				endRowNo);
+		List<AdminBoard> board = service.selectReport((int) session.getAttribute("fire_station_id"), startRowNo, endRowNo);
 		AdminFireStation station = service.selectFireStation((int) session.getAttribute("fire_station_id"));
 
 		model.addAttribute("board", board);
@@ -214,7 +212,7 @@ public class AdminController {
 		int rowsPerPage = 8;// 페이지당 행수
 		int pagesPerGroup = 10;// 이전, 다음을 클릭했을때 나오는 그룹당 페이지 수
 		int totalRowNum = service.getTotalRowNo();// 전체 게시물 수
-		int totalPageNum = totalRowNum / rowsPerPage - 1;// 전체 페이지 수
+		int totalPageNum = totalRowNum / rowsPerPage - 2;// 전체 페이지 수
 		if (totalRowNum % rowsPerPage != 0)
 			totalPageNum++;// 뒤에 짜투리도 페이지수로 인정
 		int totalGroupNum = totalPageNum / pagesPerGroup;// 전체 그룹 수
@@ -231,8 +229,7 @@ public class AdminController {
 			endRowNo = totalRowNum;
 		// ---------------------------------페이징
 
-		List<ObBoard> obBoardList = service.selectObBoardList((int) session.getAttribute("fire_station_id"), startRowNo,
-				endRowNo);
+		List<ObBoard> obBoardList = service.selectObBoardList((int) session.getAttribute("fire_station_id"), startRowNo, endRowNo);
 		AdminFireStation station = service.selectObFireStation((int) session.getAttribute("fire_station_id"));
 
 		model.addAttribute("obBoardList", obBoardList);

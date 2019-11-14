@@ -32,12 +32,10 @@
    
    //연결이 완료되었을 때 자동으로 실행(콜백)되는 함수
    function onConnect() {
-      console.log("onConnect");
       client.subscribe("/drone/service2/sub");
    }
    //메시지를 수신했을 때 자동으로 실행(콜백)되는 함수
    function onMessageArrived(message) {
-      console.log("aaaaaaaaaaa");
       location.href="content";
    }
    
@@ -114,7 +112,7 @@
 							</c:forEach>
 							<tr>
 								<!--페이징  -->
-								<div style="position: absolute; bottom: 10px;">
+								<div id="contentPaging">
 									<div>
 										<button class="btn btn-primary" onclick="moving('report?pageNo=1')">처음</button>
 										<c:if test="${groupNo>1}">

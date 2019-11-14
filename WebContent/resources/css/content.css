@@ -111,3 +111,7 @@
     .cn_tab:hover {
     	
     }    
+    #contentPaging {
+    	position: absolute;  
+    	bottom: 10px;
+    }

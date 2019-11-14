@@ -13,71 +13,17 @@ integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6J
 crossorigin="anonymous">
 <title>Login 페이지</title>
 
-<style>
-body, html {
-	padding: 0;
-	height: 100%;
-	width: 100%;
-	/*  	padding-bottom: 1px; */
-	font-family: "Nanum Gothic", arial, helvetica, sans-serif;
-	/* 	background-repeat: no-repeat; */
-	background: linear-gradient(to bottom right);
-}
-
-#bg {
-	border: 0;
-	padding: 0;
-	background-image:
-		url('<%=application.getContextPath()%>/resources/image/gain.jpg');
-	/* min-height: 100%; */
-	background-position: center;
-	background-size: cover;
-	background-repeat: no-repeat;
-}
-
-.layer {
-	position: absolute;
-	text-align: center;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	font-size: 20px;
-}
-
-.layer .content {
-	display: inline-block;
-	vertical-align: middle
-}
-
-.layer .blank {
-	display: inline-block;
-	width: 0;
-	height: 100%;
-	vertical-align: middle
-}
-
-.card {
-	margin: auto; /* Added */
-	float: none; /* Added */
-	margin-bottom: 10px; /* Added */
-	background-color: rgba(255, 255, 255, 0.5);
-}
-
-.form-signin .form-control {
-	position: relative;
-	height: auto;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	padding: 20px;
-	font-size: 20px;
-}
-</style>
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/jquery-3.4.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
-<!--절대 경로  -->
+<link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/css/loginForm.css">
+
+<style type="text/css">
+#bg { 
+	background-image: url('<%=application.getContextPath()%>/resources/image/gain.jpg');
+}
+</style>
+
 <script type="text/javascript">
 	function checkForm() {
 		var result = true;

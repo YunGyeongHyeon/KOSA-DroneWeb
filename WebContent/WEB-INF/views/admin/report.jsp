@@ -7,6 +7,10 @@
 .selectLine td{
 	height: 85px;
 }
+#contentPaging {
+    position: absolute;  
+    bottom: 10px;
+}
 </style>
 
 <script>
@@ -109,7 +113,7 @@ $(document).ready(function(){
 			</c:forEach>
 			<tr>
 				<!--페이징  -->
-				<div style="position: absolute; bottom: 10px;">
+				<div id="contentPaging">
 					<div>
 						<button class="btn btn-primary" onclick="moving('report?pageNo=1')">처음</button>
 						<c:if test="${groupNo>1}">
