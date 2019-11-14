@@ -73,6 +73,13 @@ public class AdminController {
 	public String complete() {
 		return "redirect:/admin/content";
 	}
+	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute("fire_station_id");
+		session.removeAttribute("pageNo");
+		return "redirect:/admin/loginForm";
+	}
 
 	// -----------------------------------------------------------------------------------------------------------------------content
 	@RequestMapping("/content")
@@ -99,7 +106,7 @@ public class AdminController {
 		int rowsPerPage = 8;// 페이지당 행수
 		int pagesPerGroup = 10;// 이전, 다음을 클릭했을때 나오는 그룹당 페이지 수
 		int totalRowNum = service.getTotalRowNo();// 전체 게시물 수
-		int totalPageNum = totalRowNum / rowsPerPage - 2;// 전체 페이지 수
+		int totalPageNum = totalRowNum / rowsPerPage;// 전체 페이지 수
 		if (totalRowNum % rowsPerPage != 0)
 			totalPageNum++;// 뒤에 짜투리도 페이지수로 인정
 		int totalGroupNum = totalPageNum / pagesPerGroup;// 전체 그룹 수
@@ -112,8 +119,9 @@ public class AdminController {
 			endPageNo = totalPageNum;
 		int startRowNo = (pageNo - 1) * rowsPerPage + 1;// 공식//현재시작 페이지의 행 번호
 		int endRowNo = pageNo * rowsPerPage;// 현재공식//해당 페이지의 끝 행번호
-		if (groupNo == totalGroupNum)
-			endRowNo = totalRowNum;
+		if(pageNo == totalPageNum) { //현재 그룹의 번호가 전체 그룹 수(마지막 그룹번호)와 같다면
+			endRowNo = totalRowNum; // 끝 행 번호는 전체 행 번호 수 만큼 된다
+		}
 		// ---------------------------------페이징
 
 		List<AdminBoard> board = service.selectReport((int) session.getAttribute("fire_station_id"), startRowNo, endRowNo);
@@ -131,12 +139,6 @@ public class AdminController {
 		model.addAttribute("pageNo", pageNo);
 
 		return "admin/content";
-	}
-
-	@RequestMapping("/logout")
-	public String logout(HttpSession session) {
-		session.removeAttribute("fire_station_id");
-		return "redirect:/admin/loginForm";
 	}
 
 	// -----------------------------------------------------------------------------------------------------------------------report
@@ -164,7 +166,9 @@ public class AdminController {
 		int rowsPerPage = 8;// 페이지당 행수
 		int pagesPerGroup = 10;// 이전, 다음을 클릭했을때 나오는 그룹당 페이지 수
 		int totalRowNum = service.getTotalRowNo();// 전체 게시물 수
-		int totalPageNum = totalRowNum / rowsPerPage - 2;// 전체 페이지 수
+		System.out.println(totalRowNum+"**********************************************");
+		int totalPageNum = totalRowNum / rowsPerPage;// 전체 페이지 수
+		System.out.println(totalPageNum+"+++++++++++++++++++++++++++++++++++++++++++++");
 		if (totalRowNum % rowsPerPage != 0)
 			totalPageNum++;// 뒤에 짜투리도 페이지수로 인정
 		int totalGroupNum = totalPageNum / pagesPerGroup;// 전체 그룹 수
@@ -177,8 +181,9 @@ public class AdminController {
 			endPageNo = totalPageNum;
 		int startRowNo = (pageNo - 1) * rowsPerPage + 1;// 공식//현재시작 페이지의 행 번호
 		int endRowNo = pageNo * rowsPerPage;// 현재공식//해당 페이지의 끝 행번호
-		if (groupNo == totalGroupNum)
-			endRowNo = totalRowNum;
+		if(pageNo == totalPageNum) { //현재 그룹의 번호가 전체 그룹 수(마지막 그룹번호)와 같다면
+			endRowNo = totalRowNum; // 끝 행 번호는 전체 행 번호 수 만큼 된다
+		}
 		// ---------------------------------페이징
 
 		List<AdminBoard> board = service.selectReport((int) session.getAttribute("fire_station_id"), startRowNo, endRowNo);
@@ -212,7 +217,7 @@ public class AdminController {
 		int rowsPerPage = 8;// 페이지당 행수
 		int pagesPerGroup = 10;// 이전, 다음을 클릭했을때 나오는 그룹당 페이지 수
 		int totalRowNum = service.getTotalRowNo();// 전체 게시물 수
-		int totalPageNum = totalRowNum / rowsPerPage - 2;// 전체 페이지 수
+		int totalPageNum = totalRowNum / rowsPerPage;// 전체 페이지 수
 		if (totalRowNum % rowsPerPage != 0)
 			totalPageNum++;// 뒤에 짜투리도 페이지수로 인정
 		int totalGroupNum = totalPageNum / pagesPerGroup;// 전체 그룹 수
@@ -225,8 +230,9 @@ public class AdminController {
 			endPageNo = totalPageNum;
 		int startRowNo = (pageNo - 1) * rowsPerPage + 1;// 공식//현재시작 페이지의 행 번호
 		int endRowNo = pageNo * rowsPerPage;// 현재공식//해당 페이지의 끝 행번호
-		if (groupNo == totalGroupNum)
-			endRowNo = totalRowNum;
+		if(pageNo == totalPageNum) { //현재 그룹의 번호가 전체 그룹 수(마지막 그룹번호)와 같다면
+			endRowNo = totalRowNum; // 끝 행 번호는 전체 행 번호 수 만큼 된다
+		}
 		// ---------------------------------페이징
 
 		List<ObBoard> obBoardList = service.selectObBoardList((int) session.getAttribute("fire_station_id"), startRowNo, endRowNo);
