@@ -8,12 +8,14 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.fireBusters.web.dto.AcBoard;
 import com.fireBusters.web.dto.AdminBoard;
 import com.fireBusters.web.dto.AdminFireStation;
 import com.fireBusters.web.dto.AdminLatLon;
 import com.fireBusters.web.dto.AdminMember;
 import com.fireBusters.web.dto.ObBoard;
 import com.fireBusters.web.dto.ObBoardPicture;
+import com.fireBusters.web.dto.AcBoardPicture;
 
 @Component
 public class AdminDao {
@@ -44,7 +46,7 @@ public class AdminDao {
 		return aLatLon;
 	}
 
-	public List<ObBoard> selectList(int obid, int startRowNo, int endRowNo) {
+	public List<ObBoard> selectObBoardList(int obid, int startRowNo, int endRowNo) {
 		Map<String, Integer> map = new HashMap<>();
 		map.put("obid", obid);
 		map.put("startRowNo", startRowNo);
@@ -60,7 +62,6 @@ public class AdminDao {
 
 	public List<ObBoardPicture> selectObBoardPicture(int obp) {
 		obp = 3;
-		System.out.println("dsjfasdlfjaslf" + obp);
 		List<ObBoardPicture> obBoardPicture = sqlSessionTemplate.selectList("adminMember.obPicture", obp);
 		return obBoardPicture;
 	}
@@ -81,6 +82,28 @@ public class AdminDao {
 		map.put("reportNo", reportNo);
 		int rows = sqlSessionTemplate.update("adminMember.updateHandle", map);
 		return rows;
+	}
+
+	public List<AcBoard> selectAcBoardList(int abid, int startRowNo, int endRowNo) {
+		Map<String, Integer> map = new HashMap<>();
+		map.put("abid", abid);
+		map.put("startRowNo", startRowNo);
+		map.put("endRowNo", endRowNo);
+		List<AcBoard> acBoardList = sqlSessionTemplate.selectList("adminMember.acSelectList", map);
+		return acBoardList;
+	}
+
+	public AdminFireStation selectAcFireStation(int afs) {
+		AdminFireStation station = sqlSessionTemplate.selectOne("adminMember.acFireStation", afs);
+		return station;
+	}
+
+	public List<AcBoardPicture> selectAcBoardPicture(int abp) {
+		abp = 3;
+		List<AcBoardPicture> acBoardPicture = sqlSessionTemplate.selectList("adminMember.acPicture", abp);
+		System.out.println("실행++++++++++++++++++++++++++++++++++++++++++++++++++++");
+		
+		return acBoardPicture;
 	}
 
 }

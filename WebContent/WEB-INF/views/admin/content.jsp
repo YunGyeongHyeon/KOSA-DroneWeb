@@ -59,7 +59,7 @@
 					<button class="cn_tap" id="cn_picture">
 						사진첩
 						<div id="cn_downBar" id="buttonTab">
-							<div class="layer" onclick="moving('picture')">사건</div>
+							<div class="layer" onclick="moving('acBoard')">사건</div>
 							<div class="layer" onclick="moving('obBoard')">정찰</div>
 						</div>
 					</button>

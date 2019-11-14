@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fireBusters.web.dto.AcBoardPicture;
 import com.fireBusters.web.dao.AdminDao;
+import com.fireBusters.web.dto.AcBoard;
 import com.fireBusters.web.dto.AdminBoard;
 import com.fireBusters.web.dto.AdminFireStation;
 import com.fireBusters.web.dto.AdminLatLon;
@@ -48,7 +50,7 @@ public class AdminService {
 	}
 
 	public List<ObBoard> selectObBoardList(int obid, int startRowNo, int endRowNo) {
-		List<ObBoard> obBoardList = adminDao.selectList(obid, startRowNo, endRowNo);
+		List<ObBoard> obBoardList = adminDao.selectObBoardList(obid, startRowNo, endRowNo);
 		return obBoardList;
 
 	}
@@ -77,6 +79,22 @@ public class AdminService {
 	public void updateHandle(int reportNo, String handle_result) {
 		adminDao.updateHandle(reportNo, handle_result);
 
+	}
+
+	public List<AcBoard> selectAcBoardList(int abid, int startRowNo, int endRowNo) {
+		List<AcBoard> acBoardList = adminDao.selectAcBoardList(abid, startRowNo, endRowNo);
+		return acBoardList;
+	}
+
+	public AdminFireStation selectAcFireStation(int afs) {
+		AdminFireStation station = adminDao.selectAcFireStation(afs);
+			
+		return station;
+	}
+
+	public List<AcBoardPicture> selectAcBoardPicture(int abp) {
+		List<AcBoardPicture> acBoardPicture = adminDao.selectAcBoardPicture(abp);
+		return null;
 	}
 
 }
