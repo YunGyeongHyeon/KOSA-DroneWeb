@@ -88,9 +88,8 @@
 	     </script>
 	</head>
 	<body>
-        	<div class="Map" id="map" >
-        	</div>
-        		<a onclick="sendData()" class="btn btn-danger" id="reportButton" style="width:150px; height:60px; line-height: 50px; 
-        		font-size:22px; text-align:center; color: white;position:absolute;top:80%;left:31.5%">신고하기</a>
+    	<div class="Map" id="map" ></div>
+        <a onclick="sendData()" class="btn btn-danger" id="reportButton" style="width:150px; height:60px; line-height: 50px; 
+        font-size:22px; text-align:center; color: white;position:absolute;top:80%;left:31.5%">신고하기</a>
 	</body>
 </html>

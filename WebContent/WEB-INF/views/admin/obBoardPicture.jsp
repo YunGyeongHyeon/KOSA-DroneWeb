@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,9 +27,7 @@ function fnImgPop(url){
  
 <div style="overflow:auto; width:900px; height:720px; vertical-align:middle; position: absolute; left: 950px;" >
 	<c:forEach var="picture" items="${obBoardPicture}">
-	
-	 	<img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/image/${picture.pname}" width="280px" height="240px"
-	 	onclick="fnImgPop(this.src)"/> 
+	 	<img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/image/${picture.pname}" width="280px" height="240px" onclick="fnImgPop(this.src)"/> 
 	</c:forEach>
 </div>
 

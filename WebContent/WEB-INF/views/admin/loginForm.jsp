@@ -77,9 +77,7 @@ crossorigin="anonymous">
 				</div>
 			</div>
 		</span> 
-		<span class="blank">
-		</span>
+		<span class="blank"></span>
 	</div>
-
 </body>
 </html>

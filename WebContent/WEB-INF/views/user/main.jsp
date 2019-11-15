@@ -22,7 +22,6 @@
                 <a href="map" class="hero-cta"><img style="width:140px;" src="<%=application.getContextPath() %>/resources/image/drone_logo.png"><br/><span style="color:red">화재 신고하기</span></a>
             </div>
         </section>
-        </section>
+    </section>
  </body>
-
 </html>    

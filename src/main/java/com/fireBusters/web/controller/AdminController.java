@@ -28,6 +28,7 @@ import com.fireBusters.web.service.LoginResult;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+	
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
 	@Autowired
@@ -68,6 +69,7 @@ public class AdminController {
 			return "redirect:/admin/loginForm";
 		}
 		session.setAttribute("fire_station_id", fire_station_id);
+		
 		return "admin/complete";
 	}
 
@@ -83,7 +85,7 @@ public class AdminController {
 		return "redirect:/admin/loginForm";
 	}
 
-	// -----------------------------------------------------------------------------------------------------------------------content
+	// Content
 	@RequestMapping("/content")
 	public String content(Model model, HttpSession session, AdminFireStation fireStation, AdminLatLon adminLatLon,
 			@RequestParam(defaultValue = "0") int pageNo) {
@@ -103,10 +105,11 @@ public class AdminController {
 			System.out.println("아이디 없습니다.");
 			return "redirect:/admin/loginForm";
 		}
+		
 		// ---------------------------------페이징
 		int rowsPerPage = 8;// 페이지당 행수
 		int pagesPerGroup = 10;// 이전, 다음을 클릭했을때 나오는 그룹당 페이지 수
-		int totalRowNum = service.getTotalRowNo((int) session.getAttribute("fire_station_id"));// 전체 게시물 수
+		int totalRowNum = service.getReportTotalRowNo((int) session.getAttribute("fire_station_id"));// 전체 게시물 수
 		int totalPageNum = totalRowNum / rowsPerPage;// 전체 페이지 수
 		if (totalRowNum % rowsPerPage != 0)
 			totalPageNum++;// 뒤에 짜투리도 페이지수로 인정
@@ -142,7 +145,7 @@ public class AdminController {
 		return "admin/content";
 	}
 
-	// -----------------------------------------------------------------------------------------------------------------------report
+	// Report
 	@RequestMapping("/report")
 	public String report(Model model, HttpSession session, AdminFireStation fireStation, AdminLatLon adminLatLon,
 			@RequestParam(defaultValue = "0") int pageNo) {
@@ -166,7 +169,7 @@ public class AdminController {
 		// ---------------------------------페이징
 		int rowsPerPage = 8;// 페이지당 행수
 		int pagesPerGroup = 10;// 이전, 다음을 클릭했을때 나오는 그룹당 페이지 수
-		int totalRowNum = service.getTotalRowNo((int) session.getAttribute("fire_station_id"));// 전체 게시물 수
+		int totalRowNum = service.getReportTotalRowNo((int) session.getAttribute("fire_station_id"));// 전체 게시물 수
 		int totalPageNum = totalRowNum / rowsPerPage;// 전체 페이지 수
 		if (totalRowNum % rowsPerPage != 0)
 			totalPageNum++;// 뒤에 짜투리도 페이지수로 인정
@@ -198,9 +201,11 @@ public class AdminController {
 		model.addAttribute("startPageNo", startPageNo);
 		model.addAttribute("endPageNo", endPageNo);
 		model.addAttribute("pageNo", pageNo);
+		
 		return "admin/report";
 	}
 
+	// ObBoard
 	@RequestMapping("/obBoard")
 	public String obBoard(Model model, HttpSession session, AdminFireStation fireStation, AdminLatLon adminLatLon,
 			@RequestParam(defaultValue = "1") int pageNo) {
@@ -212,10 +217,12 @@ public class AdminController {
 
 		session.setAttribute("pageNo", pageNo);
 
+		String report_handle = "R";
+
 		// ---------------------------------페이징
 		int rowsPerPage = 8;// 페이지당 행수
 		int pagesPerGroup = 10;// 이전, 다음을 클릭했을때 나오는 그룹당 페이지 수
-		int totalRowNum = service.getTotalRowNo((int) session.getAttribute("fire_station_id"));// 전체 게시물 수
+		int totalRowNum = service.getTotalRowNo((int) session.getAttribute("fire_station_id"), report_handle);// 전체 게시물 수
 		int totalPageNum = totalRowNum / rowsPerPage;// 전체 페이지 수
 		if (totalRowNum % rowsPerPage != 0)
 			totalPageNum++;// 뒤에 짜투리도 페이지수로 인정
@@ -234,7 +241,7 @@ public class AdminController {
 		}
 		// ---------------------------------페이징
 
-		List<ObBoard> obBoardList = service.selectObBoardList((int) session.getAttribute("fire_station_id"), startRowNo,endRowNo);
+		List<ObBoard> obBoardList = service.selectObBoardList((int) session.getAttribute("fire_station_id"), startRowNo,endRowNo, report_handle);
 		AdminFireStation station = service.selectObFireStation((int) session.getAttribute("fire_station_id"));
 
 		model.addAttribute("obBoardList", obBoardList);
@@ -249,37 +256,9 @@ public class AdminController {
 		model.addAttribute("pageNo", pageNo);
 
 		return "admin/observe_board";
-
 	}
 
-	@RequestMapping("/obBoardPicture")
-	public String obBoardPicture(int report_no, Model model, HttpSession session) {
-		System.out.println(report_no);
-		List<ObBoardPicture> obBoardPicture = service.selectObBoardPicture(report_no);
-		model.addAttribute("obBoardPicture", obBoardPicture);
-		return "admin/obBoardPicture";
-	}
-
-	@RequestMapping("/observe_map")
-	public String observe_map() {
-		return "admin/observe_map";
-	}
-
-	@RequestMapping("/handle")
-	public String handle(HttpServletRequest request) {
-		int reportNo = Integer.parseInt(request.getParameter("reportNo"));
-		String handle_result = "";
-		if (request.getParameter("Y") != null) {
-			handle_result = "Y";
-		} else if (request.getParameter("R") != null) {
-			handle_result = "R";
-		} else {
-			handle_result = "N";
-		}
-		service.updateHandle(reportNo, handle_result);
-		return "redirect:/admin/content";
-	}
-
+	// AcBoard
 	@RequestMapping("/acBoard")
 	public String acBoard(Model model, HttpSession session, AdminFireStation fireStation, AdminLatLon adminLatLon,
 			@RequestParam(defaultValue = "1") int pageNo) {
@@ -291,10 +270,12 @@ public class AdminController {
 
 		session.setAttribute("pageNo", pageNo);
 
+		String report_handle = "Y";
+		
 		// ---------------------------------페이징
 		int rowsPerPage = 8;// 페이지당 행수
 		int pagesPerGroup = 10;// 이전, 다음을 클릭했을때 나오는 그룹당 페이지 수
-		int totalRowNum = service.getTotalRowNo((int) session.getAttribute("fire_station_id"));// 전체 게시물 수
+		int totalRowNum = service.getTotalRowNo((int) session.getAttribute("fire_station_id"), report_handle);// 전체 게시물 수
 		int totalPageNum = totalRowNum / rowsPerPage;// 전체 페이지 수
 		if (totalRowNum % rowsPerPage != 0)
 			totalPageNum++;// 뒤에 짜투리도 페이지수로 인정
@@ -328,9 +309,17 @@ public class AdminController {
 		model.addAttribute("pageNo", pageNo);
 
 		return "admin/accident_board";
-
 	}
 
+	// ObBoardPicture
+	@RequestMapping("/obBoardPicture")
+	public String obBoardPicture(int report_no, Model model, HttpSession session) {
+		List<ObBoardPicture> obBoardPicture = service.selectObBoardPicture(report_no);
+		model.addAttribute("obBoardPicture", obBoardPicture);
+		return "admin/obBoardPicture";
+	}
+
+	// AcBoardPicture
 	@RequestMapping("/acBoardPicture")
 	public String acBoardPicture(int report_no, Model model, HttpSession session) {
 		List<AcBoardPicture> acBoardPicture = service.selectAcBoardPicture(report_no);
@@ -338,9 +327,30 @@ public class AdminController {
 		return "admin/acBoardPicture";
 	}
 
+	@RequestMapping("/observe_map")
+	public String observe_map() {
+		return "admin/observe_map";
+	}
+
 	@RequestMapping("/accident_map")
 	public String accident_map() {
 		return "admin/accident_map";
+	}
+
+	@RequestMapping("/handle")
+	public String handle(HttpServletRequest request) {
+		int reportNo = Integer.parseInt(request.getParameter("reportNo"));
+		
+		String handle_result = "";
+		if (request.getParameter("Y") != null) {
+			handle_result = "Y";
+		} else if (request.getParameter("R") != null) {
+			handle_result = "R";
+		} else {
+			handle_result = "N";
+		}
+		service.updateHandle(reportNo, handle_result);
+		return "redirect:/admin/content";
 	}
 
 }

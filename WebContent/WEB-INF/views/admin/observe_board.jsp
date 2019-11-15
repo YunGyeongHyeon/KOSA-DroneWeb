@@ -63,7 +63,6 @@
 <title>main Form</title>
 </head>
 <body>
-
 	<!-- 컨텐츠를 담아놓은 부분 -->
 	<div id="ajax">
 		<div id="cn_list">
@@ -96,14 +95,13 @@
 						<!--페이징  -->
 						<div id="contentPaging">
 							<div>
-								<button class="btn btn-primary" onclick="moving('obBoard?pageNo=1')">처음</button>
+								<button class="btn btn-primary" onclick="moving('obBoard?pageNo=1&report_handle=${report_handle}')">처음</button>
 								<c:if test="${groupNo>1}">
 									<button class="btn btn-success" onclick="moving('obBoard?pageNo=${startPageNo-1}')">이전</button>
 								</c:if>
 								<div style="display: inline-block; padding: 20px;"class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 									<div>
 										<c:forEach begin="${startPageNo}" end="${endPageNo}" var="i">
-											<!--begin시작과 end끝값을 넣어주면 된다.  -->
 											<c:if test="${pageNo==i}">
 												<button onclick="moving('obBoard?pageNo=${i}')" class="btn btn-danger active">${i}</button>
 											</c:if>

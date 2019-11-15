@@ -6,6 +6,7 @@ public class ObBoard {
 	private String report_date;
 	private double report_lat;
 	private double report_lon;
+	private String report_handle;
 
 	public int getFire_station_name() {
 		return fire_station_name;
@@ -45,6 +46,14 @@ public class ObBoard {
 
 	public void setReport_lon(double report_lon) {
 		this.report_lon = report_lon;
+	}
+
+	public String getReport_handle() {
+		return report_handle;
+	}
+
+	public void setReport_handle(String report_handle) {
+		this.report_handle = report_handle;
 	}
 
 }

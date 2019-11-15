@@ -16,7 +16,7 @@ import com.fireBusters.web.dao.UserDao;
 import com.fireBusters.web.dto.AdminLatLon;
 
 @Service
-public class MqttService2 { // Subscriber //==UserService
+public class MqttService2 { // Subscriber
 
 	@Autowired
 	UserDao userDao;
@@ -53,7 +53,6 @@ public class MqttService2 { // Subscriber //==UserService
 
 			@Override
 			public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
-				// 코드작성
 				byte[] bytes = mqttMessage.getPayload();
 				String json = new String(bytes);
 				JSONObject jsonObject = new JSONObject(json);
@@ -81,12 +80,12 @@ public class MqttService2 { // Subscriber //==UserService
 			public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {
 
 			}
+
 		});
-
 		client.subscribe("/drone/service2/pub");
-
 	}
 
+	// UserService
 	public int writeLocation(double lat, double lon, int fire_station_id) {
 		int rows = userDao.insert(lat, lon, fire_station_id);
 		return rows;

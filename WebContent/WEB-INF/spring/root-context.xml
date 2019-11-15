@@ -13,7 +13,6 @@
 		<property name="maxIdle" value="1"/>
 	</bean>
 	
-	<!-- 외우지 말고 복사해서 쓰면 되는 부분 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
 		<property name="mapperLocations" value="/WEB-INF/mybatis/*.xml"/>
@@ -22,5 +21,4 @@
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory"/>
 	</bean>
-	<!-- 외우지 말고 복사해서 쓰면 되는 부분 -->
 </beans>

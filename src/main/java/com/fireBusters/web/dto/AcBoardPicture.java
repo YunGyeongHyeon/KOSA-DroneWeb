@@ -3,10 +3,10 @@ package com.fireBusters.web.dto;
 public class AcBoardPicture {
 	private int picture_no;
 	private String picture_file;
-	private int ano;
-	private int fire_station_id;
-	private String fire_station_name;
-	private int fire_station_area_id;
+	private int observer_no;
+	private int rno;
+	private String pname;
+	private int ono;
 
 	public int getPicture_no() {
 		return picture_no;
@@ -24,36 +24,36 @@ public class AcBoardPicture {
 		this.picture_file = picture_file;
 	}
 
-	public int getAno() {
-		return ano;
+	public int getObserver_no() {
+		return observer_no;
 	}
 
-	public void setAno(int ano) {
-		this.ano = ano;
+	public void setObserver_no(int observer_no) {
+		this.observer_no = observer_no;
 	}
 
-	public int getFire_station_id() {
-		return fire_station_id;
+	public int getRno() {
+		return rno;
 	}
 
-	public void setFire_station_id(int fire_station_id) {
-		this.fire_station_id = fire_station_id;
+	public void setRno(int rno) {
+		this.rno = rno;
 	}
 
-	public String getFire_station_name() {
-		return fire_station_name;
+	public String getPname() {
+		return pname;
 	}
 
-	public void setFire_station_name(String fire_station_name) {
-		this.fire_station_name = fire_station_name;
+	public void setPname(String pname) {
+		this.pname = pname;
 	}
 
-	public int getFire_station_area_id() {
-		return fire_station_area_id;
+	public int getOno() {
+		return ono;
 	}
 
-	public void setFire_station_area_id(int fire_station_area_id) {
-		this.fire_station_area_id = fire_station_area_id;
+	public void setOno(int ono) {
+		this.ono = ono;
 	}
 
 }

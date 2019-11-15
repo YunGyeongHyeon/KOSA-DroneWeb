@@ -15,14 +15,12 @@
 </head>
 <body data-spy="scroll" data-target=".main-navigation" data-offset="150">
     <section id="MainContainer">
-
         <section id="HeroBanner">
             <div class="hero-content">
                 <p style="font-size:45px;">신고가 접수되었습니다.</p><br/>
 		  		<a href="home" class="hero-cta" ><img style="width:140px;" src="<%=application.getContextPath() %>/resources/image/drone_logo.png"><br/>확인</a>
             </div>
         </section>
-      </section>
+    </section>
  </body>
-
 </html>

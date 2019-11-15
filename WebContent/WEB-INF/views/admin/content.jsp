@@ -33,23 +33,12 @@
    //연결이 완료되었을 때 자동으로 실행(콜백)되는 함수
    function onConnect() {
       client.subscribe("/drone/service2/sub");
-      //status 토픽
-	  client.subscribe("/drone/live/pub");
    }
+   
    //메시지를 수신했을 때 자동으로 실행(콜백)되는 함수
    function onMessageArrived(message) {
       location.href="content";
-      
-      var json = JSON.parse(message.payloadString);
-		if(json.status == "real") {
-			//실제사건
-			alert(message);
-		} else (json.status == "lie") {
-			//허위신고
-			alert(message);
-		}
    }
-   
 </script>
 
 <title>main Form</title>
@@ -68,10 +57,10 @@
 					</table>
 					<button class="cn_tap" onClick="moving('report?pageNo=1')">실시간 상황</button>
 					<button class="cn_tap" id="cn_picture">
-						사진첩
+						사건일지
 						<div id="cn_downBar" id="buttonTab">
-							<div class="layer" onclick="moving('acBoard')">사건</div>
-							<div class="layer" onclick="moving('obBoard')">정찰</div>
+							<div class="layer" onclick="moving('acBoard')">실제사건</div>
+							<div class="layer" onclick="moving('obBoard')">허위신고</div>
 						</div>
 					</button>
 					<!-- 로그인정보: 아이디 비밀번호 수정 로그아웃 -->

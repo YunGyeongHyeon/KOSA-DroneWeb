@@ -27,15 +27,6 @@ public class AdminDao {
 		return member;
 	}
 
-	public List<AdminBoard> selectReport(int id, int startRowNo, int endRowNo) {
-		Map<String, Integer> map = new HashMap<>();
-		map.put("id", id);
-		map.put("startRowNo", startRowNo);
-		map.put("endRowNo", endRowNo);
-		List<AdminBoard> board = sqlSessionTemplate.selectList("adminMember.selectReport", map);
-		return board;
-	}
-
 	public AdminFireStation selectFireStation(int fire_station_id) {
 		AdminFireStation station = sqlSessionTemplate.selectOne("adminMember.selectFireStation", fire_station_id);
 		return station;
@@ -46,18 +37,32 @@ public class AdminDao {
 		return aLatLon;
 	}
 
-	public List<ObBoard> selectObBoardList(int obid, int startRowNo, int endRowNo) {
+	public List<AdminBoard> selectReport(int id, int startRowNo, int endRowNo) {
 		Map<String, Integer> map = new HashMap<>();
+		map.put("id", id);
+		map.put("startRowNo", startRowNo);
+		map.put("endRowNo", endRowNo);
+		List<AdminBoard> board = sqlSessionTemplate.selectList("adminMember.selectReport", map);
+		return board;
+	}
+
+	public List<ObBoard> selectObBoardList(int obid, int startRowNo, int endRowNo, String report_handle) {
+		Map<String, Object> map = new HashMap<>();
 		map.put("obid", obid);
 		map.put("startRowNo", startRowNo);
 		map.put("endRowNo", endRowNo);
+		map.put("report_handle", report_handle);
 		List<ObBoard> obBoardList = sqlSessionTemplate.selectList("adminMember.obSelectList", map);
 		return obBoardList;
 	}
 
-	public AdminFireStation selectObFireStation(int ofs) {
-		AdminFireStation station = sqlSessionTemplate.selectOne("adminMember.obFireStation", ofs);
-		return station;
+	public List<AcBoard> selectAcBoardList(int abid, int startRowNo, int endRowNo) {
+		Map<String, Integer> map = new HashMap<>();
+		map.put("abid", abid);
+		map.put("startRowNo", startRowNo);
+		map.put("endRowNo", endRowNo);
+		List<AcBoard> acBoardList = sqlSessionTemplate.selectList("adminMember.acSelectList", map);
+		return acBoardList;
 	}
 
 	public List<ObBoardPicture> selectObBoardPicture(int obp) {
@@ -65,8 +70,32 @@ public class AdminDao {
 		return obBoardPicture;
 	}
 
-	public int selectTotalRowNo(int fire_station_id) {
-		int totalRowNum = sqlSessionTemplate.selectOne("adminMember.selectTotalRowNum", fire_station_id);
+	public List<AcBoardPicture> selectAcBoardPicture(int abp) {
+		List<AcBoardPicture> acBoardPicture = sqlSessionTemplate.selectList("adminMember.acPicture", abp);
+		return acBoardPicture;
+	}
+
+	public AdminFireStation selectObFireStation(int ofs) {
+		AdminFireStation station = sqlSessionTemplate.selectOne("adminMember.obFireStation", ofs);
+		return station;
+	}
+
+	public AdminFireStation selectAcFireStation(int afs) {
+		AdminFireStation station = sqlSessionTemplate.selectOne("adminMember.acFireStation", afs);
+		return station;
+	}
+
+	public int selectReportTotalRowNo(int fire_station_id) {
+		int totalRowNum = sqlSessionTemplate.selectOne("adminMember.selectReportTotalRowNum", fire_station_id);
+		return totalRowNum;
+	}
+
+	public int selectTotalRowNo(int fire_station_id, String report_handle) {
+		System.out.println(fire_station_id);
+		Map<String, Object> map = new HashMap<>();
+		map.put("fire_station_id", fire_station_id);
+		map.put("report_handle", report_handle);
+		int totalRowNum = sqlSessionTemplate.selectOne("adminMember.selectTotalRowNum", map);
 		return totalRowNum;
 	}
 
@@ -82,25 +111,4 @@ public class AdminDao {
 		int rows = sqlSessionTemplate.update("adminMember.updateHandle", map);
 		return rows;
 	}
-
-	public List<AcBoard> selectAcBoardList(int abid, int startRowNo, int endRowNo) {
-		Map<String, Integer> map = new HashMap<>();
-		map.put("abid", abid);
-		map.put("startRowNo", startRowNo);
-		map.put("endRowNo", endRowNo);
-		List<AcBoard> acBoardList = sqlSessionTemplate.selectList("adminMember.acSelectList", map);
-		return acBoardList;
-	}
-
-	public AdminFireStation selectAcFireStation(int afs) {
-		AdminFireStation station = sqlSessionTemplate.selectOne("adminMember.acFireStation", afs);
-		return station;
-	}
-
-	public List<AcBoardPicture> selectAcBoardPicture(int abp) {
-		abp = 3;
-		List<AcBoardPicture> acBoardPicture = sqlSessionTemplate.selectList("adminMember.acPicture", abp);
-		return acBoardPicture;
-	}
-
 }

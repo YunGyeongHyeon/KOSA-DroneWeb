@@ -3,56 +3,67 @@
 <mapper namespace="adminMember">
 
 	<select id="selectAdminMember" parameterType="int" resultType="com.fireBusters.web.dto.AdminMember">
- 		 select fire_station_id, fire_station_password from fire_station where fire_station_id=#{fire_station_id}
-	</select>
-
-	<select id="selectReport" parameterType="map" resultType="com.fireBusters.web.dto.AdminBoard">
-		select rn, report_date, report_lat, report_lon, report_no, report_handle
-		from(select rownum as rn, report_date, report_lat, report_lon, report_no, report_handle
-		from(select to_char(report_date, 'MM/DD HH24:MI:SS') report_date, report_lat, report_lon, report_no, report_handle
-		from report
-		where fire_station_no=#{id}  ORDER BY report_no DESC)
-		where rownum &lt;= #{endRowNo})
-		where rn &gt;= #{startRowNo}
+ 		 select fire_station_id, fire_station_password 
+ 		 from fire_station 
+ 		 where fire_station_id=#{fire_station_id}
 	</select>
 	
 	<select id="selectFireStation" parameterType="int" resultType="com.fireBusters.web.dto.AdminFireStation">
 		select fire_station_id, fire_station_name, fire_station_area_id
-		    from fire_station
-		    where fire_station_id=#{fire_station_area_id}
+		from fire_station
+	    where fire_station_id=#{fire_station_area_id}
 	</select>
 
 	<select id="selectPoint" resultType="com.fireBusters.web.dto.AdminLatLon">
-		select fire_station_id, fire_station_point, fire_lat, fire_lon from fire_station_area order by fire_station_id, fire_station_point asc
+		select fire_station_id, fire_station_point, fire_lat, fire_lon 
+		from fire_station_area 
+		order by fire_station_id, fire_station_point asc
 	</select>
-	
-	<select id="obSelectList" parameterType="map" resultType="com.fireBusters.web.dto.ObBoard">
-		select rn, report_date, report_lat, report_lon, report_no
-				from(select rownum as rn, report_date, report_lat, report_lon, report_no
-				from(select to_char(report_date, 'MM/DD HH24:MI:SS') report_date, report_lat, report_lon, report_no
-				from report
-				where fire_station_no=#{obid}  ORDER BY report_no DESC)
-				where rownum &lt;= #{endRowNo})
-				where rn &gt;= #{startRowNo}
-	</select>
-	
+
 	<select id="obFireStation" parameterType="int" resultType="com.fireBusters.web.dto.AdminFireStation">
 		select fire_station_id, fire_station_name, fire_station_area_id
-		    from fire_station
-		    where fire_station_id=#{ofs}
+		from fire_station
+		where fire_station_id=#{ofs}
 	</select>
-	
-	<!-- <select id="obPicture" parameterType="int" resultType="com.fireBusters.web.dto.ObBoardPicture">
+		
+	<select id="acFireStation" parameterType="int" resultType="com.fireBusters.web.dto.AdminFireStation">
 		select fire_station_id, fire_station_name, fire_station_area_id
-		    from fire_station
-		    where fire_station_id=#{obp}
-	</select> -->
-	<select id="obPicture" parameterType="int" resultType="com.fireBusters.web.dto.ObBoardPicture">
-		select rno, pname, ono
-		from test
-        where rno=#{obp}
+		from fire_station
+	    where fire_station_id=#{afs}
 	</select>
 	
+	<select id="selectReport" parameterType="map" resultType="com.fireBusters.web.dto.AdminBoard">
+		select rn, report_date, report_lat, report_lon, report_no, report_handle
+			from(select rownum as rn, report_date, report_lat, report_lon, report_no, report_handle
+					from(select to_char(report_date, 'MM/DD HH24:MI:SS') report_date, report_lat, report_lon, report_no, report_handle
+							from report
+							where fire_station_no=#{id}  ORDER BY report_no DESC)
+					where rownum &lt;= #{endRowNo})
+			where rn &gt;= #{startRowNo}
+	</select>
+
+	<select id="obSelectList" parameterType="map" resultType="com.fireBusters.web.dto.ObBoard">
+ 		select rn, report_date, report_lat, report_lon, report_no, REPORT_HANDLE
+        	from(select rownum as rn, report_date, report_lat, report_lon, report_no, REPORT_HANDLE
+                	from(select report_date, report_lat, report_lon, report_no, REPORT_HANDLE
+                			from(select to_char(report_date, 'MM/DD HH24:MI:SS') report_date, report_lat, report_lon, report_no, REPORT_HANDLE
+									from report
+									where fire_station_no=#{obid}  ORDER BY report_no DESC)
+                			where REPORT_HANDLE=#{report_handle})
+               		where rownum &lt;= #{endRowNo})
+            where rn &gt;= #{startRowNo}
+	</select>
+	
+	<select id="acSelectList" parameterType="map" resultType="com.fireBusters.web.dto.AcBoard">
+		select rn, report_date, report_lat, report_lon, report_no
+			from(select rownum as rn, report_date, report_lat, report_lon, report_no
+					from(select to_char(report_date, 'MM/DD HH24:MI:SS') report_date, report_lat, report_lon, report_no
+							from report
+							where fire_station_no=#{abid}  ORDER BY report_no DESC)
+					where rownum &lt;= #{endRowNo})
+			where rn &gt;= #{startRowNo}
+	</select>
+
 	<!-- observe_picture 테이블에서 사진 꺼내오기 
 	<select id="obPicture" parameterType="int" resultType="com.fireBusters.web.dto.ObBoardPicture">
 		select p.picture_no, p.picture_file, p.observer_no
@@ -69,17 +80,30 @@
 		where a.ano = r.ano and p.ano = a.ano;
 	</select>	
 	 -->
-	
-	<select id="acPicture" parameterType="int" resultType="com.fireBusters.web.dto.AcBoardPicture">
-		select fire_station_id, fire_station_name, fire_station_area_id
-		    from fire_station
-		    where fire_station_id=#{abp}
+		
+	<select id="obPicture" parameterType="int" resultType="com.fireBusters.web.dto.ObBoardPicture">
+		select rno, pname, ono
+		from test
+        where rno=#{obp}
 	</select>
 	
-	<select id="selectTotalRowNum" resultType="int">
+	<select id="acPicture" parameterType="int" resultType="com.fireBusters.web.dto.AcBoardPicture">
+		select rno, pname, ono
+		from test
+        where rno=#{abp}
+	</select>
+	
+	<select id="selectReportTotalRowNum" resultType="int">
 		select count(*) 
 		from report 
 		where fire_station_no = #{fire_station_id}
+	</select>
+	
+	<select id="selectTotalRowNum" resultType="int" parameterType="map">
+		select count(*) 
+		from report 
+		where fire_station_no = #{fire_station_id} 
+		and report_handle=#{report_handle}         
 	</select>
 
 	<select id="selectTotalPictureRowNo" resultType="int">
@@ -87,28 +111,9 @@
 	</select>
 
 	<update id="updateHandle" parameterType="map">
-		UPDATE report SET REPORT_HANDLE=#{handle_result} WHERE report_no=#{reportNo}
+		UPDATE report 
+		SET REPORT_HANDLE=#{handle_result} 
+		WHERE report_no=#{reportNo}
 	</update>
 	
-	<select id="acSelectList" parameterType="map" resultType="com.fireBusters.web.dto.AcBoard">
-		select rn, report_date, report_lat, report_lon, report_no
-				from(select rownum as rn, report_date, report_lat, report_lon, report_no
-				from(select to_char(report_date, 'MM/DD HH24:MI:SS') report_date, report_lat, report_lon, report_no
-				from report
-				where fire_station_no=#{abid}  ORDER BY report_no DESC)
-				where rownum &lt;= #{endRowNo})
-				where rn &gt;= #{startRowNo}
-	</select>
-	
-	
-	<select id="acFireStation" parameterType="int" resultType="com.fireBusters.web.dto.AdminFireStation">
-		select fire_station_id, fire_station_name, fire_station_area_id
-		    from fire_station
-		    where fire_station_id=#{afs}
-	</select>
-	
-
-	
-	
-
 </mapper>

@@ -58,8 +58,7 @@
 	}
 	//화면 숨김
 	
-	</script> 
-
+</script> 
 	
 <title>main Form</title>
 </head>
@@ -103,7 +102,6 @@
 								<div style="display: inline-block; padding: 20px;"class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 									<div>
 										<c:forEach begin="${startPageNo}" end="${endPageNo}" var="i">
-											<!--begin시작과 end끝값을 넣어주면 된다.  -->
 											<c:if test="${pageNo==i}">
 												<button onclick="moving('acBoard?pageNo=${i}')" class="btn btn-danger active">${i}</button>
 											</c:if>

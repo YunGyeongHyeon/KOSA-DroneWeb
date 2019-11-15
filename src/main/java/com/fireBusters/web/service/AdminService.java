@@ -49,10 +49,9 @@ public class AdminService {
 		return aLatLon;
 	}
 
-	public List<ObBoard> selectObBoardList(int obid, int startRowNo, int endRowNo) {
-		List<ObBoard> obBoardList = adminDao.selectObBoardList(obid, startRowNo, endRowNo);
+	public List<ObBoard> selectObBoardList(int obid, int startRowNo, int endRowNo, String report_handle) {
+		List<ObBoard> obBoardList = adminDao.selectObBoardList(obid, startRowNo, endRowNo, report_handle);
 		return obBoardList;
-
 	}
 
 	public AdminFireStation selectObFireStation(int ofs) {
@@ -65,8 +64,13 @@ public class AdminService {
 		return obBoardPicture;
 	}
 
-	public int getTotalRowNo(int fire_station_id) {
-		int totalRowNum = adminDao.selectTotalRowNo(fire_station_id);
+	public int getReportTotalRowNo(int fire_station_id) {
+		int totalRowNum = adminDao.selectReportTotalRowNo(fire_station_id);
+		return totalRowNum;
+	}
+
+	public int getTotalRowNo(int fire_station_id, String report_handle) {
+		int totalRowNum = adminDao.selectTotalRowNo(fire_station_id, report_handle);
 		return totalRowNum;
 	}
 

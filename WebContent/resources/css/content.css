@@ -1,121 +1,143 @@
 @charset "UTF-8";
-	body{
-	background:#f7ecdbc7;
-	}
-	#wraper{
-		margin-left:80px;
-		margin-right:80px;
-	}
-	.cn_header{
-    height: 100%;
-    margin-top: 15px;
-	}
-	#cn_119{
-		width:50%;
-	}
-	.cn_logo{
-		    height: 100px;
-		    width: 95%;
-		    box-shadow: 0px 3px 7px 0px;
-		    margin-left: 50px;
-		    background:white;
-	}
-	.cn_logo_img{
-		width:70%;
-	}
-	#cn_top_first{
-		float:left;
-		width:14%;
-		height:100px;
-		margin-left:5%;
-	}
-	#cn_top_secound{
-		    float: right;
-		    margin-top:25px;
-		    font-size: 1.2em;
-	}
-	.cn_table{
-		border:1px solid;
-	}
-	.side-right{
-		float:right;
-	}
-	#cn_login_id{
-		width:50%;
-		background:white;
-		text-align: center;
-		height:50px;
-		border-radius: 10px;
-	}
-	#cn_login_out img{
-		font-size:0.3em;
-		width:30%;
-		border-radius: 5px;
-	}
-	#ajax{
-	    margin-top: 35px;
-	    }
-	#cn_list{
-			margin-top:10px;
-		    width: 95%;
-		    margin-left: 50px;
-	}
-	.cn_tap{
-		    margin-left: 10%;
-		    float: left;
-		    width: 15%;
-		    height: 50%;
-		    font-size: 2em;
-		    text-align: center;
-		    margin-top: 25px;
-		    font-weight: bold;
-		    border: none;
-		    background: none;
-	}
-	.table2{
-		    width: 50%;
-		    float: left;
-		    text-align: center;
-		    background: white;
-	}
-	.table2 th{
-		text-align: center;
-	}
-	#map {
-        height: 400px;  /* The height is 400 pixels */
-        width: 50%;  /* The width is the width of the web page */
-        padding-bottom:44%;
-    }
-    .select{
-    	background:#A9A9A9;
-    	color:white;
-    }
-    .selectLine td{
-    	height: 85px;
-    }
-    
-    .selectLine h4{
-    	font-weight: bold;
-    }
-    
-    #cn_downBar{
-	    display: none; 
-	    position: absolute;
-	    top: 9.5%;
-	    left: 57.5%;
-	    z-index: 1;
-		background: white;    
-		border: 1px solid;
-    }
-    #cn_downBar div{
-    	float:left;
-    	margin:10px;
-    	
-    }
-    .cn_tab:hover {
-    	
-    }    
-    #contentPaging {
-    	position: absolute;  
-    	bottom: 10px;
-    }
+
+body {
+	background: #f7ecdbc7;
+}
+
+#wraper {
+	margin-left: 80px;
+	margin-right: 80px;
+}
+
+.cn_header {
+	height: 100%;
+	margin-top: 15px;
+}
+
+#cn_119 {
+	width: 50%;
+}
+
+.cn_logo {
+	height: 100px;
+	width: 95%;
+	box-shadow: 0px 3px 7px 0px;
+	margin-left: 50px;
+	background: white;
+}
+
+.cn_logo_img {
+	width: 70%;
+}
+
+#cn_top_first {
+	float: left;
+	width: 14%;
+	height: 100px;
+	margin-left: 5%;
+}
+
+#cn_top_secound {
+	float: right;
+	margin-top: 25px;
+	font-size: 1.2em;
+}
+
+.cn_table {
+	border: 1px solid;
+}
+
+.side-right {
+	float: right;
+}
+
+#cn_login_id {
+	width: 50%;
+	background: white;
+	text-align: center;
+	height: 50px;
+	border-radius: 10px;
+}
+
+#cn_login_out img {
+	font-size: 0.3em;
+	width: 30%;
+	border-radius: 5px;
+}
+
+#ajax {
+	margin-top: 35px;
+}
+
+#cn_list {
+	margin-top: 10px;
+	width: 95%;
+	margin-left: 50px;
+}
+
+.cn_tap {
+	margin-left: 10%;
+	float: left;
+	width: 15%;
+	height: 50%;
+	font-size: 2em;
+	text-align: center;
+	margin-top: 25px;
+	font-weight: bold;
+	border: none;
+	background: none;
+}
+
+.table2 {
+	width: 50%;
+	float: left;
+	text-align: center;
+	background: white;
+}
+
+.table2 th {
+	text-align: center;
+}
+
+#map {
+	height: 400px; /* The height is 400 pixels */
+	width: 50%; /* The width is the width of the web page */
+	padding-bottom: 44%;
+}
+
+.select {
+	background: #A9A9A9;
+	color: white;
+}
+
+.selectLine td {
+	height: 85px;
+}
+
+.selectLine h4 {
+	font-weight: bold;
+}
+
+#cn_downBar {
+	display: none;
+	position: absolute;
+	top: 9.5%;
+	left: 57.5%;
+	z-index: 1;
+	background: white;
+	border: 1px solid;
+}
+
+#cn_downBar div {
+	float: left;
+	margin: 10px;
+}
+
+.cn_tab:hover {
+	
+}
+
+#contentPaging {
+	position: absolute;
+	bottom: 10px;
+}
