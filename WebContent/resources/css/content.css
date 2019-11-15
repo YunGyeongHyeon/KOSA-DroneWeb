@@ -27,7 +27,7 @@ body {
 }
 
 .cn_logo_img {
-	width: 70%;
+	width: 90%;
 }
 
 #cn_top_first {
@@ -122,7 +122,7 @@ body {
 	display: none;
 	position: absolute;
 	top: 9.5%;
-	left: 57.5%;
+	left: 54%;
 	z-index: 1;
 	background: white;
 	border: 1px solid;
@@ -131,10 +131,6 @@ body {
 #cn_downBar div {
 	float: left;
 	margin: 10px;
-}
-
-.cn_tab:hover {
-	
 }
 
 #contentPaging {
