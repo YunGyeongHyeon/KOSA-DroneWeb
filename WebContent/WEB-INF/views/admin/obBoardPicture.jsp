@@ -26,36 +26,11 @@ function fnImgPop(url){
 <body>
  
 <div style="overflow:auto; width:900px; height:720px; vertical-align:middle; position: absolute; left: 950px;" >
-<%-- <c:forEach begin="1" end="9" var="i"> --%>
-	<%-- <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/3.jpg" width="240px" height="240px"
-	 onclick="fnImgPop(this.src)"/> --%>
-	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/f1.jpg" width="280px" height="240px"
-	 onclick="fnImgPop(this.src)"/>
-	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/f2.jpg" width="280px" height="240px"
-	 onclick="fnImgPop(this.src)"/>
-	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/f3.jpg" width="280px" height="240px"
-	 onclick="fnImgPop(this.src)"/>
-	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/f4.jpg" width="280px" height="240px"
-	 onclick="fnImgPop(this.src)"/>
-	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/f5.jpg" width="280px" height="240px"
-	 onclick="fnImgPop(this.src)"/>
-	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/f6.jpg" width="280px" height="240px"
-	 onclick="fnImgPop(this.src)"/>
-	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/f7.jpg" width="280px" height="240px"
-	 onclick="fnImgPop(this.src)"/>
-	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/f8.jpg" width="280px" height="240px"
-	 onclick="fnImgPop(this.src)"/>
-	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/k1.jpg" width="280px" height="240px"
-	 onclick="fnImgPop(this.src)"/>
-	 <%--9개 이상되면 사진 옆 스크롤바 생성--%>
-	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/k2.jpg" width="280px" height="240px"
-	 onclick="fnImgPop(this.src)"/>
-	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/k3.jpg" width="280px" height="240px"
-	 onclick="fnImgPop(this.src)"/>
-	 <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/obpicture/k1.jpg" width="280px" height="240px"
-	 onclick="fnImgPop(this.src)"/> 
-	 <%-- <img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/image/DB에서 꺼내오는 파일명으로 바꿔야한다" width="280px" height="240px"onclick="fnImgPop(this.src)"/> --%>
-<%-- 	</c:forEach> --%>
+	<c:forEach var="picture" items="${obBoardPicture}">
+	
+	 	<img id="fnImgPop" class="fnImgPop" src="<%=application.getContextPath()%>/resources/image/${picture.pname}" width="280px" height="240px"
+	 	onclick="fnImgPop(this.src)"/> 
+	</c:forEach>
 </div>
 
 </body>

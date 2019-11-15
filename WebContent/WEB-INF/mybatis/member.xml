@@ -42,10 +42,15 @@
 		    where fire_station_id=#{ofs}
 	</select>
 	
-	<select id="obPicture" parameterType="int" resultType="com.fireBusters.web.dto.ObBoardPicture">
+	<!-- <select id="obPicture" parameterType="int" resultType="com.fireBusters.web.dto.ObBoardPicture">
 		select fire_station_id, fire_station_name, fire_station_area_id
 		    from fire_station
 		    where fire_station_id=#{obp}
+	</select> -->
+	<select id="obPicture" parameterType="int" resultType="com.fireBusters.web.dto.ObBoardPicture">
+		select rno, pname, ono
+		from test
+        where rno=#{obp}
 	</select>
 	
 	<!-- observe_picture 테이블에서 사진 꺼내오기 

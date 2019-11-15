@@ -61,7 +61,6 @@ public class AdminDao {
 	}
 
 	public List<ObBoardPicture> selectObBoardPicture(int obp) {
-		obp = 3;
 		List<ObBoardPicture> obBoardPicture = sqlSessionTemplate.selectList("adminMember.obPicture", obp);
 		return obBoardPicture;
 	}

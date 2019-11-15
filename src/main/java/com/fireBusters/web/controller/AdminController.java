@@ -254,6 +254,7 @@ public class AdminController {
 
 	@RequestMapping("/obBoardPicture")
 	public String obBoardPicture(int report_no, Model model, HttpSession session) {
+		System.out.println(report_no);
 		List<ObBoardPicture> obBoardPicture = service.selectObBoardPicture(report_no);
 		model.addAttribute("obBoardPicture", obBoardPicture);
 		return "admin/obBoardPicture";
