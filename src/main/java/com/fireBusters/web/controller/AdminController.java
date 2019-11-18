@@ -1,8 +1,10 @@
 package com.fireBusters.web.controller;
 
+import java.io.PrintWriter;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.annotation.PreDestroy;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
@@ -434,10 +436,13 @@ public class AdminController {
 	}
  
 	@RequestMapping("/obBoardPath")
-	public String obBoardPath(int report_no) {
+	public void obBoardPath(int report_no, HttpServletResponse response) throws Exception {
 		String path = service.selectPathPoint(report_no);
-		System.out.println(path+"55555555555555558888888888");
-		return "redirect:/admin/obBoard";
+		response.setContentType("application/json");
+		PrintWriter pw = response.getWriter();
+		pw.write(path);
+		pw.flush();
+		pw.close();
 	}
 	   
 //	@RequestMapping("/handle")
@@ -460,5 +465,19 @@ public class AdminController {
 	public String test() {
 		return "/admin/observe_map";
 	}
+	
+	private void mqttDisconnect() {
+		try {
+			client.disconnectForcibly(1);
+			client.close(true);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}	
+	
+	@PreDestroy
+	public void destroy() {
+		mqttDisconnect();
+	}		
 
 }
