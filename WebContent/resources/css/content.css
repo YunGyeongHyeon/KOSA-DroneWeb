@@ -25,6 +25,7 @@
 	margin-left: 50px;
 	background: #ffffff;
 	border-radius: 5px;
+	background-color: rgba(255, 255, 255, 0.5);
 }
 
 .cn_logo_img {
@@ -58,6 +59,7 @@
 	text-align: center;
 	height: 50px;
 	border-radius: 10px;
+	background-color: rgba(255, 255, 255, 0.5);
 }
 
 #cn_login_out img {
@@ -127,6 +129,7 @@
 	z-index: 1;
 	background: white;
 	border: 1px solid;
+	background-color: rgba(255, 255, 255, 0.9);
 }
 
 #cn_downBar div {
