@@ -16,10 +16,6 @@
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/content.js"></script>
 
 <script type="text/javascript">
-   function hideButton(clickedId){
-      $('#trueReport'+clickedId).hide();
-      $('#falseReport'+clickedId).hide();
-   } 
    
    $(function() {
       //MQTT Broker와 연결하기
@@ -30,6 +26,7 @@
       });
       $(".dStart").on("click",function(){
     	$(this).css("background","gray").css("border-color","gray");
+    	$(this).text("출동중");
     	$(this).attr("disabled","true");
       })
    });
@@ -88,7 +85,6 @@
 								<th class="panel panelbody" scope="col">화제장소(경도)</th>
 								<th class="panel panelbody" scope="col">접수시간</th>
 								<th class="panel panelbody" scope="col">처리현황</th>
-								<th class="panel panelbody" scope="col">신고유형</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -102,8 +98,6 @@
 									</td>
 									<td scope="col">
 										<button class="btn btn-danger dStart">드론출동</button>
-									</td>
-									<td>
 									</td>
 								</tr>
 								<%i++;%>

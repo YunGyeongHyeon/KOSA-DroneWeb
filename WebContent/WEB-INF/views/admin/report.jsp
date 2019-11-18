@@ -87,7 +87,6 @@ $(document).ready(function(){
 				<th class="panel panelbody" scope="col">화제장소(경도)</th>
 				<th class="panel panelbody" scope="col">접수시간</th>
 				<th class="panel panelbody" scope="col">처리현황</th>
-				<th class="panel panelbody" scope="col">신고유형</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -98,8 +97,6 @@ $(document).ready(function(){
 					<td class="" scope="col">${board.report_lon}</td>
 					<td class="" scope="col">${board.report_date}</td>
 					<td class="" scope="col"><button class="btn btn-danger">드론출동</button></td>
-					<td class="" scope="col">
-					</td>
 				</tr>
 				<%i++;%>
 			</c:forEach>
