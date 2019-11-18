@@ -99,19 +99,6 @@ $(document).ready(function(){
 					<td class="" scope="col">${board.report_date}</td>
 					<td class="" scope="col"><button class="btn btn-danger">드론출동</button></td>
 					<td class="" scope="col">
-						<form action="handle" method="post" onsubmit="return hideButton(<%=i%>)">
-							<c:if test="${board.report_handle=='N'}">
-								<input type="hidden" name="reportNo" value="${board.report_no}" />
-								<input type="submit" name="Y" class="btn btn-primary" id="trueReport<%=i%>" onclick="hideButton(<%=i%>)" value="실제사고" /><br />
-								<input type="submit" name="R" class="btn btn-success" id="falseReport<%=i%>" onclick="hideButton(<%=i%>)" value="허위신고" />
-							</c:if>
-							<c:if test="${board.report_handle=='Y'}">
-								<h4 style="color:red;">실제사고</h4>
-							</c:if>
-							<c:if test="${board.report_handle=='R'}">
-								<h4>허위신고</h4>
-							</c:if>
-						</form>
 					</td>
 				</tr>
 				<%i++;%>

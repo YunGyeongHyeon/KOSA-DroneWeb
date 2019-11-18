@@ -95,7 +95,7 @@
 						<!--페이징  -->
 						<div id="contentPaging">
 							<div>
-								<button class="btn btn-primary" onclick="moving('obBoard?pageNo=1&report_handle=${report_handle}')">처음</button>
+								<button class="btn btn-primary" onclick="moving('obBoard?pageNo=1')">처음</button>
 								<c:if test="${groupNo>1}">
 									<button class="btn btn-success" onclick="moving('obBoard?pageNo=${startPageNo-1}')">이전</button>
 								</c:if>

@@ -103,8 +103,8 @@
 									<td scope="col">
 										<button class="btn btn-danger dStart">드론출동</button>
 									</td>
-									
-									
+									<td>
+									</td>
 								</tr>
 								<%i++;%>
 							</c:forEach>
@@ -117,7 +117,7 @@
 							<c:if test="${groupNo>1}">
 								<button class="btn btn-success" onclick="moving('report?pageNo=${startPageNo-1}')">이전</button>
 							</c:if>
-							<div style="display: inline-block; padding: 20px;" class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+							<div style="display: inline-block; padding: 6px;" class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 								<div>
 									<c:forEach begin="${startPageNo}" end="${endPageNo}" var="j">
 										<c:if test="${pageNo==j}">
