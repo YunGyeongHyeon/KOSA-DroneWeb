@@ -41,7 +41,6 @@
    
    //메시지를 수신했을 때 자동으로 실행(콜백)되는 함수
    function onMessageArrived(message) {
-      System.out.println(message+"-------------------------------------------------");
       location.href="content";
    }
    

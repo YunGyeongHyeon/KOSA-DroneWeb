@@ -51,7 +51,7 @@ function listClick(lat, lon) {
 }
 
 $(function() {
-	client = new Paho.MQTT.Client(location.hostname, 61625, "dStart");
+	client = new Paho.MQTT.Client(location.hostname, 61625, "dStart"+new Date().getTime());
 	client.onMessageArrived = onMessageArrived;
 	client.connect({
 		onSuccess : onConnect
