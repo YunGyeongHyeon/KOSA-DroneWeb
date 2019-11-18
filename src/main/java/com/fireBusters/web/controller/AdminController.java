@@ -192,6 +192,9 @@ public class AdminController {
 		int rowsPerPage = 8;// 페이지당 행수
 		int pagesPerGroup = 10;// 이전, 다음을 클릭했을때 나오는 그룹당 페이지 수
 		int totalRowNum = service.getReportTotalRowNo((int) session.getAttribute("fire_station_id"));// 전체 게시물 수
+		if(totalRowNum == 0) {
+			totalRowNum = 1;
+		}
 		int totalPageNum = totalRowNum / rowsPerPage;// 전체 페이지 수
 		if (totalRowNum % rowsPerPage != 0)
 			totalPageNum++;// 뒤에 짜투리도 페이지수로 인정
@@ -231,7 +234,7 @@ public class AdminController {
 	@RequestMapping("/report")
 	public String report(Model model, HttpSession session, AdminFireStation fireStation, AdminLatLon adminLatLon,
 			@RequestParam(defaultValue = "0") int pageNo) {
-
+		
 		if (pageNo == 0) {
 			Integer objPageNo = (Integer) session.getAttribute("pageNo");
 			if (objPageNo == null) {
@@ -239,7 +242,7 @@ public class AdminController {
 			} else {
 				pageNo = objPageNo;
 			}
-		} else {
+		} else { 
 			session.setAttribute("pageNo", pageNo);
 		}
 
@@ -252,6 +255,9 @@ public class AdminController {
 		int rowsPerPage = 8;// 페이지당 행수
 		int pagesPerGroup = 10;// 이전, 다음을 클릭했을때 나오는 그룹당 페이지 수
 		int totalRowNum = service.getReportTotalRowNo((int) session.getAttribute("fire_station_id"));// 전체 게시물 수
+		if(totalRowNum == 0) {
+			totalRowNum = 1;
+		}
 		int totalPageNum = totalRowNum / rowsPerPage;// 전체 페이지 수
 		if (totalRowNum % rowsPerPage != 0)
 			totalPageNum++;// 뒤에 짜투리도 페이지수로 인정
@@ -272,7 +278,7 @@ public class AdminController {
 
 		List<AdminBoard> board = service.selectReport((int) session.getAttribute("fire_station_id"), startRowNo,endRowNo);
 		AdminFireStation station = service.selectFireStation((int) session.getAttribute("fire_station_id"));
-
+		
 		model.addAttribute("board", board);
 		model.addAttribute("station", station);
 
@@ -305,6 +311,9 @@ public class AdminController {
 		int rowsPerPage = 8;// 페이지당 행수
 		int pagesPerGroup = 10;// 이전, 다음을 클릭했을때 나오는 그룹당 페이지 수
 		int totalRowNum = service.getTotalRowNo((int) session.getAttribute("fire_station_id"), report_handle);// 전체 게시물 수
+		if(totalRowNum == 0) {
+			totalRowNum = 1;
+		}
 		int totalPageNum = totalRowNum / rowsPerPage;// 전체 페이지 수
 		if (totalRowNum % rowsPerPage != 0)
 			totalPageNum++;// 뒤에 짜투리도 페이지수로 인정
@@ -321,11 +330,13 @@ public class AdminController {
 		if (pageNo == totalPageNum) { // 현재 그룹의 번호가 전체 그룹 수(마지막 그룹번호)와 같다면
 			endRowNo = totalRowNum; // 끝 행 번호는 전체 행 번호 수 만큼 된다
 		}
+		
 		// ---------------------------------페이징
 
 		List<ObBoard> obBoardList = service.selectObBoardList((int) session.getAttribute("fire_station_id"), startRowNo,endRowNo, report_handle);
 		AdminFireStation station = service.selectObFireStation((int) session.getAttribute("fire_station_id"));
-
+		String path = service.selectPathPoint(reportNo);
+		
 		model.addAttribute("obBoardList", obBoardList);
 		model.addAttribute("station", station);
 
@@ -358,6 +369,9 @@ public class AdminController {
 		int rowsPerPage = 8;// 페이지당 행수
 		int pagesPerGroup = 10;// 이전, 다음을 클릭했을때 나오는 그룹당 페이지 수
 		int totalRowNum = service.getTotalRowNo((int) session.getAttribute("fire_station_id"), report_handle);// 전체 게시물 수
+		if(totalRowNum == 0) {
+			totalRowNum = 1;
+		}
 		int totalPageNum = totalRowNum / rowsPerPage;// 전체 페이지 수
 		if (totalRowNum % rowsPerPage != 0)
 			totalPageNum++;// 뒤에 짜투리도 페이지수로 인정
@@ -376,7 +390,7 @@ public class AdminController {
 		}
 		// ---------------------------------페이징
 
-		List<AcBoard> acBoardList = service.selectAcBoardList((int) session.getAttribute("fire_station_id"), startRowNo,endRowNo);
+		List<AcBoard> acBoardList = service.selectAcBoardList((int) session.getAttribute("fire_station_id"), startRowNo,endRowNo, report_handle);
 		AdminFireStation station = service.selectAcFireStation((int) session.getAttribute("fire_station_id"));
 
 		model.addAttribute("acBoardList", acBoardList);
@@ -418,23 +432,33 @@ public class AdminController {
 	public String accident_map() {
 		return "admin/accident_map";
 	}
-
+ 
+	@RequestMapping("/obBoardPath")
+	public String obBoardPath(int report_no) {
+		String path = service.selectPathPoint(report_no);
+		System.out.println(path+"55555555555555558888888888");
+		return "redirect:/admin/obBoard";
+	}
+	   
 //	@RequestMapping("/handle")
 //	public String handle(HttpServletRequest request) {
-//		int reportNo = Integer.parseInt(request.getParameter("reportNo"));
-//		
+//		int reportNo = Integer.parseInt(request.getParameter("reportNo"));   
+//		        
 //		String handle_result = "";
-//		if (request.getParameter("Y") != null) {
+//		if (request.getParameter("Y") != null) { 
 //			handle_result = "Y";
-//		} else if (request.getParameter("R") != null) {
+//		} else if (request.getParameter("R") != null) {   
 //			handle_result = "R";
 //		} else {
 //			handle_result = "N";
-//		}
+//		}    
 ////		service.updateHandle(reportNo, handle_result);
 ////		return "redirect:/admin/content";
 //	}
 	
-	
+	@RequestMapping("/test")
+	public String test() {
+		return "/admin/observe_map";
+	}
 
 }

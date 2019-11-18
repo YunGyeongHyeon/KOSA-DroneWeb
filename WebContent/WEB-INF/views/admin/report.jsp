@@ -2,7 +2,7 @@
 <%@ page import="java.util.Date"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/content.js"></script>
 <style type="text/css">
 .selectLine td{
 	height: 85px;
@@ -37,7 +37,7 @@ function initMap() {
 
 function addMarker(location, map) {
 	var icon ={
-			url : 'http://localhost:8080/FinalWebProject/resources/image/fire3.png',
+			url : 'http://localhost:8085/FinalWebProject/resources/image/fire3.png',
 			scaledSize: new google.maps.Size(100, 100)
 	}
 	if(labelIndex != 0){
@@ -53,6 +53,8 @@ function addMarker(location, map) {
     // lat, lon data information
     lat = marker.position.lat();
     lon = marker.position.lng();
+    
+    var location = ${accident.path_point}
   }
 
 function listClick(lat,lon){
@@ -71,14 +73,15 @@ $(document).ready(function(){
 		$(this).children("td").toggleClass("select")
 	})
 })
+$(".dStart").on("click",function(){
+    	$(this).css("background","gray").css("border-color","gray");
+    	$(this).text("출동중");
+    	$(this).attr("disabled","true");
+    	$(this).parent().parent().children("#displaynone").css("display","none");
+    	
+})
+</script>
 
-</script>
-<script>
-	function hideButton(clickedId){
-		$('#trueReport'+clickedId).hide();
-		$('#falseReport'+clickedId).hide();
-	} 
-</script>
 <div id="cn_list">
 	<table class="table table-striped table-sm table2">
 		<thead>
@@ -87,31 +90,19 @@ $(document).ready(function(){
 				<th class="panel panelbody" scope="col">화제장소(경도)</th>
 				<th class="panel panelbody" scope="col">접수시간</th>
 				<th class="panel panelbody" scope="col">처리현황</th>
-				<th class="panel panelbody" scope="col">신고유형</th>
 			</tr>
 		</thead>
 		<tbody>
 			<%int i = 1;%>
 			<c:forEach var="board" items="${board}">
 				<tr class="selectLine" onclick="listClick(${board.report_lat}, ${board.report_lon})">
-					<td class="" scope="col">${board.report_lat}</td>
-					<td class="" scope="col">${board.report_lon}</td>
-					<td class="" scope="col">${board.report_date}</td>
-					<td class="" scope="col"><button class="btn btn-danger">드론출동</button></td>
-					<td class="" scope="col">
-						<form action="handle" method="post" onsubmit="return hideButton(<%=i%>)">
-							<c:if test="${board.report_handle=='N'}">
-								<input type="hidden" name="reportNo" value="${board.report_no}" />
-								<input type="submit" name="Y" class="btn btn-primary" id="trueReport<%=i%>" onclick="hideButton(<%=i%>)" value="실제사고" /><br />
-								<input type="submit" name="R" class="btn btn-success" id="falseReport<%=i%>" onclick="hideButton(<%=i%>)" value="허위신고" />
-							</c:if>
-							<c:if test="${board.report_handle=='Y'}">
-								<h4 style="color:red;">실제사고</h4>
-							</c:if>
-							<c:if test="${board.report_handle=='R'}">
-								<h4>허위신고</h4>
-							</c:if>
-						</form>
+					<input type="hidden" class="reportNo" value="${board.report_no}"/>
+					<td class="lat" scope="col">${board.report_lat}</td>
+					<td class="lon" scope="col">${board.report_lon}</td>
+					<td class="reportTime" scope="col">${board.report_date}
+					</td>
+					<td scope="col">
+						<button class="btn btn-danger dStart">드론출동</button>
 					</td>
 				</tr>
 				<%i++;%>

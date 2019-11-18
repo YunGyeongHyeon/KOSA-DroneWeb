@@ -3,9 +3,18 @@ package com.fireBusters.web.dto;
 public class AcBoard {
 	private int fire_station_name;
 	private int report_no;
+	private String report_handle;
 	private String report_date;
 	private double report_lat;
 	private double report_lon;
+
+	public String getReport_handle() {
+		return report_handle;
+	}
+
+	public void setReport_handle(String report_handle) {
+		this.report_handle = report_handle;
+	}
 
 	public int getFire_station_name() {
 		return fire_station_name;

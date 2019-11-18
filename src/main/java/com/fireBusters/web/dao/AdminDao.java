@@ -47,6 +47,7 @@ public class AdminDao {
 	}
 
 	public List<ObBoard> selectObBoardList(int obid, int startRowNo, int endRowNo, String report_handle) {
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+report_handle);
 		Map<String, Object> map = new HashMap<>();
 		map.put("obid", obid);
 		map.put("startRowNo", startRowNo);
@@ -56,11 +57,12 @@ public class AdminDao {
 		return obBoardList;
 	}
 
-	public List<AcBoard> selectAcBoardList(int abid, int startRowNo, int endRowNo) {
-		Map<String, Integer> map = new HashMap<>();
+	public List<AcBoard> selectAcBoardList(int abid, int startRowNo, int endRowNo, String report_handle) {
+		Map<String, Object> map = new HashMap<>();
 		map.put("abid", abid);
 		map.put("startRowNo", startRowNo);
 		map.put("endRowNo", endRowNo);
+		map.put("report_handle", report_handle);
 		List<AcBoard> acBoardList = sqlSessionTemplate.selectList("adminMember.acSelectList", map);
 		return acBoardList;
 	}
@@ -124,7 +126,7 @@ public class AdminDao {
 		Map<String, Object> map = new HashMap<>();
 		map.put("path", path);
 		map.put("reportNo", reportNo);
-		int result = sqlSessionTemplate.update("adminMember.insertObservePath",map);
+		int result = sqlSessionTemplate.update("adminMember.updateObservePath",map);
 		return result;
 	}
 
@@ -159,5 +161,9 @@ public class AdminDao {
 		if(result == 1) {
 			sqlSessionTemplate.delete("adminMember.deleteAccident",reportNo);
 		}
+	}
+	public String selectPathPoint(int reportNo) {
+		String path = sqlSessionTemplate.selectOne("adminMember.selectPathPoint",reportNo);
+		return path;
 	}
 }

@@ -94,8 +94,8 @@ public class AdminService {
 		adminDao.updateObservePath(path, reportNo);
 	}
 	
-	public List<AcBoard> selectAcBoardList(int abid, int startRowNo, int endRowNo) {
-		List<AcBoard> acBoardList = adminDao.selectAcBoardList(abid, startRowNo, endRowNo);
+	public List<AcBoard> selectAcBoardList(int abid, int startRowNo, int endRowNo, String report_handle) {
+		List<AcBoard> acBoardList = adminDao.selectAcBoardList(abid, startRowNo, endRowNo, report_handle);
 		return acBoardList;
 	}
 
@@ -124,4 +124,8 @@ public class AdminService {
 		adminDao.selectAccident(reportNo);
 	}
 
+	public String selectPathPoint(int reportNo) {
+		String path = adminDao.selectPathPoint(reportNo);
+		return path;
+	}
 }

@@ -55,31 +55,17 @@
 	</select>
 	
 	<select id="acSelectList" parameterType="map" resultType="com.fireBusters.web.dto.AcBoard">
-		select rn, report_date, report_lat, report_lon, report_no
-			from(select rownum as rn, report_date, report_lat, report_lon, report_no
-					from(select to_char(report_date, 'MM/DD HH24:MI:SS') report_date, report_lat, report_lon, report_no
-							from report
-							where fire_station_no=#{abid}  ORDER BY report_no DESC)
-					where rownum &lt;= #{endRowNo})
-			where rn &gt;= #{startRowNo}
+		select rn, report_date, report_lat, report_lon, report_no, REPORT_HANDLE
+        	from(select rownum as rn, report_date, report_lat, report_lon, report_no, REPORT_HANDLE
+                	from(select report_date, report_lat, report_lon, report_no, REPORT_HANDLE
+                			from(select to_char(report_date, 'MM/DD HH24:MI:SS') report_date, report_lat, report_lon, report_no, REPORT_HANDLE
+									from report
+									where fire_station_no=#{abid}  ORDER BY report_no DESC)
+                			where REPORT_HANDLE=#{report_handle})
+               		where rownum &lt;= #{endRowNo})
+            where rn &gt;= #{startRowNo}
 	</select>
 
-	<!-- observe_picture 테이블에서 사진 꺼내오기 
-	<select id="obPicture" parameterType="int" resultType="com.fireBusters.web.dto.ObBoardPicture">
-		select p.picture_no, p.picture_file, p.observer_no
-		from observe_picture p, observe o, report r
-		where o.report_no = r.report_no and
-		p.observer_no = o.observe_no;
-	</select>
-	-->
-	
-	<!-- accident_picture 테이블에서 사진 꺼내오기 
-	<select id="obPicture" parameterType="int" resultType="com.fireBusters.web.dto.ObBoardPicture">
-		select p.accident_picture_no, p.accident_picture_file, p.ano
-		from accident_picture p, accident a, report r
-		where a.ano = r.ano and p.ano = a.ano;
-	</select>	
-	 -->
 		
 	<select id="obPicture" parameterType="int" resultType="com.fireBusters.web.dto.ObBoardPicture">
 		select pno, filename, rono
@@ -165,6 +151,8 @@
 		delete from accident where rno=#{rno}
 	</delete>
 	
-	
+	<select id="selectPathPoint" parameterType="int" resultType="string">
+		select path_point from observe where rno = #{reportNo}
+	</select>
 	
 </mapper>

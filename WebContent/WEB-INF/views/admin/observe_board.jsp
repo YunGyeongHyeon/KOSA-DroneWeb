@@ -42,19 +42,29 @@
 		});
 	}
 	
+	function obBoardPath(data) {
+		$.ajax({
+			url:"obBoardPath?report_no="+data,
+			data: data,
+			success: function(data){
+				$("#obPicture").html(data);
+			}
+		});
+	}
+	
 	//화면 숨김
-	$(document).ready(function(){
+	$(document).ready(function(){ //map 처음에 숨기기
 		$('.bb').hide();
 	});
 	
-	function doShow() { 
-		 $('.bb').show(); // 클래스값을 받아서 보이기
-		 $('.aa').hide(); // 클래스값을 받아서 숨기기 
+	function doShow() { // 경로보기
+		 $('.bb').show(); // map
+		 $('.aa').hide(); // picture 
 	} 
 	
-	function dohide(){
-		$('.bb').hide(); // 클래스값을 받아서 숨기기
-		$('.aa').show(); // 클래스값을 받아서 보이기 
+	function dohide(){ // 사진보기
+		$('.bb').hide(); // map
+		$('.aa').show(); // picture
 	}
 	//화면 숨김
 	
@@ -86,7 +96,7 @@
 							<td>${obBoardList.report_lat}</td>
 							<td>${obBoardList.report_lon}</td>
 							<td>
-								<button class="btn btn-primary" onclick="listClick(${obBoardList.report_lat}, ${obBoardList.report_lon}); doShow()">경로 확인</button><br/>
+								<button class="btn btn-primary" onclick="obBoardPath(${obBoardList.report_no});doShow()">경로 확인</button><br/>
 								<button class="btn btn-success" onclick="obBoardPicture(${obBoardList.report_no});dohide()">사진 확인</button>
 							</td>
 						</tr>
@@ -95,7 +105,7 @@
 						<!--페이징  -->
 						<div id="contentPaging">
 							<div>
-								<button class="btn btn-primary" onclick="moving('obBoard?pageNo=1&report_handle=${report_handle}')">처음</button>
+								<button class="btn btn-primary" onclick="moving('obBoard?pageNo=1')">처음</button>
 								<c:if test="${groupNo>1}">
 									<button class="btn btn-success" onclick="moving('obBoard?pageNo=${startPageNo-1}')">이전</button>
 								</c:if>
