@@ -175,6 +175,9 @@ public class AdminController {
 		int rowsPerPage = 8;// 페이지당 행수
 		int pagesPerGroup = 10;// 이전, 다음을 클릭했을때 나오는 그룹당 페이지 수
 		int totalRowNum = service.getReportTotalRowNo((int) session.getAttribute("fire_station_id"));// 전체 게시물 수
+		if(totalRowNum == 0) {
+			totalRowNum = 1;
+		}
 		int totalPageNum = totalRowNum / rowsPerPage;// 전체 페이지 수
 		if (totalRowNum % rowsPerPage != 0)
 			totalPageNum++;// 뒤에 짜투리도 페이지수로 인정
@@ -235,6 +238,9 @@ public class AdminController {
 		int rowsPerPage = 8;// 페이지당 행수
 		int pagesPerGroup = 10;// 이전, 다음을 클릭했을때 나오는 그룹당 페이지 수
 		int totalRowNum = service.getReportTotalRowNo((int) session.getAttribute("fire_station_id"));// 전체 게시물 수
+		if(totalRowNum == 0) {
+			totalRowNum = 1;
+		}
 		int totalPageNum = totalRowNum / rowsPerPage;// 전체 페이지 수
 		if (totalRowNum % rowsPerPage != 0)
 			totalPageNum++;// 뒤에 짜투리도 페이지수로 인정
@@ -309,8 +315,6 @@ public class AdminController {
 		}
 		
 		// ---------------------------------페이징
-		
-		System.out.println(totalRowNum+"*************************************************");
 
 		List<ObBoard> obBoardList = service.selectObBoardList((int) session.getAttribute("fire_station_id"), startRowNo,endRowNo, report_handle);
 		AdminFireStation station = service.selectObFireStation((int) session.getAttribute("fire_station_id"));
@@ -347,6 +351,9 @@ public class AdminController {
 		int rowsPerPage = 8;// 페이지당 행수
 		int pagesPerGroup = 10;// 이전, 다음을 클릭했을때 나오는 그룹당 페이지 수
 		int totalRowNum = service.getTotalRowNo((int) session.getAttribute("fire_station_id"), report_handle);// 전체 게시물 수
+		if(totalRowNum == 0) {
+			totalRowNum = 1;
+		}
 		int totalPageNum = totalRowNum / rowsPerPage;// 전체 페이지 수
 		if (totalRowNum % rowsPerPage != 0)
 			totalPageNum++;// 뒤에 짜투리도 페이지수로 인정
