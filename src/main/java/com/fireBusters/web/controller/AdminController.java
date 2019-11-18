@@ -5,6 +5,10 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
+import org.eclipse.paho.client.mqttv3.MqttCallback;
+import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fireBusters.web.dao.AdminDao;
 import com.fireBusters.web.dto.AcBoard;
 import com.fireBusters.web.dto.AcBoardPicture;
 import com.fireBusters.web.dto.AdminBoard;
@@ -34,6 +39,66 @@ public class AdminController {
 	@Autowired
 	AdminService service;
 
+	@Autowired
+	AdminDao adminDao;
+	
+	private MqttClient client;
+	private String points;
+	private String accident;
+	
+	public AdminController() {
+		try {
+			client = new MqttClient("tcp://106.253.56.124:1885", MqttClient.generateClientId(), null);
+			client.connect();
+			receiveWayPoint();
+			receiveAccident();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	  public void receiveWayPoint() throws Exception {
+	        client.setCallback(new MqttCallback() {
+	            @Override
+	            public void connectionLost(Throwable throwable) {}
+	            @Override
+	            public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
+	            	byte[] point = mqttMessage.getPayload();
+	                 points = new String(point);
+	                 System.out.println("여기는 recevieWayPoint");
+	                 System.out.println(points);
+	                // adminDao.updateWayPoint(points);
+	            }
+	            @Override
+	            public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {}
+	        });
+	        client.subscribe("/drone/accident/pub");    
+	    }
+	  
+	    public void receiveAccident() throws Exception {
+	        client.setCallback(new MqttCallback() {
+	            @Override
+	            public void connectionLost(Throwable throwable) {}
+	            @Override
+	            public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
+	            	byte[] result = mqttMessage.getPayload();
+	                 accident = new String(result);
+	                 System.out.println("accident : "+accident);
+	                 if(!accident.equals("Accident") || !accident.equals("Lie")) {
+	                	 //service.updateHandle(Integer.parseInt(accident));
+	                 }else {
+	                	 System.out.println("Stop");
+	                 }
+	            }
+	            @Override
+	            public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {}
+	            
+	        });
+	        client.subscribe("/drone/accident/pub");    
+	    }
+	
+	    
+	
 	@RequestMapping("/main")
 	public String main() {
 		return "admin/loginForm";
@@ -337,20 +402,22 @@ public class AdminController {
 		return "admin/accident_map";
 	}
 
-	@RequestMapping("/handle")
-	public String handle(HttpServletRequest request) {
-		int reportNo = Integer.parseInt(request.getParameter("reportNo"));
-		
-		String handle_result = "";
-		if (request.getParameter("Y") != null) {
-			handle_result = "Y";
-		} else if (request.getParameter("R") != null) {
-			handle_result = "R";
-		} else {
-			handle_result = "N";
-		}
-		service.updateHandle(reportNo, handle_result);
-		return "redirect:/admin/content";
-	}
+//	@RequestMapping("/handle")
+//	public String handle(HttpServletRequest request) {
+//		int reportNo = Integer.parseInt(request.getParameter("reportNo"));
+//		
+//		String handle_result = "";
+//		if (request.getParameter("Y") != null) {
+//			handle_result = "Y";
+//		} else if (request.getParameter("R") != null) {
+//			handle_result = "R";
+//		} else {
+//			handle_result = "N";
+//		}
+////		service.updateHandle(reportNo, handle_result);
+////		return "redirect:/admin/content";
+//	}
+	
+	
 
 }

@@ -21,11 +21,8 @@ function addMarker(location, map) {
 	var icon = {
 		// url :
 		// 'http://localhost:8085/FinalWebProject/resources/image/fire3.png',
-		url : 'http://localhost:8080/FinalWebProject/resources/image/fire3.png',
+		url : 'http://localhost:8085/FinalWebProject/resources/image/fire3.png',
 		scaledSize : new google.maps.Size(100, 100)
-	}
-	if (labelIndex != 0) {
-		marker.setMap(null);
 	}
 	// Add the marker at the clicked location, and add the next-available label
 	// from the array of alphabetical characters.
@@ -54,35 +51,38 @@ function listClick(lat, lon) {
 }
 
 $(function() {
-
-	client = new Paho.MQTT.Client(location.hostname, 61614, "dStart");
+	client = new Paho.MQTT.Client(location.hostname, 61625, "dStart");
 	client.onMessageArrived = onMessageArrived;
 	client.connect({
 		onSuccess : onConnect
 	});
-
+})
 	function onConnect() {// 토픽이름
-		client.subscribe("/drone/report/sub");
+		client.subscribe("/drone/path/pub");
 	}
 	function onMessageArrived(message) {
-		$("#this").append(message.payloadString + "</br>")
+		var ms = message.payloadString;
+		System.out.println(ms)
 	}
 
+
 	function sendMessage() {
-		var json = {
-			"lat" : lat,
-			"lon" : lon
-		};
+		var json = 
+				{
+					"report_no":report_no,
+					"lat":lat,
+					"lon":lon,
+					"report_time":report_time
+				};
 		;
 		loadjson = JSON.stringify(json);
 		alert(loadjson);
 		var updateLatLon = new Paho.MQTT.Message(loadjson);
 		updateLatLon.destinationName = "/drone/report/pub";
-		alert(updateLatLon);
 
 		client.send(updateLatLon);
 	}
-
+$(function(){
 	$(".selectLine").click(function() {
 		/*
 		 * $("button").on("click",function(){ return false; })
@@ -95,14 +95,17 @@ $(function() {
 	}, function() {
 		$(this).children("div").css("display", "none");
 	})
-	$(".dStart").on("click", function() {
-		lat = $(this).parent(".selectLine").children(".lat").text();
-		lon = $(this).parent(".selectLine").children(".lon").text();
-		alert("this")
-		if (lat != null && lon != null) {
+	$(".dStart").on("click",function(){
+		report_no = $(this).parent().parent(".selectLine").children(".reportNo").val();
+		alert(report_no);
+		lat = $(this).parent().parent(".selectLine").children(".lat").text();
+		lon = $(this).parent().parent(".selectLine").children(".lon").text();
+		report_time = $(this).parent().parent(".selectLine").children(".reportTime").text();
+
+		if(lat != null && lon != null){
 			sendMessage();
 		}
-
+		
 	})
 })
 

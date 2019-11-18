@@ -104,11 +104,17 @@ public class AdminDao {
 		return TotalPictureRowNo;
 	}
 
-	public int updateHandle(int reportNo, String handle_result) {
+	public int updateHandle(int reportNo) {
+		int rows = sqlSessionTemplate.update("adminMember.updateHandle", reportNo);
+		return rows;
+	}
+
+	public int saveFile(int rno, String fileName) {
 		Map<String, Object> map = new HashMap<>();
-		map.put("handle_result", handle_result);
-		map.put("reportNo", reportNo);
-		int rows = sqlSessionTemplate.update("adminMember.updateHandle", map);
+		System.out.println("사진이 들어오는 곳");
+		map.put("filename", fileName);
+		map.put("rono", rno);
+		int rows = sqlSessionTemplate.insert("adminMember.insertPic", map);
 		return rows;
 	}
 }

@@ -135,5 +135,6 @@ body {
 
 #contentPaging {
 	position: absolute;
-	bottom: 10px;
+    bottom: 25px;
+    left: 180px;
 }

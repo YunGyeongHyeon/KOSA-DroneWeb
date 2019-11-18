@@ -110,10 +110,17 @@
 		select count(*) from report
 	</select>
 
-	<update id="updateHandle" parameterType="map">
+	<update id="updateHandle" parameterType="int">
 		UPDATE report 
-		SET REPORT_HANDLE=#{handle_result} 
+		SET REPORT_HANDLE='Y' 
 		WHERE report_no=#{reportNo}
 	</update>
+	
+	<insert id="insertPic" parameterType="map">
+		insert into picture(pno, filename, rono)
+		values(pno_sq.nextval, #{filename}, #{rono})
+	</insert>
+	
+	
 	
 </mapper>

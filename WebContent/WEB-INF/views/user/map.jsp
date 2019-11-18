@@ -20,12 +20,12 @@
 			// Initialize and add the map
 			function initMap() {
 				var uluru = { 
-						lat: 37.4978624,
-						lng: 127.153762
+						lat: 37.547525,
+						lng: 127.119985
 				}
 				// The map, centered at Uluru
 				  var map = new google.maps.Map(
-				      document.getElementById('map'), {zoom: 15, center: uluru});
+				      document.getElementById('map'), {zoom: 17, center: uluru, mapTypeId: "satellite"});
 
 				  google.maps.event.addListener(map, 'click', function(event) {
 			          addMarker(event.latLng, map);

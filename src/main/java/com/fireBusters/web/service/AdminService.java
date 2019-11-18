@@ -79,8 +79,8 @@ public class AdminService {
 		return totalRowNum;
 	}
 
-	public void updateHandle(int reportNo, String handle_result) {
-		adminDao.updateHandle(reportNo, handle_result);
+	public void updateHandle(int reportNo) {
+		adminDao.updateHandle(reportNo);
 	}
 
 	public List<AcBoard> selectAcBoardList(int abid, int startRowNo, int endRowNo) {
