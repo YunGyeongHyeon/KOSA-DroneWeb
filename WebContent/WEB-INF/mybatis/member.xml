@@ -82,15 +82,15 @@
 	 -->
 		
 	<select id="obPicture" parameterType="int" resultType="com.fireBusters.web.dto.ObBoardPicture">
-		select rno, pname, ono
-		from test
-        where rno=#{obp}
+		select pno, filename, rono
+		from picture
+        where rono=#{obp}
 	</select>
 	
 	<select id="acPicture" parameterType="int" resultType="com.fireBusters.web.dto.AcBoardPicture">
-		select rno, pname, ono
-		from test
-        where rno=#{abp}
+		select pno, filename, rono
+		from picture
+        where rono=#{abp}
 	</select>
 	
 	<select id="selectReportTotalRowNum" resultType="int">

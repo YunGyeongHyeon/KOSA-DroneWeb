@@ -38,7 +38,6 @@ public class ImageService {
 	
 	private void mqttConnect() {
 		try {
-			//client = new MqttClient("tcp://106.253.56.124:1885", MqttClient.generateClientId(), null);
 			client = new MqttClient("tcp://106.253.56.124:1885", MqttClient.generateClientId(), null);
 			client.connect();
 			receiveImageMessage();
@@ -127,14 +126,13 @@ public class ImageService {
 						int reportNo = 100;
 						Date now = new Date();
 						String fileName = "" + reportNo + "_" + now.getTime() + ".jpg";
-						String realPath = application.getRealPath("/resources/image/" + fileName);
+						String realPath = application.getRealPath("/resources/image/") + fileName;
 						FileOutputStream fos = new FileOutputStream(realPath);
 						BufferedOutputStream bos = new BufferedOutputStream(fos);
 						bos.write(images);
 						bos.flush();
 						bos.close();
 						savePic(rno, fileName);
-						System.out.println("@@@@@@@@@@");
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -147,7 +145,6 @@ public class ImageService {
 	
 	public void savePic(int rno, String fileName) {
 		try {
-			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@rno:");
 			adminDao.saveFile(rno, fileName);
 		}catch(Exception e) {
 			e.printStackTrace();
