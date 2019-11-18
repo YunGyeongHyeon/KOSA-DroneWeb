@@ -104,9 +104,28 @@ public class AdminDao {
 		return TotalPictureRowNo;
 	}
 
-	public int updateHandle(int reportNo) {
-		int rows = sqlSessionTemplate.update("adminMember.updateHandle", reportNo);
+	public int updateHandleY(int reportNo) {
+		int rows = sqlSessionTemplate.update("adminMember.updateHandleY", reportNo);
 		return rows;
+	}
+	public int updateHandleR(int reportNo) {
+		int rows = sqlSessionTemplate.update("adminMember.updateHandleR", reportNo);
+		return rows;
+	}
+	public int updateAccidentPath(String path, int reportNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("path", path);
+		map.put("reportNo", reportNo);
+		int result = sqlSessionTemplate.update("adminMember.updateAccidentPath",map);
+		return result;
+	}
+	
+	public int updateObservePath(String path, int reportNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("path", path);
+		map.put("reportNo", reportNo);
+		int result = sqlSessionTemplate.update("adminMember.insertObservePath",map);
+		return result;
 	}
 
 	public int saveFile(int rno, String fileName) {
@@ -116,5 +135,29 @@ public class AdminDao {
 		map.put("rono", rno);
 		int rows = sqlSessionTemplate.insert("adminMember.insertPic", map);
 		return rows;
+	}
+
+	public int insertAccident(int reportNo) {
+		int result = sqlSessionTemplate.insert("adminMember.insertAccident",reportNo) ;
+		System.out.println("이게 리절트 : "+result);
+		return result;
+	}
+
+	public int insertObserve(int reportNo) {
+		int result = sqlSessionTemplate.insert("adminMember.insertObserve",reportNo);
+		return result;
+	}
+
+	public void selectObserve(int reportNo) {
+		int result = sqlSessionTemplate.selectOne("adminMember.selectObserve", reportNo);
+		if(result == 1) {
+			sqlSessionTemplate.delete("adminMember.deleteObserve", reportNo);
+		}
+	}
+	public void selectAccident(int reportNo) {
+		int result = sqlSessionTemplate.selectOne("adminMember.selectAccident",reportNo);
+		if(result == 1) {
+			sqlSessionTemplate.delete("adminMember.deleteAccident",reportNo);
+		}
 	}
 }

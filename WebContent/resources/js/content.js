@@ -58,7 +58,7 @@ $(function() {
 	});
 })
 	function onConnect() {// 토픽이름
-		client.subscribe("/drone/path/pub");
+		client.subscribe("/drone/service2/pub");
 	}
 	function onMessageArrived(message) {
 		var ms = message.payloadString;

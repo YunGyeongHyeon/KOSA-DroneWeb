@@ -43,60 +43,77 @@ public class AdminController {
 	AdminDao adminDao;
 	
 	private MqttClient client;
-	private String points;
-	private String accident;
+	String all;
+	String accident;
+	int reportNo;
+	String path;
 	
 	public AdminController() {
 		try {
 			client = new MqttClient("tcp://106.253.56.124:1885", MqttClient.generateClientId(), null);
 			client.connect();
-			receiveWayPoint();
-			receiveAccident();
+			receiveAll();
 			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
-	  public void receiveWayPoint() throws Exception {
+	  public void receiveAll() throws Exception {
 	        client.setCallback(new MqttCallback() {
 	            @Override
 	            public void connectionLost(Throwable throwable) {}
 	            @Override
 	            public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
 	            	byte[] point = mqttMessage.getPayload();
-	                 points = new String(point);
-	                 System.out.println("여기는 recevieWayPoint");
-	                 System.out.println(points);
-	                // adminDao.updateWayPoint(points);
-	            }
-	            @Override
-	            public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {}
-	        });
-	        client.subscribe("/drone/accident/pub");    
-	    }
-	  
-	    public void receiveAccident() throws Exception {
-	        client.setCallback(new MqttCallback() {
-	            @Override
-	            public void connectionLost(Throwable throwable) {}
-	            @Override
-	            public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
-	            	byte[] result = mqttMessage.getPayload();
-	                 accident = new String(result);
-	                 System.out.println("accident : "+accident);
-	                 if(!accident.equals("Accident") || !accident.equals("Lie")) {
-	                	 //service.updateHandle(Integer.parseInt(accident));
-	                 }else {
-	                	 System.out.println("Stop");
+	                 all = new String(point);
+	                 if(s.equals("/drone/path/reportno")) {
+	                	 reportNo = Integer.parseInt(all);
+	                	 System.out.println("if안에서0 : "+reportNo);
+	                	 
+	                 }else if(s.equals("/drone/path/accident")) {
+	                	 if(all.equals("Accident")) {   //y
+	                		 accident = all;
+	                		 try {
+	                		 service.updateHandleY(reportNo);
+	                		 service.selectObserve(reportNo);
+	                		 service.insertAccident(reportNo);
+	                		
+	                		 }catch(Exception e) {e.printStackTrace();}
+	                		 System.out.println("if안에서1 : "+ accident);	
+	                		 
+	                	 }else if(all.equals("Lie")) {  //r
+	                		accident = all;
+	                		try {
+	                		service.updateHandleR(reportNo);
+	                		service.selectAccident(reportNo);
+	                		service.insertObserve(reportNo);
+	                		 }catch(Exception e) {e.printStackTrace();}
+	                		 System.out.println("if안에서1 : "+ accident);
+	                	 }
+	                	 
+	                 }else if(s.equals("/drone/path/pub")){
+	                	 path  = all;
+	                	 System.out.println("이것이 올이다. : "+all);
+	                	 if(accident.equals("Accident")) {
+	                		 try {
+	                		 service.updateAccidentPath(path, reportNo);
+	                		 }catch(Exception e) {e.printStackTrace();}
+		                	 System.out.println("if안에서2 Accident: "+ path);
+		                	 
+	                	 }else if(accident.equals("Lie")) {
+	                		 try {
+	                		 service.updateObservePath(path, reportNo);
+	                		 }catch(Exception e) {e.printStackTrace();}
+		                	 System.out.println("if안에서2 Observe: "+ path);
+	                	 }
 	                 }
 	            }
 	            @Override
 	            public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {}
-	            
 	        });
-	        client.subscribe("/drone/accident/pub");    
+	        client.subscribe("/drone/path/+");    
 	    }
-	
+	  
 	    
 	
 	@RequestMapping("/main")

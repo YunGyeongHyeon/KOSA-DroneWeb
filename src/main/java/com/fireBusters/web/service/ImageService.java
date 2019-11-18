@@ -127,13 +127,13 @@ public class ImageService {
 						int reportNo = 100;
 						Date now = new Date();
 						String fileName = "" + reportNo + "_" + now.getTime() + ".jpg";
-						String realPath = application.getRealPath("/resources/image/" + fileName);
+						String realPath = application.getRealPath("/resources/image/OneStar_photo/")+ fileName;
 						FileOutputStream fos = new FileOutputStream(realPath);
 						BufferedOutputStream bos = new BufferedOutputStream(fos);
 						bos.write(images);
 						bos.flush();
 						bos.close();
-						savePic(rno, fileName);
+					 	savePic(rno, fileName);
 						System.out.println("@@@@@@@@@@");
 					}
 				} catch (Exception e) {

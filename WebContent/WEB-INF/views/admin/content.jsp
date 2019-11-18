@@ -31,6 +31,8 @@
       $(".dStart").on("click",function(){
     	$(this).css("background","gray").css("border-color","gray");
     	$(this).attr("disabled","true");
+    	$(this).parent().parent().children("#displaynone").css("display","none");
+    	
       })
    });
    
@@ -41,6 +43,7 @@
    
    //메시지를 수신했을 때 자동으로 실행(콜백)되는 함수
    function onMessageArrived(message) {
+	  
       location.href="content";
    }
    
@@ -94,19 +97,22 @@
 						<tbody>
 							<%int i = 1;%>
 							<c:forEach var="board" items="${board}">
-								<tr class="selectLine" onclick="listClick(${board.report_lat}, ${board.report_lon})">
-								<input type="hidden" class="reportNo" value="${board.report_no}"/>
-									<td class="lat" scope="col">${board.report_lat}</td>
-									<td class="lon" scope="col">${board.report_lon}</td>
-									<td class="reportTime" scope="col">${board.report_date}
-									</td>
-									<td scope="col">
-										<button class="btn btn-danger dStart">드론출동</button>
-									</td>
-									
-									
-								</tr>
-								<%i++;%>
+								<%-- <c:if test="${board.report_handle.equals('N')}"> --%>
+									<tr class="selectLine" onclick="listClick(${board.report_lat}, ${board.report_lon})">
+									<input type="hidden" class="reportNo" value="${board.report_no}"/>
+										<td class="lat" scope="col">${board.report_lat}</td>
+										<td class="lon" scope="col">${board.report_lon}</td>
+										<td class="reportTime" scope="col">${board.report_date}
+										</td>
+										<td scope="col">
+											<button class="btn btn-danger dStart">드론출동</button>
+										</td>
+										<td id="displaynone">
+											출동중
+										</td>
+									</tr>
+									<%i++;%>
+								<%-- </c:if> --%>
 							</c:forEach>
 							
 						</tbody>

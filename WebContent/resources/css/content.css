@@ -138,3 +138,6 @@ body {
     bottom: 25px;
     left: 180px;
 }
+#displaynone{
+	display:none;
+}

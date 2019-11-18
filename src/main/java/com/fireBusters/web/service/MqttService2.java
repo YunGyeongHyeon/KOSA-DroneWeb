@@ -48,9 +48,7 @@ public class MqttService2 { // Subscriber
 		client.setCallback(new MqttCallback() {
 			@Override
 			public void connectionLost(Throwable throwable) {
-
 			}
-
 			@Override
 			public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
 				byte[] bytes = mqttMessage.getPayload();

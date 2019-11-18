@@ -79,10 +79,21 @@ public class AdminService {
 		return totalRowNum;
 	}
 
-	public void updateHandle(int reportNo) {
-		adminDao.updateHandle(reportNo);
+	public void updateHandleY(int reportNo) {
+		adminDao.updateHandleY(reportNo);
 	}
 
+	public void updateHandleR(int reportNo) {
+		adminDao.updateHandleR(reportNo);
+	}
+	public void updateAccidentPath(String path, int reportNo) {
+		adminDao.updateAccidentPath(path, reportNo);
+	}
+	
+	public void updateObservePath(String path, int reportNo) {
+		adminDao.updateObservePath(path, reportNo);
+	}
+	
 	public List<AcBoard> selectAcBoardList(int abid, int startRowNo, int endRowNo) {
 		List<AcBoard> acBoardList = adminDao.selectAcBoardList(abid, startRowNo, endRowNo);
 		return acBoardList;
@@ -96,6 +107,21 @@ public class AdminService {
 	public List<AcBoardPicture> selectAcBoardPicture(int abp) {
 		List<AcBoardPicture> acBoardPicture = adminDao.selectAcBoardPicture(abp);
 		return acBoardPicture;
+	}
+
+	public void insertAccident(int reportNo) {
+		adminDao.insertAccident(reportNo);
+	}
+
+	public void insertObserve(int reportNo) {
+		adminDao.insertObserve(reportNo);
+	}
+
+	public void selectObserve(int reportNo) {
+		adminDao.selectObserve(reportNo);
+	}
+	public void selectAccident(int reportNo) {
+		adminDao.selectAccident(reportNo);
 	}
 
 }

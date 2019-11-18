@@ -82,15 +82,15 @@
 	 -->
 		
 	<select id="obPicture" parameterType="int" resultType="com.fireBusters.web.dto.ObBoardPicture">
-		select rno, pname, ono
-		from test
-        where rno=#{obp}
+		select pno, filename, rono
+		from picture
+        where rono=#{obp}
 	</select>
 	
 	<select id="acPicture" parameterType="int" resultType="com.fireBusters.web.dto.AcBoardPicture">
-		select rno, pname, ono
-		from test
-        where rno=#{abp}
+		select pno, filename, rono
+		from picture
+        where rono=#{abp}
 	</select>
 	
 	<select id="selectReportTotalRowNum" resultType="int">
@@ -110,9 +110,15 @@
 		select count(*) from report
 	</select>
 
-	<update id="updateHandle" parameterType="int">
+	<update id="updateHandleY" parameterType="int">
 		UPDATE report 
 		SET REPORT_HANDLE='Y' 
+		WHERE report_no=#{reportNo}
+	</update>
+	
+	<update id="updateHandleR" parameterType="int">
+		UPDATE report 
+		SET REPORT_HANDLE='R' 
 		WHERE report_no=#{reportNo}
 	</update>
 	
@@ -120,6 +126,44 @@
 		insert into picture(pno, filename, rono)
 		values(pno_sq.nextval, #{filename}, #{rono})
 	</insert>
+	
+	<insert id="insertAccident" parameterType="int">
+		insert into accident(rno, start_time)
+		values(#{reportNo},sysdate)
+	</insert>
+	
+	<insert id="insertObserve" parameterType="int">
+		insert into observe(rno, observe_time)
+		values(#{reportNo},sysdate)
+	</insert>
+	
+	<update id="updateAccidentPath" parameterType="map">
+		update accident
+		set path_point = #{path}, end_time = sysdate
+		where rno = #{reportNo}
+	</update>
+	
+	<update id="updateObservePath" parameterType="map">
+		update observe
+		set path_point = #{path}
+		where rno = #{reportNo}
+	</update>
+	
+	<select id="selectAccident" parameterType="int" resultType="int">
+		select count(*) from accident where rno = #{reportNo}
+	</select>
+	
+	<select id="selectObserve" parameterType="int" resultType="int">
+		select count(*) from observe where rno = #{reportNo}
+	</select>
+	
+	<delete id="deleteObserve" parameterType="int">
+		delete from observe where rno=#{rno}
+	</delete>
+	
+	<delete id="deleteAccident" parameterType="int">
+		delete from accident where rno=#{rno}
+	</delete>
 	
 	
 	
