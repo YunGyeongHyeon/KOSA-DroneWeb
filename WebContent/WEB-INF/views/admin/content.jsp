@@ -15,8 +15,13 @@
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6QqekZ1wnL7A8e0nPlnEsHowprAdcm8c&callback=initMap"></script>
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/content.js"></script>
 
+<style type="text/css">
+#bg { 
+	background-image: url('<%=application.getContextPath()%>/resources/image/b.png');
+}
+</style> 
+
 <script type="text/javascript">
-   
    $(function() {
       //MQTT Broker와 연결하기
       client = new Paho.MQTT.Client(location.hostname, 61625, "clientId"+new Date().getTime()); 
@@ -40,13 +45,12 @@
    function onMessageArrived(message) {
       location.href="content";
    }
-   
   
 </script>
 
 <title>main Form</title>
 </head>
-<body>
+<body id="bg">
 	<div>
 		<!-- 맨위에 로고와 아이디 나오는 부분 -->
 		<div>
@@ -70,7 +74,7 @@
 					<table id="cn_top_secound">
 						<tr class="cn_login_info">
 							<td id="cn_login_id">${station.fire_station_name}</td>
-							<td id="cn_login_out"><a href="logout"><img src="<%=application.getContextPath()%>/resources/image/out.png"/></a></td>
+							<td id="cn_login_out"><a href="logout"><img src="<%=application.getContextPath()%>/resources/image/out.png" /></a></td>
 						</tr>
 					</table>
 				</div>
@@ -88,47 +92,49 @@
 							</tr>
 						</thead>
 						<tbody>
-							<%int i = 1;%>
+							<% int i = 1;%>
 							<c:forEach var="board" items="${board}">
 								<tr class="selectLine" onclick="listClick(${board.report_lat}, ${board.report_lon})">
-								<input type="hidden" class="reportNo" value="${board.report_no}"/>
+									<input type="hidden" class="reportNo" value="${board.report_no}" />
 									<td class="lat" scope="col">${board.report_lat}</td>
 									<td class="lon" scope="col">${board.report_lon}</td>
-									<td class="reportTime" scope="col">${board.report_date}
-									</td>
+									<td class="reportTime" scope="col">${board.report_date}</td>
 									<td scope="col">
 										<button class="btn btn-danger dStart">드론출동</button>
 									</td>
 								</tr>
-								<%i++;%>
+								<% i++; %>
 							</c:forEach>
-							
+							<tr>
+								<!--페이징  -->
+								<div id="contentPaging">
+								  <div>
+									<button class="btn btn-primary" onclick="moving('report?pageNo=1')">처음</button>
+									<c:if test="${groupNo>1}">
+										<button class="btn btn-success" onclick="moving('report?pageNo=${startPageNo-1}')">이전</button>
+									</c:if>
+									<div style="display: inline-block; padding: 7px;"class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+										<div>
+											<c:forEach begin="${startPageNo}" end="${endPageNo}" var="j">
+												<c:if test="${pageNo==j}">
+													<button onclick="moving('report?pageNo=${j}')" class="btn btn-danger active">${j}</button>
+												</c:if>
+												<c:if test="${pageNo!=j}">
+													<button onclick="moving('report?pageNo=${j}')" class="btn btn-secondary">${j}</button>
+												</c:if>
+											</c:forEach>
+										</div>
+									</div>
+									<c:if test="${groupNo<totalGroupNum}">
+										<button onclick="moving('report?pageNo=${endPageNo+1}')" class="btn btn-success">다음</button>
+									</c:if>
+									<button onclick="moving('report?pageNo=${totalPageNum}')" class="btn btn-primary">맨끝</button>
+								  </div>
+							    </div>	
+								<!--페이징  -->
+							</tr>
 						</tbody>
 					</table>
-					<!--페이징  -->
-						<div id="contentPaging">
-							<button class="btn btn-primary" onclick="moving('report?pageNo=1')">처음</button>
-							<c:if test="${groupNo>1}">
-								<button class="btn btn-success" onclick="moving('report?pageNo=${startPageNo-1}')">이전</button>
-							</c:if>
-							<div style="display: inline-block; padding: 6px;" class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-								<div>
-									<c:forEach begin="${startPageNo}" end="${endPageNo}" var="j">
-										<c:if test="${pageNo==j}">
-											<button onclick="moving('report?pageNo=${j}')" class="btn btn-danger active">${j}</button>
-										</c:if>
-										<c:if test="${pageNo!=j}">
-											<button onclick="moving('report?pageNo=${j}')" class="btn btn-secondary">${j}</button>
-										</c:if>
-									</c:forEach>
-								</div>
-							</div>
-							<c:if test="${groupNo<totalGroupNum}">
-								<button onclick="moving('report?pageNo=${endPageNo+1}')" class="btn btn-success">다음</button>
-							</c:if>
-							<button onclick="moving('report?pageNo=${totalPageNum}')" class="btn btn-primary">맨끝</button>
-						</div>
-						<!--페이징  -->
 					<div>
 						<div id="this"></div>
 						<div id="map"></div>
@@ -136,5 +142,6 @@
 				</div>
 			</div>
 		</div>
+	</div>	
 </body>
 </html>

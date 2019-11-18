@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
-body {
-	background: #f7ecdbc7;
-}
+/* body {
+	background: #f7ecdbc7; 
+} */
 
 #wraper {
 	margin-left: 80px;
@@ -23,7 +23,8 @@ body {
 	width: 95%;
 	box-shadow: 0px 3px 7px 0px;
 	margin-left: 50px;
-	background: white;
+	background: #ffffff;
+	border-radius: 5px;
 }
 
 .cn_logo_img {
