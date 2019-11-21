@@ -10,8 +10,7 @@
 <link rel="stylesheet" href="<%=application.getContextPath()%>/resources/bootstrap-3.3.2-dist/css/bootstrap.css">
 <link rel="stylesheet" type="text/css"href="<%=application.getContextPath()%>/resources/css/content.css">
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/js/bootstrap.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6QqekZ1wnL7A8e0nPlnEsHowprAdcm8c&callback=initMap">
-</script>
+
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/content.js"></script>
 <style type="text/css">
 #contentPaging {
@@ -21,17 +20,6 @@
 </style>
 <script type="text/javascript">
 
-	function missionMap(){
-		$.ajax({
-			url:"accident_map",
-			success : function(data){
-				$("#acPicture").html(data);
-			},
-			error:function(){
-				alert("에러");
-			}
-		});
-	}
 	function acBoardPicture(data) {
 		$.ajax({
 			url:"acBoardPicture?report_no="+data,
@@ -41,23 +29,21 @@
 			}
 		});
 	}
-	
-	//화면 숨김
-	$(document).ready(function(){
-		$('.bb').hide();
-	});
-	
-	function doShow() { 
-		 $('.bb').show(); // id값을 받아서 보이기 
-		 $('.aa').hide(); // 클래스값을 받아서 숨기기 
-	} 
-	
-	function dohide(){
-		$('.bb').hide(); // id값을 받아서 숨기기 
-		$('.aa').show(); // 클래스값을 받아서 보이기 
+	function acBoardPath(reportNo, lat2, lon2) {
+		$.ajax({
+	        type : "POST",
+	        url : "accidentMap",
+	        data: {
+	        	report_no: reportNo,
+	        	lat: lat2,
+	        	lon: lon2
+	        },
+	        dataType : "html",
+	        success : function(data) {
+	            $('#acPicture').html(data);
+	        }
+	    });
 	}
-	//화면 숨김
-	
 </script> 
 	
 <title>main Form</title>
@@ -86,8 +72,8 @@
 							<td>${acBoardList.report_lat}</td>
 							<td>${acBoardList.report_lon}</td>
 							<td>
-								<button class="btn btn-primary" onclick="listClick(${acBoardList.report_lat}, ${acBoardList.report_lon}); doShow()">경로 확인</button><br/>
-								<button class="btn btn-success" onclick="acBoardPicture(${acBoardList.report_no});dohide()">사진 확인</button>
+								<button class="btn btn-primary" onclick="acBoardPath(${acBoardList.report_no}, ${acBoardList.report_lat}, ${acBoardList.report_lon});">경로 확인</button><br/>
+								<button class="btn btn-success" onclick="acBoardPicture(${acBoardList.report_no});">사진 확인</button>
 							</td>
 						</tr>
 					</c:forEach>
@@ -123,7 +109,6 @@
 			</table>
 			<div>
 					<div class="aa" id=acPicture style="vertical-align: middle; text-align: center;"></div>
-					<div class="bb" id="map"></div>
 			</div>
 		</div>
 	</div>

@@ -128,4 +128,9 @@ public class AdminService {
 		String path = adminDao.selectPathPoint(reportNo);
 		return path;
 	}
+	
+	public String selectPathPoint2(int reportNo) {
+		String path = adminDao.selectPathPoint2(reportNo);
+		return path;
+	}
 }

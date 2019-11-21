@@ -3,16 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6QqekZ1wnL7A8e0nPlnEsHowprAdcm8c&callback=initMap">
-</script>
-
 <style type="text/css">
 #contentPaging {
     position: absolute;  
     bottom: 10px;
 }
 </style>
-
 <script type="text/javascript">
 	
 	function obBoardPicture(data) {
@@ -25,52 +21,21 @@
 		});
 	}
 	
-	function obBoardPath(data) {
+	function obBoardPath(reportNo, lat2, lon2) {
 		$.ajax({
-			url:"obBoardPath?report_no="+data,
-			data: data,
-			success: function(data){
-				var path = data;
-				for(var i=0; i<path.length; i++) {
-					var point = path[i];
-				}
-			}
-		});
+	        type : "POST",
+	        url : "observeMap",
+	        data: {
+	        	report_no: reportNo,
+	        	lat: lat2,
+	        	lon: lon2
+	        },
+	        dataType : "html",
+	        success : function(data) {
+	            $('#obPicture').html(data);
+	        }
+	    });
 	}
-	/* //////////////////////////////////////////////////////////////
-	  for (var key in data.markers) {
-      if (data.markers.hasOwnProperty(key)) {
-        infowindows[key] = new google.maps.InfoWindow({
-            content: data.markers[key].infowindow
-        });
-
-        markers[key] = new google.maps.Marker({
-                position: new google.maps.LatLng(data.markers[key].location.lat, data.markers[key].location.lng),
-                map: map,
-                flat: true,
-                title: data.markers[key].name,
-                draggable: false
-        });
-        var iconFile = 'http://maps.google.com/mapfiles/ms/icons/'+marker_color+'-dot.png';
-        markers[key].setIcon(iconFile);
-	///////////////////////////////////////////////////////////////// */
-	
-	//화면 숨김
-	$(document).ready(function(){ //map 처음에 숨기기
-		$('.bb').hide();
-	});
-	
-	function doShow() { // 경로보기
-		 $('.bb').show(); // map
-		 $('.aa').hide(); // picture 
-	} 
-	
-	function dohide(){ // 사진보기
-		$('.bb').hide(); // map
-		$('.aa').show(); // picture
-	}
-	//화면 숨김
-	
 </script>
 
 <div id="cn_list">
@@ -94,8 +59,8 @@
 					<td>${obBoardList.report_lat}</td>
 					<td>${obBoardList.report_lon}</td>
 					<td>
-						<button class="btn btn-primary" onclick="obBoardPath(${obBoardList.report_no});doShow()">경로 확인</button><br/>
-						<button class="btn btn-success" onclick="obBoardPicture(${obBoardList.report_no});dohide()">사진 확인</button>
+						<button class="btn btn-primary" onclick="obBoardPath(${obBoardList.report_no},${obBoardList.report_lat},${obBoardList.report_lon})">경로 확인</button><br/>
+						<button class="btn btn-success" onclick="obBoardPicture(${obBoardList.report_no})">사진 확인</button>
 					</td>
 				</tr>
 			</c:forEach>
@@ -130,5 +95,4 @@
 		</tbody>
 	</table>
 	<div class="aa" id=obPicture style="vertical-align: middle; text-align: center;"></div>
-	<div class="bb" id="map"></div>
 </div>

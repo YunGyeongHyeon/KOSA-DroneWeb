@@ -35,9 +35,9 @@
 	<select id="selectReport" parameterType="map" resultType="com.fireBusters.web.dto.AdminBoard">
 		select rn, report_date, report_lat, report_lon, report_no, report_handle
 			from(select rownum as rn, report_date, report_lat, report_lon, report_no, report_handle
-					from(select to_char(report_date, 'MM/DD HH24:MI:SS') report_date, report_lat, report_lon, report_no, report_handle
+					from(select to_char(report_date, 'HH24:MI:SS') report_date, report_lat, report_lon, report_no, report_handle
 							from report
-							where fire_station_no=#{id}  ORDER BY report_no DESC)
+							where fire_station_no=#{id} and report_handle='N' ORDER BY report_no DESC)
 					where rownum &lt;= #{endRowNo})
 			where rn &gt;= #{startRowNo}
 	</select>
@@ -46,7 +46,7 @@
  		select rn, report_date, report_lat, report_lon, report_no, REPORT_HANDLE
         	from(select rownum as rn, report_date, report_lat, report_lon, report_no, REPORT_HANDLE
                 	from(select report_date, report_lat, report_lon, report_no, REPORT_HANDLE
-                			from(select to_char(report_date, 'MM/DD HH24:MI:SS') report_date, report_lat, report_lon, report_no, REPORT_HANDLE
+                			from(select to_char(report_date, 'HH24:MI:SS') report_date, report_lat, report_lon, report_no, REPORT_HANDLE
 									from report
 									where fire_station_no=#{obid}  ORDER BY report_no DESC)
                 			where REPORT_HANDLE=#{report_handle})
@@ -58,7 +58,7 @@
 		select rn, report_date, report_lat, report_lon, report_no, REPORT_HANDLE
         	from(select rownum as rn, report_date, report_lat, report_lon, report_no, REPORT_HANDLE
                 	from(select report_date, report_lat, report_lon, report_no, REPORT_HANDLE
-                			from(select to_char(report_date, 'MM/DD HH24:MI:SS') report_date, report_lat, report_lon, report_no, REPORT_HANDLE
+                			from(select to_char(report_date, 'HH24:MI:SS') report_date, report_lat, report_lon, report_no, REPORT_HANDLE
 									from report
 									where fire_station_no=#{abid}  ORDER BY report_no DESC)
                 			where REPORT_HANDLE=#{report_handle})
@@ -82,7 +82,7 @@
 	<select id="selectReportTotalRowNum" resultType="int">
 		select count(*) 
 		from report 
-		where fire_station_no = #{fire_station_id}
+		where fire_station_no = #{fire_station_id} and report_handle='N'
 	</select>
 	
 	<select id="selectTotalRowNum" resultType="int" parameterType="map">
@@ -153,6 +153,10 @@
 	
 	<select id="selectPathPoint" parameterType="int" resultType="string">
 		select path_point from observe where rno = #{reportNo}
+	</select>
+	
+	<select id="selectPathPoint2" parameterType="int" resultType="string">
+		select path_point from accident where rno = #{reportNo}
 	</select>
 	
 </mapper>

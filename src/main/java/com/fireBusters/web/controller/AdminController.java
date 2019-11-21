@@ -7,10 +7,12 @@ import javax.annotation.PreDestroy;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.tomcat.util.json.JSONParser;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -474,6 +476,33 @@ public class AdminController {
 			e.printStackTrace();
 		}
 	}	
+	@RequestMapping("/observeMap")
+	public String observeMap(String report_no, Model model, String lat, String lon) throws Exception {
+		System.out.println(report_no);
+		String path = service.selectPathPoint(Integer.parseInt(report_no));
+		JSONArray json = new JSONArray(path);
+		System.out.println(json.get(0)+"=============================================");
+		
+		model.addAttribute("path",path);
+		model.addAttribute("lat",lat);
+		model.addAttribute("lon",lon);
+		
+		return "/admin/observe_map";
+	}
+	
+	@RequestMapping("/accidentMap")
+	public String accidentMap(String report_no, Model model, String lat, String lon) throws Exception {
+		System.out.println(report_no);
+		String path = service.selectPathPoint2(Integer.parseInt(report_no));
+		JSONArray json = new JSONArray(path);
+		System.out.println(json.get(0)+"=============================================");
+		
+		model.addAttribute("path",path);
+		model.addAttribute("lat",lat);
+		model.addAttribute("lon",lon);
+		
+		return "admin/observe_map";
+	}
 	
 	@PreDestroy
 	public void destroy() {

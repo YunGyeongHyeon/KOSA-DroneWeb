@@ -9,16 +9,21 @@
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/content.js"></script>
 
 <script type="text/javascript">
-function fnImgPop(url){
-	  var img=new Image();
-	  img.src=url;
-	  var img_width=img.width;
-	  var win_width=img.width;
-	  var img_height=img.height;
-	  var win=img.height;
-	  var OpenWindow=window.open('','_blank', 'width='+img_width+', height='+img_height+', menubars=no, scrollbars=auto');
-	  OpenWindow.document.write("<style>body{margin:0px;}</style><img src='"+url+"' width='"+win_width+"'>");
-	 }
+function fnImgPop(url) {
+	var img = new Image();
+	img.src = url;
+	var img_width = "1024px";
+	var win_width = "1024px";
+	var img_height = "720px";
+	var win = "720px";
+	var OpenWindow = window
+			.open(
+					'',
+					'_blank',
+					'width=1024px, height=820px, menubars=no, scrollbars=auto, left=450px, top=100px;');
+	OpenWindow.document
+			.write("<style>body{margin:0px;}</style><img src='"+url+"' width='1024px' height='820px'>");
+}
 </script>
 
 <title>Insert title here</title>

@@ -95,6 +95,7 @@ $(".dStart").on("click",function(){
 		<tbody>
 			<%int i = 1;%>
 			<c:forEach var="board" items="${board}">
+			<c:if test="${board.report_handle.equals('N')}">
 				<tr class="selectLine" onclick="listClick(${board.report_lat}, ${board.report_lon})">
 					<input type="hidden" class="reportNo" value="${board.report_no}"/>
 					<td class="lat" scope="col">${board.report_lat}</td>
@@ -106,6 +107,7 @@ $(".dStart").on("click",function(){
 					</td>
 				</tr>
 				<%i++;%>
+				</c:if>
 			</c:forEach>
 			<tr>
 				<!--페이징  -->

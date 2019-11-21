@@ -15,12 +15,6 @@
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6QqekZ1wnL7A8e0nPlnEsHowprAdcm8c&callback=initMap"></script>
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/content.js"></script>
 
-<style type="text/css">
-#bg { 
-	background-image: url('<%=application.getContextPath()%>/resources/image/b.png');
-}
-</style> 
-
 <script type="text/javascript">
    $(function() {
       //MQTT Broker와 연결하기
@@ -34,26 +28,23 @@
     	$(this).text("출동중");
     	$(this).attr("disabled","true");
     	$(this).parent().parent().children("#displaynone").css("display","none");
-    	
       })
    });
    
    //연결이 완료되었을 때 자동으로 실행(콜백)되는 함수
    function onConnect() {
-      client.subscribe("/drone/service2/sub");
+      client.subscribe("/drone/service2/+");
    }
    
    //메시지를 수신했을 때 자동으로 실행(콜백)되는 함수
    function onMessageArrived(message) {
-	  
       location.href="content";
    }
   
 </script>
-
 <title>main Form</title>
 </head>
-<body id="bg">
+<body >
 	<div>
 		<!-- 맨위에 로고와 아이디 나오는 부분 -->
 		<div>
@@ -97,19 +88,18 @@
 						<tbody>
 							<% int i = 1;%>
 							<c:forEach var="board" items="${board}">
-								<%-- <c:if test="${board.report_handle.equals('N')}"> --%>
+								<c:if test="${board.report_handle.equals('N')}">
 									<tr class="selectLine" onclick="listClick(${board.report_lat}, ${board.report_lon})">
 									<input type="hidden" class="reportNo" value="${board.report_no}"/>
 										<td class="lat" scope="col">${board.report_lat}</td>
 										<td class="lon" scope="col">${board.report_lon}</td>
-										<td class="reportTime" scope="col">${board.report_date}
-										</td>
+										<td class="reportTime" scope="col">${board.report_date}</td>
 										<td scope="col">
 											<button class="btn btn-danger dStart">드론출동</button>
 										</td>
 									</tr>
 									<%i++;%>
-								<%-- </c:if> --%>
+								</c:if>
 							</c:forEach>
 							<tr>
 								<!--페이징  -->

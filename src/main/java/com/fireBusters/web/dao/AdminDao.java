@@ -166,4 +166,8 @@ public class AdminDao {
 		String path = sqlSessionTemplate.selectOne("adminMember.selectPathPoint",reportNo);
 		return path;
 	}
+	public String selectPathPoint2(int reportNo) {
+		String path = sqlSessionTemplate.selectOne("adminMember.selectPathPoint2",reportNo);
+		return path;
+	}
 }

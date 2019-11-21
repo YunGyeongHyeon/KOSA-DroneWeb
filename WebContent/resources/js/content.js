@@ -2,11 +2,12 @@ var labels = 'FH';
 var labelIndex = 0;
 var lat = "";
 var lon = "";
+var i = 1;
 
 function initMap() {
 	var myLatLng = {
-		lat : 37.4978624,
-		lng : 127.153762
+		lat : 37.5500968,
+		lng : 127.1269845
 	};
 
 	var map = new google.maps.Map(document.getElementById('map'), {
@@ -18,12 +19,19 @@ function initMap() {
 }
 
 function addMarker(location, map) {
-	var icon = {
-		// url :
-		// 'http://localhost:8085/FinalWebProject/resources/image/fire3.png',
-		url : 'http://localhost:8085/FinalWebProject/resources/image/fire3.png',
-		scaledSize : new google.maps.Size(100, 100)
+	if(i == 1){
+		var icon = {
+			url : 'http://106.253.56.124:8085/FinalWebProject/resources/image/fireStation.png',
+			scaledSize : new google.maps.Size(60, 60)
+		}
+		i++;
+	}else{
+		var icon = {
+				url : 'http://106.253.56.124:8085/FinalWebProject/resources/image/fire3.png',
+				scaledSize : new google.maps.Size(100, 100)
+			}
 	}
+	
 	// Add the marker at the clicked location, and add the next-available label
 	// from the array of alphabetical characters.
 	marker = new google.maps.Marker({
@@ -72,11 +80,10 @@ $(function() {
 					"report_no":report_no,
 					"lat":lat,
 					"lon":lon,
-					"report_time":report_time
-				};
+					"report_time":report_time};
 		;
 		loadjson = JSON.stringify(json);
-		alert(loadjson);
+		console.log(loadjson);
 		var updateLatLon = new Paho.MQTT.Message(loadjson);
 		updateLatLon.destinationName = "/drone/report/pub";
 
@@ -96,8 +103,8 @@ $(function(){
 		$(this).children("div").css("display", "none");
 	})
 	$(".dStart").on("click",function(){
+		alert("출동 접수가 되었습니다.");
 		report_no = $(this).parent().parent(".selectLine").children(".reportNo").val();
-		alert(report_no);
 		lat = $(this).parent().parent(".selectLine").children(".lat").text();
 		lon = $(this).parent().parent(".selectLine").children(".lon").text();
 		report_time = $(this).parent().parent(".selectLine").children(".reportTime").text();
